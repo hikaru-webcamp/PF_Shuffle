@@ -39,6 +39,8 @@ https://drive.google.com/file/d/1ptPvzaPjyf21LPoxMy6aJP3uTTkrWB62/view?usp=shari
 https://docs.google.com/spreadsheets/d/1SqSQQm1gZpTHf3OcX7xo8yNg7s_4f1dENl2DI5zy_GQ/edit?usp=sharing
 * 詳細設計
 https://drive.google.com/file/d/11xb3GUXV8LYU4EcFpRz5xPnGj17yHM9r/view?usp=sharing
+* アプリ土台作りのコマンド一覧（自主的に作成しました）
+https://docs.google.com/spreadsheets/d/1A6Ea8L6Mus-K7u3EqCJokGCaN2bOZ_SFgmy01pj3FFI/edit?usp=sharing
 
 
 ## チャレンジ要素一覧
