@@ -31,18 +31,11 @@ DWC受講生及び卒業生
 * 生徒同士の交流会
 
 ## 設計書
-[画面設計](https://docs.google.com/spreadsheets/d/1aAGoKETDvsaqckCsh15vlesDV_r5xcKn1EVwyik-C-4/edit?usp=sharing)
-* 画面設計
-
-* ER図
-https://drive.google.com/file/d/1ptPvzaPjyf21LPoxMy6aJP3uTTkrWB62/view?usp=sharing
-* テーブル定義書
-https://docs.google.com/spreadsheets/d/1SqSQQm1gZpTHf3OcX7xo8yNg7s_4f1dENl2DI5zy_GQ/edit?usp=sharing
-* 詳細設計
-https://drive.google.com/file/d/11xb3GUXV8LYU4EcFpRz5xPnGj17yHM9r/view?usp=sharing
-* アプリ土台作りのコマンド一覧（自主的に作成しました）
-https://docs.google.com/spreadsheets/d/1A6Ea8L6Mus-K7u3EqCJokGCaN2bOZ_SFgmy01pj3FFI/edit?usp=sharing
-
+* [画面設計](https://docs.google.com/spreadsheets/d/1aAGoKETDvsaqckCsh15vlesDV_r5xcKn1EVwyik-C-4/edit?usp=sharing)
+* [ER図](https://drive.google.com/file/d/1ptPvzaPjyf21LPoxMy6aJP3uTTkrWB62/view?usp=sharing)
+* [テーブル定義書](https://docs.google.com/spreadsheets/d/1SqSQQm1gZpTHf3OcX7xo8yNg7s_4f1dENl2DI5zy_GQ/edit?usp=sharing)
+* [詳細設計](https://drive.google.com/file/d/11xb3GUXV8LYU4EcFpRz5xPnGj17yHM9r/view?usp=sharing)
+* [アプリ土台作りのコマンド一覧（自主的に作成しました）](https://docs.google.com/spreadsheets/d/1A6Ea8L6Mus-K7u3EqCJokGCaN2bOZ_SFgmy01pj3FFI/edit?usp=sharing)
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1ZBt6QmwcLDN9bYTRuAtxePyoyASKBGyHLJTQEikMtGQ/edit?usp=sharing
