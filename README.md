@@ -31,8 +31,9 @@ DWC受講生及び卒業生
 * 生徒同士の交流会
 
 ## 設計書
+[画面設計](https://docs.google.com/spreadsheets/d/1aAGoKETDvsaqckCsh15vlesDV_r5xcKn1EVwyik-C-4/edit?usp=sharing)
 * 画面設計
-https://docs.google.com/spreadsheets/d/1aAGoKETDvsaqckCsh15vlesDV_r5xcKn1EVwyik-C-4/edit?usp=sharing
+
 * ER図
 https://drive.google.com/file/d/1ptPvzaPjyf21LPoxMy6aJP3uTTkrWB62/view?usp=sharing
 * テーブル定義書
