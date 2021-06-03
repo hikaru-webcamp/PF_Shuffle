@@ -15,7 +15,6 @@ Rails.application.routes.draw do
          resource :likes, only: [:create, :destroy]
         end
     end
-    
   end
 
   devise_for :admins, path: '/admin', only: [:sessions], controllers: { :sessions => 'admin/sessions'}
