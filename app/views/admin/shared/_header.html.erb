@@ -1,3 +1,8 @@
+ <% unless admin_signed_in? %>
+  <%# adminサインイン前は会員側のヘッダーを表示 %>
+  <%= render "user/shared/header" %>
+<% else %>
+ 
  <!-- ナビゲーションバー -->
   <nav class="navbar navbar-dark bg-dark">
     <div class="container">
@@ -10,41 +15,17 @@
     <!-- ナビゲーションメニュー -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <% if admin_signed_in? %>
           <%# userサインイン済 %>
           <span class="navbar-text">
           </span>
           <li class="nav-item">
-            <%= link_to "Home", root_path, class: "nav-link" %>
+            <%= link_to "Users", admins_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Users", users_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Groups", groups_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %>
           </li>        
-        <% else %>
-          <%# userサインイン前 %>
-          <li class="nav-item active">
-            <%= link_to "Groups", groups_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "UserLogin", new_user_session_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-          <%= link_to "AdminLogin", new_admin_session_path, class: "nav-link" %>
-          </li>
         <% end %>
       </ul>
     </div>
   </div>
  </nav>
- 
- 
- 
