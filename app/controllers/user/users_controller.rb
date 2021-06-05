@@ -1,4 +1,5 @@
 class User::UsersController < ApplicationController
+before_action :authenticate_user!
   def index
     @users = User.all
   end
@@ -18,4 +19,5 @@ class User::UsersController < ApplicationController
 
   def out
   end
+  
 end

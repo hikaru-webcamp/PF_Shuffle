@@ -8,8 +8,6 @@ class Group < ApplicationRecord
   #バリデーションの記述(空白禁止と文字制限)
     validates :name, presence: true, length: {maximum: 20, minimum: 2} 
     validates :introduction, presence: true, length: {maximum: 200} 
-    validates :title, presence: true, length: {maximum: 30} 
-    validates :body, presence: true, length: {maximum: 200}
 end
 
 #accepts_nested_attributes_forは

@@ -23,8 +23,5 @@ end
   Group.create!(
     name: "チーム#{n}",
     introduction: "楽しい#{n}",
-    title: "朝活#{n}",
-    body: "ok",
-    image: File.open("#{Rails.root}/app/assets/images/test_image.jpg")
   )
 end

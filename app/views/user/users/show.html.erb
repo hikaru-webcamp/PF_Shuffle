@@ -14,7 +14,9 @@
         	  <th><%= @user.introduction %></th>
           </tr>
         </table>
+        <%= link_to '',edit_user_path(@user.id),class: "btn btn-outline-secondary btn-block fas fa-user-cog" %>
       </div>    
+      
       
         <div class='col-md-8 offset-md-1'>
           <h2 class="mt-4 text-white">コミュニティ一覧</h2>
@@ -27,10 +29,10 @@
               </tr>
             </thead>
             <tbody>
-              <%# @groups.each do |group| %>
+              <%# @groups.group_users.each do |group| %>
                 <tr class="table-active">
                   <td><%#= attachment_image_tag(group, :image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
-                  <td><%#= group.name %></td>
+                  <td><%#= group_user.user.name %></td>
                 </tr>
               <%# end %>
             </tbody>
