@@ -19,7 +19,6 @@ Rails.application.routes.draw do
 
   devise_for :admins, path: '/admin', only: [:sessions], controllers: { :sessions => 'admin/sessions'}
   namespace :admin do
-    root :to => 'homes#top'
     resources :users, only: [:index, :show, :edit, :update]
   end
   
