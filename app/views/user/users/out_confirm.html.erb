@@ -1,2 +1,17 @@
-<h1>User::Users#out_confirm</h1>
-<p>Find me in app/views/user/users/out_confirm.html.erb</p>
+<div class="backimg">
+  <div class='container px-5 px-sm-0'>
+    <div class='row text-white'>
+      <div class="col-12 text-center">
+        <h3 class="font-weight-bold mt-4">本当に退会しますか？</h3>
+        <p class="mb-4">
+          退会すると、自身の会員登録情報や<br>
+          これまでの投稿履歴が閲覧できなくなります。<br>
+          退会する場合は、「退会する」をクリックしてください。
+        </p>
+        
+        <%= link_to "退会しない", root_path, class: "btn btn-primary" %>
+        <%= link_to "退会する", user_out_path, method: :patch, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>
