@@ -38,6 +38,9 @@
             <%= link_to "UserLogin", new_user_session_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
+            <%= link_to 'GestLogin', users_guest_sign_in_path, method: :post, class:"nav-link"%>
+          </li>
+          <li class="nav-item">
           <%= link_to "AdminLogin", new_admin_session_path, class: "nav-link" %>
           </li>
         <% end %>

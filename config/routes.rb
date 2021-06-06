@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   scope module: 'user' do
     root :to => 'homes#top'
 
-    devise_for :users, only: [:sessions, :registrations]
+    devise_for :users, only: [:sessions, :registrations],controllers: { 
+      :registrations =>  'users/registrations',
+    }
 
     resources :users, only: [:index, :show, :edit, :update] do
       get 'out_confirm' => 'users#out_confirm'
@@ -16,6 +18,11 @@ Rails.application.routes.draw do
         end
     end
   end
+
+  devise_scope :user do
+    post 'users/guest_sign_in' => 'user/sessions#guest_sign_in'
+  end
+
 
   devise_for :admins, path: '/admin', only: [:sessions], controllers: { :sessions => 'admin/sessions'}
   namespace :admin do

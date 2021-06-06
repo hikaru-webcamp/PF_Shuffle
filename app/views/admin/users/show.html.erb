@@ -1,2 +1,49 @@
-<h1>Admin::Users#show</h1>
-<p>Find me in app/views/admin/users/show.html.erb</p>
+<div class="backimg">
+  <div class='container px-5 px-sm-0'>
+    <%= render "shared/flash_message" %>
+    <div class='row text-white'>
+      <div class="col-8">
+        <h2 class="mt-4 text-white"><%= @user.name%>さんの会員詳細</h2>
+        <table class="table table-dark">
+          <thead>
+            
+            <tr>
+              <th style="width:50%">会員ID</th>
+              <td><%= @user.id %></td>
+            </tr>
+            <tr>
+              <th>プロフィール画像</th>
+              <td><%= attachment_image_tag(@user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
+            </tr>
+            <tr>
+              <th>ニックネーム</th>
+              <td><%= @user.name %></td>
+            </tr>
+            <tr>
+              <th>自己紹介文</th>
+              <td><%= @user.introduction %></td>
+            </tr>
+            <tr>
+              <th>メールアドレス</th>
+              <td><%= @user.email %></td>
+            </tr>
+            <tr>
+              <th>会員ステータス</th>
+              <td>
+                <% if @user.is_deleted %>
+                  <span class="text-danger">退会</span>
+                <% else %>
+                  <span class="text-success">有効</span>
+                <% end %>
+              </td>
+            </tr>
+           
+          </thead>
+        </table>
+          <dib>
+            <%= link_to "会員情報を編集する", edit_admin_user_path(@user), class:"btn btn-success" %>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
