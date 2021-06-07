@@ -19,7 +19,7 @@
       
       
         <div class='col-md-8 offset-md-1'>
-          <h2 class="mt-4 text-white">コミュニティ一覧</h2>
+          <h2 class="mt-4 text-white">グループ一覧</h2>
           <table class="table table-dark w-100">
             <thead>
               <tr>
@@ -29,12 +29,13 @@
               </tr>
             </thead>
             <tbody>
-              <%# @groups.group_users.each do |group| %>
+              <% @groups.each do |group| %>
                 <tr class="table-active">
-                  <td><%#= attachment_image_tag(group, :image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
-                  <td><%#= group_user.user.name %></td>
+                  <td><%= attachment_image_tag(group.group, :image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
+                  <td><%= group.group.name %></td>
+                  <td><%= group.group.introduction %></td>
                 </tr>
-              <%# end %>
+              <% end %>
             </tbody>
           </table>
         </div>

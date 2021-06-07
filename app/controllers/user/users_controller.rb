@@ -8,6 +8,7 @@ before_action :ensure_correct_user, only: [:edit]
 
   def show
     @user = User.find(params[:id])
+    @groups = @user.group_users
   end
 
   def edit
@@ -29,7 +30,7 @@ before_action :ensure_correct_user, only: [:edit]
     reset_session
     redirect_to root_path, alert: "退会しました"
   end
-  # reset_sessionですべてのセッション情報を削除
+  # reset_sessionですべてのセッション情報を削除してログアウトさせる
 
   def out_confirm
   end

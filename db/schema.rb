@@ -51,7 +51,8 @@ ActiveRecord::Schema.define(version: 2021_06_03_045929) do
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "group_id", null: false
-    t.text "commentm", null: false
+    t.string "title", null: false
+    t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

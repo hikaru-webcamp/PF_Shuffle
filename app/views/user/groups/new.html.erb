@@ -5,6 +5,7 @@
       <h2 class="mt-4 text-center">コミュニティ新規登録</h2>
       
       <%= form_with model:@group,local:true do |f| %>
+      <%= render 'shared/form_error', model: @group %>
         <div class="form-group row">
           <%= f.label :image, "グループ画像", class: "col-sm-4 col-form-label" %>
           <div class="col-sm-8">
