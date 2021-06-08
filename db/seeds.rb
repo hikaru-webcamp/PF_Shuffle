@@ -11,9 +11,10 @@ Admin.create!(
   password: 'testtest'
 )
 
-5.times do |n|
+10.times do |n|
   User.create!(
     name: "太郎#{n}",
+    introduction: "宜しくお願いします",
     email: "user#{n}@test.com",
     password: "testtest"
   )
@@ -22,6 +23,7 @@ end
 10.times do |n|
   Group.create!(
     name: "チーム#{n}",
-    introduction: "楽しい#{n}",
+    introduction: "楽しいチーム#{n}",
+    owner_id: User.find(n+1).id
   )
 end
