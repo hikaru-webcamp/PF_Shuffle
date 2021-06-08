@@ -1,7 +1,7 @@
 <div class="backimg">
   <div class='container px-5 px-sm-0'>
     <%= render "shared/flash_message" %>
-    <div class='row text-white'>
+    <div class='row mt-5 text-white'>
       <div class="col-8">
         <h2 class="mt-4 text-white"><%= @user.name%>さんの会員情報編集</h2>
         <%= form_with model: @user, url: admin_user_path, local:true do |f| %>

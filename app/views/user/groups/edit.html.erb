@@ -1,2 +1,41 @@
-<h1>User::Groups#edit</h1>
-<p>Find me in app/views/user/groups/edit.html.erb</p>
+<div class="backimg">
+  <div class='container px-5 px-sm-0'>
+  <div class="row text-white mt-5">
+    <div class="col-md-10 col-lg-8 col-xl-6 mx-auto">
+      <h2 class="mt-4 text-center">コミュニティ編集</h2>
+      
+      <%= form_with model:@group,local:true do |f| %>
+      <%= render 'shared/form_error', model: @group %>
+        <div class="form-group row">
+          <%= f.label :image, "グループ画像", class: "col-sm-4 col-form-label" %>
+          <div class="col-sm-8">
+            <div class="custom-file">
+              <%= f.attachment_field :image, class: "custom-file-input" %>
+              <%= f.label :image, "グループ画像を選択", class: "custom-file-label" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <%= f.label :name, "グループ名", class: "col-sm-4 col-form-label" %>
+          <div class="col-sm-8">
+            <%= f.text_area :name, placeholder: "グループ名を記述して下さい",class: "form-control" %>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <%= f.label :introduction, "グループの説明", class: "col-sm-4 col-form-label" %>
+          <div class="col-sm-8">
+            <%= f.text_area :introduction, placeholder: "こちらにグループの説明文を記述して下さい",class: "form-control" %>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <div class="col-12 text-right">
+            <%= f.submit "変更内容を保存", class: 'btn btn-success' %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
