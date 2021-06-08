@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2021_06_03_045929) do
     t.string "name", null: false
     t.text "introduction", null: false
     t.string "image_id"
-    t.integer "owner_id"
+    t.integer "owner_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

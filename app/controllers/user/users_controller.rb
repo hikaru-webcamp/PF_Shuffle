@@ -1,6 +1,6 @@
 class User::UsersController < ApplicationController
 before_action :authenticate_user!
-before_action :ensure_correct_user, only: [:edit]
+before_action :ensure_correct_user, only: [:update, :edit]
 
   def index
     @users = User.all
@@ -12,11 +12,10 @@ before_action :ensure_correct_user, only: [:edit]
   end
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def update
-    @user = current_user
     if @user.update(user_params)
       redirect_to user_path(@user), notice: "会員情報を変更しました"
     else

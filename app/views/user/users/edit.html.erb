@@ -5,7 +5,7 @@
       <div class="col-8">
         <h2 class="mt-4 text-white"><%= @user.name%>さんの会員情報編集</h2>
         
-        <%= form_with model: @user, url: admin_user_path, local:true do |f| %>
+        <%= form_with model: @user, url: user_path, local:true do |f| %>
           <%= render 'shared/form_error', model: @user %>
           <div class="form-group row">
               <%= f.label :image,"プロフィール画像",class: "form-label col-sm-3"  %>
@@ -47,7 +47,6 @@
             </div>
           </div>
         <% end %>
-        
       </div>
     </div>
   </div>

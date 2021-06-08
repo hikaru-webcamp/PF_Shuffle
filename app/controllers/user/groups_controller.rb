@@ -1,5 +1,6 @@
 class User::GroupsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
+  before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
     @groups = Group.all
@@ -30,9 +31,16 @@ class User::GroupsController < ApplicationController
   end
 
   def edit
+    @group = Group.find(params[:id])
   end
 
   def update
+    if @group.update(group_params)
+      redirect_to groups_path
+    else
+      @group = Group.find(params[:id])
+      render "edit"
+    end
   end
 
   def destroy
@@ -41,10 +49,18 @@ class User::GroupsController < ApplicationController
     redirect_to group_path(@group)
   end
   
-end
-
   private
 
   def group_params
-    params.require(:group).permit(:image,:name,:introduction,:title,:body)
+    params.require(:group).permit(:image,:name,:introduction,:owner_id)
   end
+  
+  # 他人のグループ編集ページにアクセスできないメソッドを定義
+  # 他人のグループ編集ページをクリックすると、グループ一覧ページに遷移。
+  def ensure_correct_user
+  @group = Group.find(params[:id])
+    unless @group.owner_id == current_user.id
+      redirect_to groups_path
+    end
+  end
+end
