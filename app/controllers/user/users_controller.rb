@@ -8,7 +8,7 @@ before_action :ensure_correct_user, only: [:edit]
 
   def show
     @user = User.find(params[:id])
-    @groups = @user.group_users
+    @groups = @user.groups
   end
 
   def edit
