@@ -27,7 +27,7 @@ class User::GroupsController < ApplicationController
   end
   
   def groupout
-    @group = Group.find(params[:id])
+    @group = Group.find(params[:group_id])
     @group.users.delete(current_user)
     redirect_to group_path(@group)
   end

@@ -1,44 +1,54 @@
-  <div class="sharedmargin">
-    <div class="container container-m">
-  <%= render "shared/flash_message" %>
-    <div class='row mt-5'>
-      <div class="col-12">
-      <h3 class="text-white ">グループ詳細</h3>
-        
-        <table class="table table-dark w-100">
-          <thead>
-            <tr>
-              <th>グループイメージ</th>
-              <th>グループ名</th>
-              <th>グループ紹介文</th>
-              <th>メンバー数</th>
-              <th>グループメンバー(作成者以外)</th>
-            </tr>
-          </thead>
-          <tbody>
-              <tr class="table-active">
-                <td><%= attachment_image_tag(@group, :image, size: "240x180", fallback: "grouptest.png") %></td>
-                <td><%= @group.name %></td>
-                <td><%= @group.introduction %></td>
-                <td><%= @group.users.count %></td>
-                <td>
+<div class="sharedmargin">
+    <div class="container-md">
+      <%= render "shared/flash_message" %>
+      <div class='row'>
+        <h3 class="text-white col-sm-3 col-xs-6 m-4 font-italic">グループ詳細</h3>
+        <h3 class="text-white col-sm-3 col-xs-6 m-4 font-italic">投稿一覧</h3>
+      </div>
+      <div class='row mt-2'>
+          
+          <div class="col-sm-3 col-xs-6 m-4">
+            <div class="card-deck" style="width: 20rem;"> <!--連結しないで表示したい場合は、card-deck-->
+              <div class="card text-white border-dark mb-3 bg-dark ">
+                  <%= attachment_image_tag(@group, :image, size: "240x180", fallback: "groupnoimage.jpeg", class: "card-img-top img-fluid" )%>
+                <div class="card-body">
+                  <h5 class="card-title font-weight-bold"><%= @group.name %></h5>
+                  <p class="card-text"><%= @group.introduction %></p>
                   <% @group.users.each do |member| %>
-                    <%= member.name %>
+                    <p class="card-text"><%= member.name %></p>
                   <% end %>
-                </td>
+                  
                   <% if @group.owner_id == current_user.id %>
-                    <td><%= link_to 'Edit', edit_group_path(@group), class: "btn btn-sm btn-success" %></td>
-                    <td><%= link_to 'Destroy', group_path(@group), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+                    <p class="card-text"><%= link_to 'Edit', edit_group_path(@group), class: "btn btn-sm btn-success" %></p>
+                    <p class="card-text"><%= link_to 'Destroy', group_path(@group), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></p>
                   <% elsif @group.users.include?(current_user) %>
-                    <td><%= link_to "グループから脱退", group_groupout_path(@group), method: :delete, class: "btn btn-sm btn-danger" %></td>
+                    <%= link_to "グループから脱退", group_groupout_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
                   <% else %>
-                    <td><%= link_to 'グループに加入', group_join_path(@group), class: 'btn btn-sm btn-success' %></td>
+                    <%= link_to 'グループに加入', group_join_path(@group), class: 'btn btn-sm btn-success' %>
                   <% end %>
-                </td>
-              </tr>
-          </tbody>
-        </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        <!--ここに投稿一覧を記載する-->
+        <%# @groups.each do |group| %>
+          <!--<div class="col-sm-3 col-xs-6 m-4 ">-->
+          <!--  <div class="card-deck" style="width: 20rem;"> <!--連結しないで表示したい場合は、card-deck-->
+          <!--    <div class="card text-white border-dark mb-3 bg-dark ">-->
+          <!--      <%#= link_to group_path(group) do %>-->
+          <!--        <%#= attachment_image_tag(group, :image, size: "240x180", fallback: "groupnoimage.jpeg", class: "card-img-top img-fluid" )%>-->
+          <!--      <%# end %>-->
+          <!--      <div class="card-body">-->
+          <!--        <h5 class="card-title">グループ名: <%#= group.name %></h5>-->
+          <!--        <p class="card-text"><%#= group.introduction %></p>-->
+          <!--        <p class="card-text">加入メンバー<%#= group.users.count %>人</p>-->
+          <!--      </div>-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--</div>-->
+        <%# end %> 
+
       </div>
     </div>
   </div>
-</div>
