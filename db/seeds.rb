@@ -16,7 +16,8 @@ Admin.create!(
     name: "太郎#{n}",
     introduction: "宜しくお願いします",
     email: "user#{n}@test.com",
-    password: "testtest"
+    password: "testtest",
+    profile_image: File.open("#{Rails.root}/app/assets/images/groupimage#{n}.jpeg")
   )
 end
 
@@ -24,6 +25,7 @@ end
   Group.create!(
     name: "チーム#{n}",
     introduction: "楽しいチーム#{n}",
-    owner_id: User.find(n+1).id
+    owner_id: User.find(n+1).id,
+    image: File.open("#{Rails.root}/app/assets/images/groupimage#{n}.jpeg")
   )
-end
+  end
