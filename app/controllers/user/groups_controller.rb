@@ -25,6 +25,12 @@ class User::GroupsController < ApplicationController
     @group.users << current_user
     redirect_to group_path(@group)
   end
+  
+  def groupout
+    @group = Group.find(params[:id])
+    @group.users.delete(current_user)
+    redirect_to group_path(@group)
+  end
 
   def show
     @group = Group.find(params[:id])
@@ -45,8 +51,8 @@ class User::GroupsController < ApplicationController
 
   def destroy
     @group = Group.find(params[:id])
-    @group.users.delete(current_user)
-    redirect_to group_path(@group)
+    @group.destroy
+    redirect_to groups_path
   end
   
   private

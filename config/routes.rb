@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
     resources :groups, only: [:index, :show, :new, :edit, :create, :update, :destroy] do
       get 'join' => 'groups#join'
+      get 'groupout' => 'groups#groupout'
       resource :group_users, only: [:create, :destroy] 
         resources :posts, only: [:create, :destroy] do
          resource :likes, only: [:create, :destroy]
