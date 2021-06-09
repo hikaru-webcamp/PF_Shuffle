@@ -1,39 +1,43 @@
-<div class="container">
-  <%#= render "shared/flash_message" %>
+<div class="sharedmargin">
+  <div class="container-md">
+    <%= render "shared/flash_message" %>
+  
+    <div class='row mt-2'>
+      <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto text-white topfont">
+        <h2 class="mb-3 ml-sm-n2 text-center">UserLogin</h2>
 
-  <div class="row">
-    <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto">
-      <h2 class="mb-3 ml-sm-n2">ログイン</h2>
-      <h4 class="mb-3">会員の方はこちらからログイン</h4>
-      
-      <%= form_with model: @user, url: user_session_path, local:true, class: "pl-sm-4" do |f| %>
-        <div class="form-group row">
-          <%= f.label :email, "メールアドレス", class: "col-sm-4 col-form-label" %>
-          <div class="col-sm-8">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", 
-              placeholder: "simple@example.com", class: "form-control" %>
+        <%= form_with model: @user, url: user_session_path, local:true, class: "pl-sm-4" do |f| %>
+          <div class="form-group row">
+            <h3 class="col-sm-4 col-form-label">Email</h3>
+            <div class="col-sm-8">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", 
+                placeholder: "simple@example.com", class: "form-control" %>
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <%= f.label :password, "パスワード", class: "col-sm-4 col-form-label" %>
-          <div class="col-sm-8">
-            <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+          <div class="form-group row">
+            <h3 class="col-sm-4 col-form-label">Password</h3>
+            <div class="col-sm-8">
+              <%= f.password_field :password, autocomplete: "current-password", 
+                placeholder: "password", class: "form-control" %>
+            </div>
           </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-sm-8 offset-sm-4 text-right">
-            <%= f.submit "ログイン", class: "btn btn-primary" %>
+          <div class="form-group row">
+            <div class="col-sm-8 offset-sm-4 text-right">
+              <%= f.submit "Login", class: "btn btn-secondary form-control topfont" %>
+            </div>
           </div>
-        </div>
-      <% end %>
-      <h4 class="mb-3">会員登録がお済みでない方</h4>
-      <p class="pl-4"><%= link_to "こちら", new_user_registration_path %> から新規登録を行ってください。</p>
-      
-      <h4>テストアカウントでのログイン</h4>
-      <h4>email:user1@test.com</h4>
-      <h4>pass:testtest</h4>
-      
+        <% end %>
+        <h4 class="mb-3 mt-5">会員登録がお済みでない方</h4>
+        <p class="pl-4"><%= link_to "こちら", new_user_registration_path %> から新規登録を行ってください。</p>
+        
+        <h5 class="mt-5">テストアカウントでのログイン</h5>
+        <h4>email:   user1@test.com</h4>
+        <h4>pass:   testtest</h4>
+        
+      </div>
     </div>
   </div>
 </div>
+
+
 

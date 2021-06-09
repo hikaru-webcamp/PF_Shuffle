@@ -1,32 +1,31 @@
-
   <div class="sharedmargin">
-    <div class="container container-m">
+    <div class="container-md">
       <%= render "shared/flash_message" %>
-      <h3 class="text-white ">グループ一覧</h3>
-          <div class="text-right">
-            <%= link_to new_group_path, class: "btn btn-info rounded-circle faa-ring animated" do %>
-              <i class="fas fa-plus"></i>
-            <% end %>
-          </div>
+      <h3 class="text-white font-italic">グループ一覧</h3>
+        <div class="text-center">
+          <%= link_to new_group_path, class: "btn btn-light rounded-circle" do %>
+            <i class="fa fa-users fa-3x "><h5>New Group</h5></i> 
+          <% end %>
+        </div>
           
       <div class='row mt-2'>
-          <% @groups.each do |group| %>
-            <div class="col-sm-3 col-xs-6 m-4 ">
-              <div class="card-deck" style="width: 20rem;"> <!--連結しないで表示したい場合は、card-deck-->
-                <div class="card text-white border-dark mb-3 bg-dark ">
-                  <%= link_to group_path(group) do %>
-                    <%= attachment_image_tag(group, :image, size: "240x180", fallback: "grouptest.png", class: "card-img-top img-fluid" )%>
-                  <% end %>
-                  <div class="card-body">
-                    <h5 class="card-title">グループ名: <%= group.name %></h5>
-                    <p class="card-text"><%= group.introduction %></p>
-                    <p class="card-text">加入メンバー<%= group.users.count %>人</p>
-                  </div>
+        <% @groups.each do |group| %>
+          <div class="col-sm-3 col-xs-6 m-4 ">
+            <div class="card-deck" style="width: 20rem;"> <!--連結しないで表示したい場合は、card-deck-->
+              <div class="card text-white border-dark mb-3 bg-dark ">
+                <%= link_to group_path(group) do %>
+                  <%= attachment_image_tag(group, :image, size: "240x180", fallback: "groupnoimage.jpeg", class: "card-img-top img-fluid" )%>
+                <% end %>
+                <div class="card-body">
+                  <h5 class="card-title font-weight-bold"><%= group.name %></h5>
+                  <p class="card-text"><%= group.introduction %></p>
+                  <p class="card-text">加入メンバー<%= group.users.count %>人</p>
                 </div>
               </div>
             </div>
-          <% end %> 
+          </div>
+        <% end %> 
       </div>
-                  
+      
     </div>
   </div>

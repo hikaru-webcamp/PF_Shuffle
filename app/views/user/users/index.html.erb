@@ -1,31 +1,24 @@
-<div class="backimg">
-  <div class='container px-5 px-sm-0'>
-    <div class='row mt-5'>
-      <div class="col-12">
-        <h2 class="mt-4 text-white">会員一覧</h2>
-        <table class="table table-dark">
-          <thead>
-            <tr>
-              <th>プロフィール画像</th>
-              <th>ユーザー名</th>
-              <th>自己紹介文</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @users.each do |user| %>
-              <tr class="table-active">
-                <td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
-                <td>
-                  <%= link_to user_path(user) do %>
-                    <%= user.name %>
-                  <% end %>
-                </td>
-                <td><%= user.introduction %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+  <div class="sharedmargin">
+    <div class="container-md">
+      <%= render "shared/flash_message" %>
+      <h3 class="text-white font-italic">会員一覧</h3>
+          
+      <div class='row mt-2'>
+        <% @users.each do |user| %>
+          <div class="col-sm-3 col-xs-6 m-4 ">
+            <div class="card-deck" style="width: 20rem;"> <!--連結しないで表示したい場合は、card-deck-->
+              <div class="card text-white border-dark mb-3 bg-dark ">
+                <%= link_to user_path(user),class: "profileimg" do %>
+                  <%= attachment_image_tag(user, :profile_image, size: "240x180", fallback: "profilenoimage.jpeg",class: "profileimg card-img-top img-fluid") %>
+                <% end %>
+                <div class="card-body">
+                  <h5 class="card-title font-weight-bold"><%= user.name %></h5>
+                  <p class="card-text"><%= user.introduction %></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %> 
       </div>
     </div>
   </div>
-</div>

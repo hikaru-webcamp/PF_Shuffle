@@ -1,48 +1,50 @@
-<div class="container">
-  <%#= render "shared/flash_message" %>
-  <div class="row">
-    <div class="col-md-10 col-lg-9 col-xl-8 mx-auto">
-      <h2 class="mb-4">新規会員登録</h2>
-
-      <%= form_with model: @user, url: user_registration_path, local: true, class: "mb-3 pl-md-3" do |f| %>
-        <%= render "shared/form_error", model: @user %>
-        <div class="form-group row">
-          <%= f.label "名前", class: "col-md-4 col-form-label" %>
-          <div class="col-sm-6 col-md-4">
-            <%= f.text_field :name, autofocus: true,  placeholder: "ニックネーム", class:"form-control" %>
+<div class="sharedmargin">
+  <div class="container-md">
+    <%= render "shared/flash_message" %>
+    <div class="row mt-2">
+      <div class="col-md-10 col-lg-9 col-xl-8 mx-auto text-white topfont">
+          <h2 class="mb-3 ml-sm-n2 text-center">SignUP</h2>
+  
+        <%= form_with model: @user, url: user_registration_path, local: true, class: "mb-3 pl-md-3" do |f| %>
+          <%= render "shared/form_error", model: @user %>
+          <div class="form-group row">
+            <h3 class="col-sm-4 col-form-label">Name</h3>
+            <div class="col-sm-6 col-md-4">
+              <%= f.text_field :name, autofocus: true,  placeholder: "Nickname", class:"form-control" %>
+            </div>
           </div>
-        </div>
-
-        <div class="form-group row">
-          <%= f.label :email, "メールアドレス", class: "col-md-4 col-form-label" %>
-          <div class="col-sm-6 col-md-4">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class:"form-control" %>
+  
+          <div class="form-group row">
+            <h3 class="col-sm-4 col-form-label">Email</h3>
+            <div class="col-sm-6 col-md-4">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class:"form-control" %>
+            </div>
           </div>
-        </div>
-
-        <div class="form-group row">
-          <%= f.label :password, "パスワード（６文字以上）", class: "col-md-4 col-form-label" %>
-          <div class="col-sm-6 col-md-4">
-            <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+  
+          <div class="form-group row">
+            <h3 class="col-sm-4 col-form-label">Password (6 characters)</h3>
+            <div class="col-sm-6 col-md-4">
+              <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password", class:"form-control" %>
+            </div>
           </div>
-        </div>
-
-        <div class="form-group row">
-          <%= f.label :password_confirmation, "パスワード（確認用）", class: "col-md-4 col-form-label" %>
-          <div class="col-sm-6 col-md-4">
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+  
+          <div class="form-group row">
+            <h3 class="col-sm-4 col-form-label">Password (Confirm Password)</h3>
+            <div class="col-sm-6 col-md-4">
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password again to confirm", class:"form-control" %>
+            </div>
           </div>
-        </div>
-
-        <div class="form-group row">
-          <div class="col-6 text-right">
-            <%= f.submit "新規登録", class:"btn btn-success" %>
+  
+          <div class="form-group row">
+              <div class="col-sm-4 offset-sm-4 text-right">
+              <%= f.submit "Sign up", class: "btn btn-secondary topfont form-control" %>
+            </div>
           </div>
-        </div>
-      <% end %>
-
-      <h4 class="mb-3">既に登録済みの方</h4>
-      <p class="pl-3"><%= link_to "こちら", new_user_session_path %> からログインしてください。</p>
+        <% end %>
+  
+        <h4 class="mb-3 mt-5">既に登録済みの方</h4>
+        <p class="pl-3"><%= link_to "こちら", new_user_session_path %> からログインしてください。</p>
+      </div>
     </div>
   </div>
 </div>

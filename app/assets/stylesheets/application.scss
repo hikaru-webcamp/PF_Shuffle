@@ -36,12 +36,9 @@ button:focus{
   outline: none;
 }
 
-// .navbar-toggler{
-//   background-color: #9f9f9f;
-// }
-
 // フォントを指定(windouw,Mac両方記載)
 // 総称フォント名(sans-serif)は""で囲わない
+// 背景色
 body {
 font-family: "Caveat", "cursive", sans-serif;
 background-color: #23282F; 
@@ -58,4 +55,8 @@ font-family: 'Homemade Apple', cursive;
     width: 100%;
     height: 10vw;
     object-fit: cover;
+}
+
+.profileimg {
+	border-radius: 50%;
 }
