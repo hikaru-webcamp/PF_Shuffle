@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       get 'join' => 'groups#join'
       delete 'groupout' => 'groups#groupout'
       resource :group_users, only: [:create, :destroy] 
-        resources :posts, only: [:create, :destroy] do
+        resources :posts, only: [:show, :new, :edit, :create, :update, :destroy] do
          resource :likes, only: [:create, :destroy]
         end
     end

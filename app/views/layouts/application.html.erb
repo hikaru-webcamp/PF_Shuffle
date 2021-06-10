@@ -13,10 +13,10 @@
     <header>
       <% if controller.class.parent.name == "Admin" %>
         <%# Admin側のヘッダー %>
-        <%= render "admin/shared/header" %>
+        <%= render "admin/shared/admin_header" %>
       <% else %>
         <%# user側のヘッダー %>
-        <%= render "user/shared/header" %>
+        <%= render "user/shared/user_header" %>
       <% end %>
     </header>
     <main class="flex-grow-1">

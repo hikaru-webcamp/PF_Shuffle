@@ -2,53 +2,89 @@
     <div class="container-md">
       <%= render "shared/flash_message" %>
       <div class='row'>
-        <h3 class="text-white col-sm-3 col-xs-6 m-4 font-italic">グループ詳細</h3>
-        <h3 class="text-white col-sm-3 col-xs-6 m-4 font-italic">投稿一覧</h3>
+        <h3 class="text-white col-sm-3 col-xs-6 m-3 font-italic">グループ詳細</h3>
+        <div class="text-center">
+          <%= link_to new_group_post_path(@group.id), class: "btn btn-light rounded-circle" do %>
+            <i class="fa fa-users fa-3x "><h5>New Post</h5></i> 
+          <% end %>
+        </div>
       </div>
-      <div class='row mt-2'>
-          
-          <div class="col-sm-3 col-xs-6 m-4">
-            <div class="card-deck" style="width: 20rem;"> <!--連結しないで表示したい場合は、card-deck-->
-              <div class="card text-white border-dark mb-3 bg-dark ">
-                  <%= attachment_image_tag(@group, :image, size: "240x180", fallback: "groupnoimage.jpeg", class: "card-img-top img-fluid" )%>
-                <div class="card-body">
-                  <h5 class="card-title font-weight-bold"><%= @group.name %></h5>
-                  <p class="card-text"><%= @group.introduction %></p>
-                  <% @group.users.each do |member| %>
-                    <p class="card-text"><%= member.name %></p>
-                  <% end %>
-                  
-                  <% if @group.owner_id == current_user.id %>
-                    <p class="card-text"><%= link_to 'Edit', edit_group_path(@group), class: "btn btn-sm btn-success" %></p>
-                    <p class="card-text"><%= link_to 'Destroy', group_path(@group), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></p>
-                  <% elsif @group.users.include?(current_user) %>
-                    <%= link_to "グループから脱退", group_groupout_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
-                  <% else %>
-                    <%= link_to 'グループに加入', group_join_path(@group), class: 'btn btn-sm btn-success' %>
-                  <% end %>
-                </div>
+      
+      <div class='row'>
+        <div class="col-sm-3 col-xs-6 m-3">
+          <div class="card-deck" style="width: 20rem;"> <!--連結しないで表示したい場合は、card-deck-->
+            <div class="card text-white border-dark mb-3 bg-dark ">
+                <%= attachment_image_tag(@group, :image, size: "240x180", fallback: "groupnoimage.jpeg", class: "card-img-top img-fluid" )%>
+              <div class="card-body">
+                <h5 class="card-title font-weight-bold"><%= @group.name %></h5>
+                <p class="card-text"><%= @group.introduction %></p>
+                <% @group.users.each do |member| %>
+                  <p class="card-text"><%= member.name %></p>
+                <% end %>
+                
+                <% if @group.owner_id == current_user.id %>
+                  <p class="card-text"><%= link_to 'Edit', edit_group_path(@group), class: "btn btn-sm btn-success" %></p>
+                  <p class="card-text"><%= link_to 'Destroy', group_path(@group), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></p>
+                <% elsif @group.users.include?(current_user) %>
+                  <%= link_to "グループから脱退", group_groupout_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
+                <% else %>
+                  <%= link_to 'グループに加入', group_join_path(@group), class: 'btn btn-sm btn-success' %>
+                <% end %>
               </div>
             </div>
           </div>
-        
-        <!--ここに投稿一覧を記載する-->
-        <%# @groups.each do |group| %>
-          <!--<div class="col-sm-3 col-xs-6 m-4 ">-->
-          <!--  <div class="card-deck" style="width: 20rem;"> <!--連結しないで表示したい場合は、card-deck-->
-          <!--    <div class="card text-white border-dark mb-3 bg-dark ">-->
-          <!--      <%#= link_to group_path(group) do %>-->
-          <!--        <%#= attachment_image_tag(group, :image, size: "240x180", fallback: "groupnoimage.jpeg", class: "card-img-top img-fluid" )%>-->
-          <!--      <%# end %>-->
-          <!--      <div class="card-body">-->
-          <!--        <h5 class="card-title">グループ名: <%#= group.name %></h5>-->
-          <!--        <p class="card-text"><%#= group.introduction %></p>-->
-          <!--        <p class="card-text">加入メンバー<%#= group.users.count %>人</p>-->
-          <!--      </div>-->
-          <!--    </div>-->
-          <!--  </div>-->
-          <!--</div>-->
-        <%# end %> 
-
+        </div>
+          
+        <div class="col-sm-7 col-xs-6 m-3">
+          <table class="table table-dark">
+            <thead>
+                <tr>
+                  <th class="col-sm-5">題名</th>
+                  <th class="col-sm-7">本文</th>
+                </tr>
+            </thead>
+            <tbody>
+              <% @group.posts.each do |posts| %>
+                <tr>
+                  <!--.truncateヘルパメソッドで文字数を省略-->
+                  <td><%= posts.title.truncate(10) %></td>
+                  <td><%= posts.body.truncate(15)  %></td>
+                  <% if posts.user.id == current_user.id %>
+                  <td><%= link_to 'Edit', edit_group_post_path(@group.id), class: "btn btn-sm btn-success" %></td>
+                  <td><%= link_to 'Destroy', group_post_path(posts.id), method: :delete, data: { confirm: '本当に消しますか？' }, 
+                  class: "btn btn-sm btn-danger"%></td>
+                  <% end %>
+                </tr>                       
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
+      
+      <!--<div class='row'>-->
+      <!--  <div class="col-md-8 ml-3 text-white">-->
+      <!--    <h4 class="mb-3 ml-sm-n2 text-left">イベント投稿</h4>-->
+              <!--グループの情報と空のインスタンスを代入-->
+      <!--  <%#= form_with model:[@group, @post], local: true do |f| %>-->
+      <!--    <div class="col-md-4">-->
+      <!--      <div class="form-group row">-->
+      <!--        <h3 class="col-form-label">イベント内容</h3>-->
+      <!--        <%#= f.text_field :title, class: 'form-control' %>-->
+      <!--      </div>-->
+      <!--      <div class="form-group row">-->
+      <!--        <h3 class="col-form-label">イベント本文</h3>-->
+      <!--        <%#= f.text_area :body, class: 'form-control' %>-->
+      <!--      </div>-->
+      <!--      <div class="form-group row">-->
+      <!--        <%#= f.submit "投稿", class: 'btn btn-success form-control' %>-->
+      <!--      </div>-->
+      <!--    </div>-->
+      <!--  <%# end %> -->
+      <!--  </div>-->
+      <!--</div>-->
+      
     </div>
   </div>
+  
+  
+  

@@ -1,6 +1,6 @@
 class User::GroupsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :ensure_correct_user, only: [:edit, :update]
+  # before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
     @groups = Group.all
@@ -34,6 +34,7 @@ class User::GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
+    @posts = Post.all
   end
 
   def edit

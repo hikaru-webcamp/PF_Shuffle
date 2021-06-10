@@ -1,0 +1,79 @@
+ <!--部分テンプレートにより@user➩user変更-->
+
+<%= form_with model: user, url: user_path, local:true do |f| %>
+  <%= render 'shared/form_error', model: user %>
+  <div class="form-group row">
+    <h3 class="col-sm-4 col-form-label">Profile Image</h3>
+    <div class="col-sm-8">
+      <%= f.attachment_field :profile_image, class: "custom-file-input" %>
+      <%= f.label :profile_image, "画像を選択", class: "custom-file-label" %>
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <h3 class="col-sm-4 col-form-label">User Name</h3>
+    <div class="col-sm-8">
+      <%= f.text_field :name, placeholder: "名前を記述して下さい" , class: "form-control" %>
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <h3 class="col-sm-4 col-form-label">User Introduction</h3>
+    <div class="col-sm-8">
+    <%= f.text_area :introduction, placeholder: "自己紹介文を記述して下さい",class: "form-control" %>
+    </div>
+  </div>
+  
+  <div class="form-group row">
+    <h3 class="col-sm-4 col-form-label">Email</h3>
+    <div class="col-sm-8">
+       <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "simple@example.com", class: "form-control" %>
+    </div>
+  </div>
+  
+  
+  <% if controller.class.parent.name == "Admin" %>
+    <div class="form-group row">
+    <h3 class="col-sm-4 col-form-label">User ID</h3>
+      <div class="col-sm-8">
+        <%= f.label :id, @user.id %>
+      </div>
+    </div>
+          
+    <div class="form-group row">
+    <h3 class="col-sm-4 col-form-label">User Status</h3>
+      <div class="col-sm-8">
+        <div class="form-check form-check-inline">
+          <%= f.radio_button :is_deleted, false, class: "form-check-input" %>
+          <%= f.label :is_deleted, "有効", value: false, class: "form-check-label" %>
+        </div>
+        <div class="form-check form-check-inline">
+          <%= f.radio_button :is_deleted, true, class: "form-check-input" %>
+          <%= f.label :is_deleted, "退会", value: true, class: "form-check-label" %>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-group row">
+      <div class="col-sm-8 offset-sm-4 text-right">
+      <%= f.submit "Update", class: "btn btn-success col-sm-12" %>
+      </div>
+    </div>
+
+  <% else %>
+      
+    <div class="form-group row">
+      <div class="col-sm-8 offset-sm-4 text-right">
+        <%= f.submit "Update", class: "btn btn-success col-sm-12" %>
+      </div>
+    </div>
+    
+    <div class="form-group row">
+      <div class="col-sm-8 offset-sm-4 text-right">
+        <%= link_to "Withdraw", user_out_confirm_path(user.id), class: "btn btn-danger" %>
+      </div>
+    </div>
+  
+  <% end %>
+  
+<% end %>
