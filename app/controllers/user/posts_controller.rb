@@ -5,7 +5,10 @@ class User::PostsController < ApplicationController
     @post = Post.new
   end
   
-  
+  def show
+    @group = Group.find(params[:group_id])
+    @post = Post.find(params[:id])
+  end
   
   def create
     @post = Post.new(post_params)
@@ -18,7 +21,8 @@ class User::PostsController < ApplicationController
 
   def destroy
     @group = Group.find(params[:group_id])
-    @group.destroy
+    @post = Post.find(params[:id])
+    @post.destroy
     redirect_to group_path(@group.id)
   end
   
@@ -39,10 +43,6 @@ class User::PostsController < ApplicationController
       render "edit"
     end
   end
-
-
-
-
 
 private
   
