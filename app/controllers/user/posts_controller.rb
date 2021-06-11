@@ -8,7 +8,6 @@ class User::PostsController < ApplicationController
   def show
     @group = Group.find(params[:group_id])
     @post = Post.find(params[:id])
-    @posts = Post.where(group_id: @group.id , post_id: @post.id)
   end
   
   def create
