@@ -6,26 +6,37 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'faker'
+
 Admin.create!(
   email: 'admin@gmail.com',
   password: 'testtest'
 )
 
-10.times do |n|
+15.times do |n|
   User.create!(
-    name: "太郎#{n}",
+    name: Faker::Name.name ,
     introduction: "宜しくお願いします",
-    email: "user#{n}@test.com",
+    email: Faker::Internet.email,
     password: "testtest",
     profile_image: File.open("#{Rails.root}/app/assets/images/groupimage#{n}.jpeg")
   )
 end
 
-10.times do |n|
+15.times do |n|
   Group.create!(
     name: "チーム#{n}",
     introduction: "楽しいチーム#{n}",
     owner_id: User.find(n+1).id,
     image: File.open("#{Rails.root}/app/assets/images/groupimage#{n}.jpeg")
   )
-  end
+end
+
+15.times do |n|
+  Post.create!(
+    title: "#{n}月生",
+    body: "#{n}月生の会をやります",
+    user_id: User.find(n+1).id,
+    group_id: Group.find(n+1).id,
+  )
+end

@@ -2,10 +2,10 @@
     <div class="container-md">
       <%= render "shared/flash_message" %>
       <div class='row'>
-        <h3 class="text-white col-sm-3 col-xs-6 m-3 font-italic">グループ詳細</h3>
-        <div class="text-center">
-          <%= link_to new_group_post_path(@group.id), class: "btn btn-light rounded-circle" do %>
-            <i class="fa fa-users fa-3x "><h5>New Post</h5></i> 
+        <h3 class="text-white col-sm-3 col-xs-6 m-2 font-italic">グループ詳細</h3>
+        <div class="col-sm-7 text-right">
+          <% if @group.users.include?(current_user) %>
+            <%= link_to "新規投稿", new_group_post_path(@group.id), class: "btn btn-light"%>
           <% end %>
         </div>
       </div>
@@ -38,20 +38,25 @@
         <div class="col-sm-7 col-xs-6 m-3">
           <table class="table table-dark">
             <thead>
-                <tr>
-                  <th class="col-sm-5">題名</th>
-                  <th class="col-sm-7">本文</th>
-                </tr>
+              <tr>
+                <th class="col-sm-5">題名</th>
+                <th class="col-sm-7">本文</th>
+              </tr>
             </thead>
             <tbody>
-              <% @group.posts.each do |posts| %>
+              <!--グループひもづくポストをブロック変数に格納-->
+              <% @group.posts.each do |post| %>
                 <tr>
                   <!--.truncateヘルパメソッドで文字数を省略-->
-                  <td><%= posts.title.truncate(10) %></td>
-                  <td><%= posts.body.truncate(15)  %></td>
-                  <% if posts.user.id == current_user.id %>
-                  <td><%= link_to 'Edit', edit_group_post_path(@group.id), class: "btn btn-sm btn-success" %></td>
-                  <td><%= link_to 'Destroy', group_post_path(posts.id), method: :delete, data: { confirm: '本当に消しますか？' }, 
+                  <td>
+                    <%= link_to group_post_path(@group,post) do %>
+                      <%= post.title.truncate(10) %>
+                    <% end %>  
+                  </td>
+                  <td><%= post.body.truncate(15)  %></td>
+                  <% if post.user.id == current_user.id %>
+                  <td><%= link_to 'Edit', edit_group_post_path(@group,post), class: "btn btn-sm btn-success" %></td>
+                  <td><%= link_to 'Destroy', group_post_path(@group,post), method: :delete, data: { confirm: '本当に消しますか？' }, 
                   class: "btn btn-sm btn-danger"%></td>
                   <% end %>
                 </tr>                       
