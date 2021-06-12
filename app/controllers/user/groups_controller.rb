@@ -35,7 +35,6 @@ class User::GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @posts = Post.all
-    @user = User.where(user_id: current_user.id)
   end
 
   def edit
