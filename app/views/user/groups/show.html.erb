@@ -18,9 +18,6 @@
               <div class="card-body">
                 <h5 class="card-title font-weight-bold"><%= @group.name %></h5>
                 <p class="card-text"><%= @group.introduction %></p>
-                <% @group.users.each do |member| %>
-                  <p class="card-text"><%= member.name %></p>
-                <% end %>
                 
                 <% if @group.owner_id == current_user.id %>
                   <p class="card-text"><%= link_to 'Edit', edit_group_path(@group), class: "btn btn-sm btn-success m-1" %>
@@ -79,7 +76,7 @@
                 <tr>
                   <td>
                     <% @group.users.each do |member| %>
-                      <%= link_to user_path(@user) do %>
+                      <%= link_to user_path(member) do %>
                       <p class="card-text"><%= member.name %></p>
                       <% end %>
                     <% end %>

@@ -34,6 +34,11 @@
                     <%= link_to 'Destroy', group_post_path(@group,@post), method: :delete, data: { confirm: '本当に消しますか？' }, 
                     class: "btn btn-sm btn-danger m-2"%></td>
                   <% end %>
+                 <!--イイネ機能-->
+                  <td id="like_btn_<%= @post.id %>">
+                    <%= render "user/likes/like", group: @group, post: @post %>
+                  </td>
+                 <!--イイネ機能-->
                 </td>
               </tr>                       
             </tbody>
