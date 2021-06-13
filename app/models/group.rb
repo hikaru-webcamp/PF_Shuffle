@@ -9,19 +9,10 @@ class Group < ApplicationRecord
     validates :name, presence: true, length: {maximum: 20, minimum: 2} 
     validates :introduction, presence: true, length: {maximum: 200} 
     
-    # 検索方法分岐
-  def self.looks(search, word)
-    if search == "perfect_match"
-      @Group = Group.where("name LIKE?","#{word}")
-    elsif search == "forward_match"
-      @Group = Group.where("name LIKE?","#{word}%")
-    elsif search == "backward_match"
-      @Group = Group.where("name LIKE?","%#{word}")
-    elsif search == "partial_match"
-      @Group = Group.where("name LIKE?","%#{word}%")
-    else
-      @Group = Group.all
-    end
+    # 検索方法分岐 メソッド定義してコントローラー側で呼び出し
+    #検索部分一致で定義
+  def self.looks(word)
+    where(["name LIKE?", "%#{word}%"])
   end
 
 end

@@ -3,9 +3,9 @@ class User::SearchesController < ApplicationController
     @range = params[:range]
     
     if @range == "User"
-      @users = User.looks(params[:search], params[:word]).order(created_at: :desc)
+      @users = User.looks(params[:word]).order(created_at: :desc)
     else
-      @groups = Group.looks(params[:search], params[:word]).order(created_at: :desc)
+      @groups = Group.looks(params[:word]).order(created_at: :desc)
     end
     
   end
