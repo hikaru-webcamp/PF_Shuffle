@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  
+  
   scope module: 'user' do
     root :to => 'homes#top'
+    get 'search' => 'searches#search'
 
     devise_for :users, only: [:sessions, :registrations],controllers: { 
       :registrations =>  'user/registrations',
@@ -31,4 +34,5 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
   end
   
+
 end

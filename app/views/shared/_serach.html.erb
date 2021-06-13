@@ -1,0 +1,8 @@
+  <div class="search_form text-center">
+    <%= form_with url: search_path, method: :get, local: true, class: "form-inline my-2 my-lg-0"  do |f| %>
+      <%= f.select :range, options_for_select([['User'], ['Group']]) %>
+      <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backword_match"], ["部分一致","partial_match"]]) %>
+      <%= f.text_field :word,  class: "form-control mr-sm-2" %>
+      <%= f.submit "検索", class: "btn btn-outline-light  my-2 my-sm-0" %>
+    <% end %>
+  </div>
