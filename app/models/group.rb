@@ -8,6 +8,13 @@ class Group < ApplicationRecord
   #バリデーションの記述(空白禁止と文字制限)
     validates :name, presence: true, length: {maximum: 20, minimum: 2} 
     validates :introduction, presence: true, length: {maximum: 200} 
+    
+    # 検索方法分岐 メソッド定義してコントローラー側で呼び出し
+    #検索部分一致で定義
+  def self.looks(word)
+    where(["name LIKE?", "%#{word}%"])
+  end
+
 end
 
 #accepts_nested_attributes_forは

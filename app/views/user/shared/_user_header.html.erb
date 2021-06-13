@@ -6,6 +6,7 @@
     <div class="topfont">
     <%= link_to "Shuffle", root_path, class: "navbar-brand" %>
     </div>
+    <%= render "shared/serach" %>
     <!-- ハンバーガーメニュー -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <!--<span class="navbar-toggler-icon"></span> 3本線のアイコン-->
@@ -23,33 +24,33 @@
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Mypage", user_path(current_user.id), class: "nav-link" %>
+            <%= link_to "My Page", user_path(current_user.id), class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Users", users_path, class: "nav-link" %>
+            <%= link_to "User List", users_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Groups", groups_path, class: "nav-link" %>
+            <%= link_to "Group List", groups_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
+            <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "nav-link" %>
           </li>        
         <% else %>
           <%# userサインイン前 %>
           <li class="nav-item active">
-            <%= link_to "Groups", groups_path, class: "nav-link" %>
+            <%= link_to "Group List", groups_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Signup", new_user_registration_path, class: "nav-link" %>
+            <%= link_to "Sing UP", new_user_registration_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "UserLogin", new_user_session_path, class: "nav-link" %>
+            <%= link_to "User Login", new_user_session_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'GestLogin', users_guest_sign_in_path, method: :post, class:"nav-link"%>
+            <%= link_to 'Gest Login', users_guest_sign_in_path, method: :post, class:"nav-link"%>
           </li>
           <li class="nav-item">
-          <%= link_to "AdminLogin", new_admin_session_path, class: "nav-link" %>
+          <%= link_to "Admin Login", new_admin_session_path, class: "nav-link" %>
           </li>
         <% end %>
       </ul>

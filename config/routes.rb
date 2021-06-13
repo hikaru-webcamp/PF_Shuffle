@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
+  
+  
+  namespace :admin do
+    get 'searches/search'
+  end
   scope module: 'user' do
     root :to => 'homes#top'
+    get 'search' => 'searches#search'
 
     devise_for :users, only: [:sessions, :registrations],controllers: { 
       :registrations =>  'user/registrations',
@@ -29,6 +35,8 @@ Rails.application.routes.draw do
   devise_for :admins, path: '/admin', only: [:sessions], controllers: { :sessions => 'admin/sessions'}
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
+    get 'search' => 'searches#search'
   end
   
+
 end
