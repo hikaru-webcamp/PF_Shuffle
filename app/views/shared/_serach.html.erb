@@ -10,7 +10,7 @@
       <%= form_with url: search_path, method: :get, local: true, class: "form-inline my-2 my-lg-0"  do |f| %>
         <div class="m-3">
         <%= f.select :range, options_for_select([['User'], ['Group']]), include_blank: "選択して下さい",
-        class: "form-select form-select-lg" %>
+        class: "form-control" %>
         </div>
         <%= f.text_field :word,  class: "form-control mr-sm-2" %>
         <%= f.submit "検索", class: "btn btn-outline-light  my-2 my-sm-0" %>
