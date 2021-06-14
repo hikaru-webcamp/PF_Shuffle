@@ -8,8 +8,7 @@
           <% end %>
         </div>
           
-      <div class='row'>
-        <div class="d-flex flex-wrap scroll-list jscroll">
+      <div class='row scroll-list jscroll '>
           <% @groups.each do |group| %>
             <div class="col-md-4">
               <div class="mb-4 card-deck"> <!--連結しないで表示したい場合は、card-deck-->
@@ -29,7 +28,6 @@
           <div class="jscroll-pagination">
             <%= paginate @groups %>
           </div>
-        </div>
       </div>
       
     </div>

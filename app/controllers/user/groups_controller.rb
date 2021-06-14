@@ -1,6 +1,6 @@
 class User::GroupsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  # before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :ensure_correct_user, only: [:edit, :update, :new]
 
   def index
     @groups = Group.all.order(updated_at: :desc).page(params[:page]).per(9)
@@ -21,15 +21,16 @@ class User::GroupsController < ApplicationController
   end
 
   def join
-    @group = Group.find(params[:group_id])
-    @group.users << current_user
-    redirect_to group_path(@group)
+    group = Group.find(params[:group_id])
+    group_user = GroupUser.new(user_id: current_user.id, group_id: group.id) 
+    group_user.save
+    redirect_to group_path(group)
   end
   
   def groupout
-    @group = Group.find(params[:group_id])
-    @group.users.delete(current_user)
-    redirect_to group_path(@group)
+    group = Group.find(params[:group_id])
+    group.users.destroy(current_user)
+    redirect_to group_path(group)
   end
 
   def show

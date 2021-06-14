@@ -23,7 +23,7 @@
                   <p class="card-text"><%= link_to 'Edit', edit_group_path(@group), class: "btn btn-sm btn-success m-1" %>
                   <%= link_to 'Destroy', group_path(@group), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger m-1"%>
                   </p>
-                <% elsif @group.users.include?(current_user) %>
+                <% elsif @group.member_by?(current_user) %>
                   <%= link_to "グループから脱退", group_groupout_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
                 <% else %>
                   <%= link_to 'グループに加入', group_join_path(@group), class: 'btn btn-sm btn-success' %>

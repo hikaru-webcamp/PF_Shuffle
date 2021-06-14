@@ -15,6 +15,11 @@ class Group < ApplicationRecord
     where(["name LIKE?", "%#{word}%"])
   end
 
+    # イイネ用メソッド
+  def member_by?(user)
+    group_users.where(user_id: user.id).exists?
+  end
+
 end
 
 #accepts_nested_attributes_forは

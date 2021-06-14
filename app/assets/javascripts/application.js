@@ -27,10 +27,11 @@ $(window).on('scroll', function() {
   var scrollPosition = $(window).height() + $(window).scrollTop();
   if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.1) {
     $('.jscroll').jscroll({
-      loadingHtml: '<div class="loading"><i class="fa fa-spinner fa-spin"></i></div>',
+      loadingHtml: '<div class="text-center mb-3"><i class="fa fa-spinner fa-spin fa-3x text-light"></i></div>',
       contentSelector: '.scroll-list',
       nextSelector: 'span.next:last a'
     });
     $('div.jscroll-inner').addClass('d-flex flex-wrap');
+    $('div.jscroll-added').addClass('col-12');
   }
 });
