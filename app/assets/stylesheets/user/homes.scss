@@ -2,11 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/* wrap */
 
-.hero {
-  position: relative;
-}
 
 /* video */
 
@@ -25,6 +21,9 @@
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  background-image: image-url('top_image.jpeg');
+  background-size: cover;
+  background-position: center;
 }
 
 /* overlay */

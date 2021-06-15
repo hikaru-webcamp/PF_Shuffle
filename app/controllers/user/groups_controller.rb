@@ -1,6 +1,6 @@
 class User::GroupsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :ensure_correct_user, only: [:edit, :update, :new]
+  before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
     @groups = Group.all.order(updated_at: :desc).page(params[:page]).per(9)
