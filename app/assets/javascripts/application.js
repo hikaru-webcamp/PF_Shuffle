@@ -35,3 +35,4 @@ $(window).on('scroll', function() {
     $('div.jscroll-added').addClass('col-12');
   }
 });
+

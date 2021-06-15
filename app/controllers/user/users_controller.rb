@@ -3,7 +3,7 @@ before_action :authenticate_user!
 before_action :ensure_correct_user, only: [:update, :edit]
 
   def index
-    @users = User.all.order(updated_at: :desc).page(params[:page]).per(9)
+    @users = User.all.order(updated_at: :desc).page(params[:page]).per(8)
   end
 
   def show
