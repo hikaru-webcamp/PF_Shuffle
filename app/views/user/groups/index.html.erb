@@ -14,7 +14,7 @@
               <div class="mb-4 card-deck"> <!--連結しないで表示したい場合は、card-deck-->
                 <div class="card text-white border-dark mb-3 bg-dark ">
                   <%= link_to group_path(group) do %>
-                    <%= attachment_image_tag(group, :image, size: "240x180", fallback: "groupnoimage.jpeg", class: "card-img-top img-fluid" )%>
+                    <%= attachment_image_tag(group, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid" )%>
                   <% end %>
                   <div class="card-body">
                     <h5 class="card-title font-weight-bold"><%= group.name.truncate(15) %></h5>

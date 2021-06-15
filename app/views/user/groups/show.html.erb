@@ -14,7 +14,7 @@
         <div class="col-sm-3 col-xs-6 m-1">
           <div class="card-deck" style="width: 20rem;"> <!--連結しないで表示したい場合は、card-deck-->
             <div class="card text-white border-dark mb-3 bg-dark ">
-                <%= attachment_image_tag(@group, :image, size: "240x180", fallback: "groupnoimage.jpeg", class: "card-img-top img-fluid" )%>
+                <%= attachment_image_tag(@group, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid" )%>
               <div class="card-body">
                 <h5 class="card-title font-weight-bold"><%= @group.name %></h5>
                 <p class="card-text"><%= @group.introduction %></p>

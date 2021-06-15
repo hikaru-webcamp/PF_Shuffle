@@ -10,33 +10,43 @@ require 'faker'
 Faker::Config.locale = :ja
 
 Admin.create!(
-  email: 'admin@gmail.com',
-  password: 'testtest'
-)
+   [
+    {name: "HIKARU", email: "admin1@test.com", password: "testtest", introduction: "よろしくおねがいします", profile_image: File.open('./app/assets/images/admin_profil_HIKARU.jpg') },
+    {name: "MUKKU", email: "admin2@test.com", password: "testtest", introduction: "よろしくおねがいします", profile_image: File.open('./app/assets/images/admin_profil_MUKKU.jpg') }, 
+    {name: "DARUMI", email: "admin3@test.com", password: "testtest", introduction: "よろしくおねがいします", profile_image: File.open('./app/assets/images/admin_profil_DARUMI.jpg') }, 
+   ]
+ )
 
-60.times do |n|
+75.times do |n|
   User.create!(
     name: Faker::Name.name ,
     introduction: "宜しくお願いします",
     email: Faker::Internet.email,
     password: "testtest",
-    profile_image: File.open("#{Rails.root}/app/assets/images/user_sample_image/user_sample_image#{n}.jpeg")
+    profile_image: File.open("#{Rails.root}/app/assets/images/user_sample_image/user_sample_image#{n}.jpg")
   )
 end
 
-15.times do |n|
+75.times do |n|
   Group.create!(
     name: "チーム#{n}",
     introduction: "宜しくお願いします。",
     owner_id: User.find(n+1).id,
-    image: File.open("#{Rails.root}/app/assets/images/groupimage#{n}.jpeg")
+    image: File.open("#{Rails.root}/app/assets/images/group_sample_image/group_sample_image#{n}.jpg")
+  )
+end
+
+50.times do |n|
+  Post.create!(
+    title: "#{n}月生イベント会",
+    body: Faker::Lorem.paragraph,
+    user_id: User.find(n+1).id,
+    group_id: Group.find(n+1).id,
   )
 end
 
 15.times do |n|
-  Post.create!(
-    title: "#{n}月生イベント会",
-    body: Faker::Lorem.paragraph,
+  GroupUser.create!(
     user_id: User.find(n+1).id,
     group_id: Group.find(n+1).id,
   )
