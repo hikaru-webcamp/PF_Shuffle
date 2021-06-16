@@ -17,6 +17,14 @@ Admin.create!(
    ]
  )
 
+User.create!(
+  name: "テストアカウント",
+  introduction: "宜しくお願いします",
+  email: "user1@test.com",
+  password: "testtest",
+  profile_image: File.open("./app/assets/images/admin_profil_HIKARU.jpg")
+)
+
 75.times do |n|
   User.create!(
     name: Faker::Name.name ,

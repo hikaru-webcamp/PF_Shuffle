@@ -36,7 +36,7 @@ class User::PostsController < ApplicationController
     @group = Group.find(params[:group_id])
      @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to group_path(@group.id)
+      redirect_to group_path(@group.id), notice: "投稿情報を更新しました"
     else
       @group = Group.find(params[:group_id])
       @post = Post.find(params[:id])

@@ -1,14 +1,4 @@
-<div class="sharedmargin">
-  <div class="container-md">
-    <%= render "shared/flash_message" %>
-  
-    <div class='row mt-2'>
-      <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto text-white topfont">
-        <h2 class="mb-3 ml-sm-n2 text-center">New Post</h2>
-        <!--コメント新規投稿とコメント編集コードをパーシャル化-->
-        <%= render "user/shared/post_new_edit", group: @group, post: @post%>
+<!--コメント新規投稿とコメント編集コードをパーシャル化-->
+<%= render "shared/post_only_new_edit_form", group: @group, post: @post%>
 
-      </div>
-    </div>
-  </div>
-</div>
+  

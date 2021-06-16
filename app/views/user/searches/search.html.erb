@@ -1,15 +1,2 @@
-<div class="sharedmargin">
-  <div class="container-md">
-    <%= render "shared/flash_message" %>
-    <h3 class="text-white font-italic">検索結果</h3>
-
-  <!--検索対象モデルがUserの時 -->
-    <% if @range == "User" %>
-      <%= render "shared/user_index_form", users: @users %>
-    <% else %>
-  <!--検索対象モデルがuse以外の時 -->
-      <%= render "shared/group_index_form", groups: @groups %>
-    <% end %> 
-
-  </div>
-</div>
+<!--管理側とユーザー側での検索結果フォームをパーシャル化->
+<%= render "shared/serach_form", users: @users, groups: @groups %>

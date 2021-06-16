@@ -2,18 +2,18 @@
   <div class="container-md">
     <%= render "shared/flash_message" %>
     <div class='row'>
-      <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto text-white topfont text-center">
+      <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto text-white text-center">
         
         <% if controller.class.parent.name == "Admin" %>
           <h2 class="mb-3 ml-sm-n2 text-center">管理者ログイン</h2>
           <%= form_with model: admin, url: admin_session_path, local:true, class: "pl-sm-4" do |f| %>
             <div class="form-group row">
                 <%= f.email_field :email, autofocus: true, autocomplete: "email", 
-                  placeholder: "メールアドレスを入力して下さい", class: "form-control" %>
+                  placeholder: "\uf0e0 メールアドレスを入力して下さい", class: "form-control fa" %>
             </div>
             <div class="form-group row">
                 <%= f.password_field :password, autocomplete: "current-password", 
-                  placeholder: "パスワードを入力して下さい", class: "form-control" %>
+                  placeholder: "\uf023 パスワードを入力して下さい", class: "form-control fa" %>
             </div>
             <div class="form-group row">
                 <%= f.submit "Login", class: "btn btn-secondary form-control topfont hover-img" %>
@@ -29,11 +29,11 @@
           <%= form_with model: user, url: user_session_path, local:true, class: "pl-sm-4" do |f| %>
             <div class="form-group row">
                 <%= f.email_field :email, autofocus: true, autocomplete: "email", 
-                  placeholder: "メールアドレスを入力して下さい", class: "form-control" %>
+                  placeholder: "\uf0e0 メールアドレスを入力して下さい", class: "form-control fa" %>
             </div>
             <div class="form-group row">
                 <%= f.password_field :password, autocomplete: "current-password", 
-                  placeholder: "パスワードを入力して下さい", class: "form-control" %>
+                  placeholder: "\uf023 パスワードを入力して下さい", class: "form-control fa" %>
             </div>
             <div class="form-group row">
                 <%= f.submit "Login", class: "btn btn-secondary form-control topfont hover-img" %>
@@ -44,6 +44,7 @@
           <h5 class="mt-5">テストアカウントでのログイン</h5>
           <h4>email:   user1@test.com</h4>
           <h4>pass:   testtest</h4>
+          
         <% end %>
 
       </div>

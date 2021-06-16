@@ -1,0 +1,19 @@
+<!--部分テンプレートにより@users➩users,@groups➩groupsに変更-->
+<!--管理側とユーザー側での検索結果フォームにして使用-->
+<div class="sharedmargin">
+  <div class="container-md">
+    <%= render "shared/flash_message" %>
+    <h3 class="text-white font-italic">検索結果</h3>
+  <% if controller.class.parent.name == "Admin" %>
+    <%= render "shared/user_index_form", users: users %>
+  <% else %>
+  <!--検索対象モデルがUserの時 -->
+    <% if @range == "User" %>
+      <%= render "shared/user_index_form", users: users %>
+    <% else %>
+  <!--検索対象モデルがuse以外の時 -->
+      <%= render "shared/group_index_form", groups: groups %>
+    <% end %> 
+  <% end %> 
+  </div>
+</div>
