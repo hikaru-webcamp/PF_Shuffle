@@ -11,8 +11,8 @@
 </section>
 
 <div class="jumbotron col-12 text-dark bg-white text-center mb-0"> 
-  <div class="container">
     <%= render "shared/flash_message" %>
+  <div class="container">
     <h1 class="display-4 topfont text-dark">Shuffle</h1>
     <p class="lead">Shuffleは、プログラミング初学者の為のコミュニティサイトです。</p>
     <p>さっそくグループを作って仲間を集めよう！</p>
@@ -21,7 +21,6 @@
 </div>
 <div class="jumbotron col-12 text-white bg-secondary text-center mb-0"> 
   <div class="container-md">
-    <%= render "shared/flash_message" %>
     <h3 class="text-white font-italic text-center m-3">人気グループ TOP3</h3>
     <div class='row'>
         <% @all_ranks.each do |group| %>
