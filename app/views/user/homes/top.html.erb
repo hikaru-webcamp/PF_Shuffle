@@ -6,7 +6,7 @@
     </video>
   </div>
   <div class="text-box">
-    <h1 class="font-italic">最高の環境を<br>Shuffle</h1>
+    <h1 class="font-italic">最高の仲間を見つけよう<br></h1>
   </div>
 </section>
 
@@ -16,7 +16,7 @@
     <h1 class="display-4 topfont text-dark">Shuffle</h1>
     <p class="lead">Shuffleは、プログラミング初学者の為のコミュニティサイトです。</p>
     <p>さっそくグループを作って仲間を集めよう！</p>
-    <p><%= link_to '新規会員登録はこちら', new_user_session_path, class: "btn btn-secondary btn-lg" %></p>
+    <p><%= link_to '新規会員登録はこちら', new_user_session_path, class: "btn btn-secondary btn-lg hover-img" %></p>
   </div>
 </div>
 <div class="jumbotron col-12 text-white bg-secondary text-center mb-0"> 
@@ -26,7 +26,7 @@
     <div class='row'>
         <% @all_ranks.each do |group| %>
           <div class="col-md-4">
-            <div class="mb-4 card-deck"> <!--連結しないで表示したい場合は、card-deck-->
+            <div class="mb-4 card-deck  hover-img"> <!--連結しないで表示したい場合は、card-deck-->
               <div class="card text-white border-dark mb-3 bg-dark">
                 <%= link_to group_path(group) do %>
                   <%= attachment_image_tag(group, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid" )%>
