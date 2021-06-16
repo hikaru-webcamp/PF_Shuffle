@@ -13,7 +13,7 @@ Admin.create!(
    [
     {name: "HIKARU", email: "admin1@test.com", password: "testtest", introduction: "よろしくおねがいします", profile_image: File.open('./app/assets/images/admin_profil_HIKARU.jpg') },
     {name: "MUKKU", email: "admin2@test.com", password: "testtest", introduction: "よろしくおねがいします", profile_image: File.open('./app/assets/images/admin_profil_MUKKU.jpg') }, 
-    {name: "DARUMI", email: "admin3@test.com", password: "testtest", introduction: "よろしくおねがいします", profile_image: File.open('./app/assets/images/admin_profil_DARUMI.jpg') }, 
+    {name: "DARUMI", email: "admin3@test.com", password: "testtest", introduction: "よろしくおねがいします", profile_image: File.open('./app/assets/images/admin_profil_DARUMI.jpg') }
    ]
  )
 
