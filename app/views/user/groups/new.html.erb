@@ -1,3 +1,14 @@
-<!--グループ新規投稿とグループ編集コードをパーシャル化-->
-<%= render "shared/group_only_new_edit_form", group: @group%>
-
+<!--部分テンプレートにより@group➩group変更-->
+<div class="sharedmargin">
+  <div class="container-md">
+    <%= render "shared/flash_message" %>
+    <%= render 'shared/form_error', model: @group %>
+      <h2 class="text-center text-white font-italic m-5">New Group</h2>
+    <div class='row mt-2'>
+      <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto text-white">
+        <!--グループ新規投稿とグループ編集コードをパーシャル化-->
+        <%= render "shared/group_only_new_edit_form", group: @group%>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,96 +1,35 @@
 <div class="sharedmargin">
-    <div class="container-md">
-      <%= render "shared/flash_message" %>
-      <div class='row'>
-        <h3 class="text-white col-sm-3 col-xs-6 m-1 font-italic">グループ詳細</h3>
-        <div class="col-sm-7 text-right">
-          <% if @group.users.include?(current_user) %>
-            <%= link_to "新規投稿", new_group_post_path(@group.id), class: "btn btn-light"%>
-          <% end %>
-        </div>
+  <div class="container-md shadow-lg p-3">
+    <%= render "shared/flash_message" %>
+    <!--post indexとの部分テンプレート-->
+     <%= render "shared/group_showcard_form", group: @group %>
+
+    <div class="row mx-auto">
+      <div class="col-md-8 mx-auto">
+        <nav class="nav nav-pills nav-justified mb-2">
+          <%= link_to "メンバー", "#", class: "nav-item nav-link active hover-img bg-light text-dark" %>
+          <%= link_to "投稿一覧", group_posts_path(@group.id), class: "nav-item nav-link hover-img bg-dark text-white" %>
+        </nav>
       </div>
-      
-      <div class='row'>
-        <div class="col-sm-3 col-xs-6 m-1">
-          <div class="card-deck" style="width: 20rem;"> <!--連結しないで表示したい場合は、card-deck-->
-            <div class="card text-white border-dark mb-3 bg-dark ">
-                <%= attachment_image_tag(@group, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid" )%>
-              <div class="card-body">
-                <h5 class="card-title font-weight-bold"><%= @group.name %></h5>
-                <p class="card-text"><%= @group.introduction %></p>
-                
-                <% if @group.owner_id == current_user.id %>
-                  <p class="card-text"><%= link_to 'Edit', edit_group_path(@group), class: "btn btn-sm btn-success m-1" %>
-                  <%= link_to 'Destroy', group_path(@group), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger m-1"%>
-                  </p>
-                <% elsif @group.member_by?(current_user) %>
-                  <%= link_to "グループから脱退", group_groupout_path(@group), method: :delete, class: "btn btn-sm btn-danger" %>
-                <% else %>
-                  <%= link_to 'グループに加入', group_join_path(@group), class: 'btn btn-sm btn-success' %>
+    </div>
+  
+    <div class='row scroll-list jscroll m-3 '>
+      <% @group.users.each do |member| %>
+        <div class="col-md-3">
+          <div class="mb-4 card-deck hover-img"> <!--連結しないで表示したい場合は、card-deck-->
+            <div class="card text-dark border-dark mb-3 bg-light ">
+                <%= link_to user_path(member) ,class: "profileimg" do %>
+                  <%= attachment_image_tag(member, :profile_image, size: "240x180", fallback: "profilenoimage.jpg",class: "profileimg card-img-top img-fluid") %>
                 <% end %>
+              <div class="card-body">
+                <h5 class="card-title font-weight-bold"><%= member.name.truncate(15) %></h5>
+                <p class="card-text"><%= member.introduction.truncate(15) %></p>
+                <div class="jscroll-pagination"><%= paginate @users %></div>
               </div>
             </div>
           </div>
         </div>
-          
-        <div class="col-sm-7 col-xs-6 m-1 ml-5">
-          <table class="table table-dark">
-            <thead>
-              <tr>
-                <th class="col-sm-3">題名</th>
-                <th class="col-sm-5">本文</th>
-                <th class="col-sm-4">投稿日</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!--グループひもづくポストをブロック変数に格納-->
-              <% @group.posts.each do |post| %>
-                <tr>
-                  <!--.truncateヘルパメソッドで文字数を省略-->
-                  <td>
-                    <%= link_to group_post_path(@group,post) do %>
-                      <%= post.title.truncate(10) %>
-                    <% end %>  
-                  </td>
-                  <td><%= post.body.truncate(15)  %></td>
-                  <td><%= post.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
-                  <% if post.user.id == current_user.id %>
-                  <td><%= link_to 'Edit', edit_group_post_path(@group,post), class: "btn btn-sm btn-success" %></td>
-                  <td><%= link_to 'Destroy', group_post_path(@group,post), method: :delete, data: { confirm: '本当に消しますか？' }, 
-                  class: "btn btn-sm btn-danger"%></td>
-                  <% end %>
-                </tr>                       
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      
-      <div class='row'>
-        <div class="col-sm-3 col-xs-6 m-1">
-          <table class="table table-dark">
-            <thead>
-              <tr>
-                <th class="col-sm-5">Member</th>
-              </tr>
-            </thead>
-            <tbody>
-                <tr>
-                  <td>
-                    <% @group.users.each do |member| %>
-                      <%= link_to user_path(member) do %>
-                      <p class="card-text"><%= member.name %></p>
-                      <% end %>
-                    <% end %>
-                  </td>
-                </tr>                       
-            </tbody>
-          </table>
-        </div>
-      </div>
-
+      <% end %>
     </div>
   </div>
-  
-  
-  
+</div>

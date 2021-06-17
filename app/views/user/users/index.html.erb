@@ -1,8 +1,2 @@
-<div class="sharedmargin">
-  <div class="container-md">
-    <%= render "shared/flash_message" %>
-    <h3 class="text-white font-italic text-center m-4">User List</h3>
-      <!--ユーザー側と管理側の会員一覧ページをパーシャル化-->
-      <%= render "shared/user_index_form", users: @users %>
-  </div>
-</div>
+<!--ユーザー側と管理側の会員一覧ページをパーシャル化-->
+<%= render "shared/user_index_form", users: @users %>

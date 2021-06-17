@@ -16,6 +16,7 @@ class User::GroupsController < ApplicationController
     if @group.save
       redirect_to group_path(@group), notice: "グループを作成しました"
     else
+      @group = Group.new
       render 'new'
     end
   end
@@ -36,6 +37,7 @@ class User::GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @posts = Post.all
+    @users = @group.users.order(updated_at: :desc).page(params[:page]).per(4)
   end
 
   def edit

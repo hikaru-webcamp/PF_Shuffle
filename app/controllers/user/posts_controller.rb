@@ -5,6 +5,11 @@ class User::PostsController < ApplicationController
     @post = Post.new
   end
   
+  def index
+    @group = Group.find(params[:group_id])
+    @posts = @group.posts.order(updated_at: :desc).page(params[:page]).per(4)
+  end
+  
   def show
     @group = Group.find(params[:group_id])
     @post = Post.find(params[:id])
