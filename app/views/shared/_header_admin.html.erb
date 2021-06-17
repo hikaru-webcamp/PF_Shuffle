@@ -1,6 +1,6 @@
 <% unless admin_signed_in? %>
   <%# adminサインイン前は会員側のヘッダーを表示 %>
-  <%= render "user/shared/user_header" %>
+  <%= render "shared/header_user" %>
 <% else %>
  <!-- ナビゲーションバー -->
   <nav class="navbar navbar-dark bg-dark fixed-top">
@@ -9,10 +9,10 @@
     <div class="topfont">
     <%= link_to "Shuffle", root_path, class: "navbar-brand" %>
     </div>
-    <%= render "shared/serach" %>
+    <%= render "shared/header_serach" %>
     <!-- ハンバーガーメニュー -->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <i class="fab fa-apple fa-2x hover-img"></i> <!--アイコンをアップルに変更-->
     </button>
     <!-- ナビゲーションメニュー -->
     <div class="collapse navbar-collapse" id="navbarNav">

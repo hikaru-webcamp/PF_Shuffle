@@ -1,17 +1,29 @@
  <!--部分テンプレートにより@users➩users変更-->
+<div class="sharedmargin">
+  <div class="container-md shadow-lg p-3">
+    <%= render "shared/flash_message" %>
+    <h3 class="text-white font-italic text-center m-4">User List</h3>
     <div class='row scroll-list jscroll '>
       <% users.each do |user| %>
         <div class="col-md-3">
           <div class="mb-4 card-deck hover-img"> <!--連結しないで表示したい場合は、card-deck-->
             <div class="card text-white border-dark mb-3 bg-dark ">
-              <%= link_to user_path(user),class: "profileimg" do %>
-                <%= attachment_image_tag(user, :profile_image, size: "240x180", fallback: "profilenoimage.jpg",class: "profileimg card-img-top img-fluid") %>
+              <!--#adminとuserでパスが違う為、条件分岐-->
+              <% if controller.class.parent.name == "Admin" %>
+                <%= link_to admin_user_path(user.id),class: "profileimg" do %>
+                  <%= attachment_image_tag(user, :profile_image, size: "240x180", fallback: "profilenoimage.jpg",class: "profileimg card-img-top img-fluid") %>
+                <% end %>
+              <% else %>
+                <%= link_to user_path(user),class: "profileimg" do %>
+                  <%= attachment_image_tag(user, :profile_image, size: "240x180", fallback: "profilenoimage.jpg",class: "profileimg card-img-top img-fluid") %>
+                <% end %>
               <% end %>
+              
               <div class="card-body">
                 <h5 class="card-title font-weight-bold"><%= user.name.truncate(15) %></h5>
-                <p class="card-text"><%= user.introduction %></p>
+                <p class="card-text"><%= user.introduction.truncate(15) %></p>
                 <% if controller.class.parent.name == "Admin" %>
-                  <p class="card-text"><%= user.email %></p>
+                  <p class="card-text"><%= user.email.truncate(20) %></p>
                     <% if user.is_deleted %>
                       <p class="card-text text-danger">ステータス: 退会</p>
                     <% else %>
@@ -28,3 +40,5 @@
         </div>
       <% end %> 
     </div>
+  </div>
+</div>

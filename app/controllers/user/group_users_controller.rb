@@ -1,4 +1,5 @@
 class User::GroupUsersController < ApplicationController
+
   def create
   end
 

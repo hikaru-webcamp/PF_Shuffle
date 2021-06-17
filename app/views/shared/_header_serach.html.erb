@@ -1,7 +1,7 @@
   <% if controller.class.parent.name == "Admin" %>
     <div class="search_form text-center">
       <%= form_with url: admin_search_path, method: :get, local: true, class: "form-inline my-2 my-lg-0"  do |f| %>
-        <%= f.text_field :word,  class: "form-control mr-sm-2" %>
+        <%= f.text_field :word, placeholder: "\uf002", class: "form-control mr-sm-2 fa" %>
         <%= f.submit "検索", class: "btn btn-outline-light  my-2 my-sm-0 hover-img" %>
       <% end %>
     </div>
@@ -12,7 +12,7 @@
         <%= f.select :range, options_for_select([['User'], ['Group']]), {include_blank: "選択して下さい"},
         class: "form-control" %>
         </div>
-        <%= f.text_field :word,  class: "form-control mr-sm-2" %>
+        <%= f.text_field :word, placeholder: "\uf002", class: "form-control mr-sm-2 fa" %>
         <%= f.submit "検索", class: "btn btn-outline-light  my-2 my-sm-0 hover-img" %>
       <% end %>
     </div>

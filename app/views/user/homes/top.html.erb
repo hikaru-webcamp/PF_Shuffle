@@ -1,7 +1,7 @@
 <section class="hero">
   <div class="video-box overlay">
     <video class="video" muted autoplay loop >
-      <source src="/assets/videos/topvideo.mp4" type="video/mp4" poster="/assets/top_image.jpeg" >
+      <source src="/assets/videos/topvideo2.mp4" type="video/mp4" poster="/assets/top_image.jpeg" >
         <%#= video_tag "/assets/videos/topvideo.mp4", playsinline: true, controls: false, autoplay: true, loop: true, muted: true,  :poster => image_path("/assets/top_image.jpeg"), width: "100%", height: "100%",class: "video" %>
     </video>
   </div>
@@ -11,22 +11,22 @@
 </section>
 
 <div class="jumbotron col-12 text-dark bg-white text-center mb-0"> 
-    <%= render "shared/flash_message" %>
-  <div class="container">
-    <h1 class="display-4 topfont text-dark">Shuffle</h1>
+    <div class="col-sm-6 mx-auto" ><%= render "shared/flash_message" %></div>
+  <div class="container shadow-lg p-3">
+    <h1 class="display-4 topfont text-dark m-5">Shuffle</h1>
     <p class="lead">Shuffleは、プログラミング初学者の為のコミュニティサイトです。</p>
     <p>さっそくグループを作って仲間を集めよう！</p>
     <p><%= link_to '新規会員登録はこちら', new_user_session_path, class: "btn btn-secondary btn-lg hover-img" %></p>
   </div>
 </div>
 <div class="jumbotron col-12 text-white bg-secondary text-center mb-0"> 
-  <div class="container-md">
+  <div class="container-md shadow-lg p-3">
     <h3 class="text-white font-italic text-center m-3">人気グループ TOP3</h3>
     <div class='row'>
         <% @all_ranks.each do |group| %>
           <div class="col-md-4">
             <div class="mb-4 card-deck  hover-img"> <!--連結しないで表示したい場合は、card-deck-->
-              <div class="card text-white border-dark mb-3 bg-dark">
+              <div class="card text-white border-dark mb-3 bg-dark ">
                 <%= link_to group_path(group) do %>
                   <%= attachment_image_tag(group, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid" )%>
                 <% end %>
@@ -44,7 +44,7 @@
 </div>
 
 <div class="jumbotron col-12 text-white bg-transparent text-center mb-0"> 
-  <div class="container">
+  <div class="container shadow-lg p-3">
   <h3 class="text-white font-italic text-center m-3">運営メンバー紹介</h3>
     <div class='row'>
       <% @admins.each do |admin| %>

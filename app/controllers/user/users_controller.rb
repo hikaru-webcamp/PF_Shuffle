@@ -8,7 +8,7 @@ before_action :ensure_correct_user, only: [:update, :edit]
 
   def show
     @user = User.find(params[:id])
-    @groups = @user.groups
+    @groups = @user.groups.order(updated_at: :desc).page(params[:page]).per(4)
   end
 
   def edit

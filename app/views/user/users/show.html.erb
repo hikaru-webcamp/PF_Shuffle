@@ -1,42 +1,11 @@
- <div class="sharedmargin">
-    <div class="container-md">
-      <%= render "shared/flash_message" %>
-      <div class='row'>
-        <h3 class="text-white col-sm-3 col-xs-6 m-4 font-italic">会員情報</h3>
-        <h3 class="text-white col-sm-3 col-xs-6 m-4 font-italic">加入グループ一覧</h3>
-      </div>
-      <div class='row mt-2'>
-          
-          <div class="col-sm-3 col-xs-6 m-4">
-            <div class="card-deck" style="width: 20rem;"> <!--連結しないで表示したい場合は、card-deck-->
-              <div class="card text-black border-dark mb-3 bg-white ">
-                  <%= attachment_image_tag(@user, :profile_image, size: "240x180", fallback: "profilenoimage.jpg",class: "profileimg card-img-top img-fluid") %>
-                <div class="card-body">
-                  <h5 class="card-title font-weight-bold"><%= @user.name %></h5>
-                  <p class="card-text"><%= @user.introduction %></p>
-                  <p class="card-text"><%= link_to '',edit_user_path(@user.id),class: "btn btn-outline-secondary btn-block fas fa-user-cog" %></p>
-                </div>
-              </div>
-            </div>
-          </div>
+<div class="sharedmargin">
+  <div class="container-md shadow-lg p-3">
+    <%= render "shared/flash_message" %>
+    <!--管理側とユーザー側のユーザー詳細ページをパーシャル化-->
+    <%= render "shared/user_show_form", user: @user %>
 
-        <% @groups.each do |group| %>
-          <div class="col-sm-3 col-xs-6 m-4 ">
-            <div class="card-deck" style="width: 20rem;"> <!--連結しないで表示したい場合は、card-deck-->
-              <div class="card text-white border-dark mb-3 bg-dark ">
-                <%= link_to group_path(group) do %>
-                  <%= attachment_image_tag(group, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid" )%>
-                <% end %>
-                <div class="card-body">
-                  <h5 class="card-title">グループ名: <%= group.name %></h5>
-                  <p class="card-text"><%= group.introduction %></p>
-                  <p class="card-text">加入メンバー<%= group.users.count %>人</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %> 
-
-      </div>
-    </div>
+    <h3 class="text-white font-italic text-center mb-4">加入グループ一覧</h3>
+    <!--ユーザー側のグループ一覧と検索結果ビューをパーシャル化-->
+    <%= render "shared/group_index_form", groups: @groups %>
   </div>
+</div>

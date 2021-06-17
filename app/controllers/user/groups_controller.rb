@@ -3,7 +3,7 @@ class User::GroupsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
-    @groups = Group.all.order(updated_at: :desc).page(params[:page]).per(9)
+    @groups = Group.all.order(updated_at: :desc).page(params[:page]).per(8)
   end
   
   def new
@@ -14,8 +14,9 @@ class User::GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
     if @group.save
-      redirect_to group_path(@group)
+      redirect_to group_path(@group), notice: "グループを作成しました"
     else
+      @group = Group.new
       render 'new'
     end
   end
@@ -36,6 +37,7 @@ class User::GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @posts = Post.all
+    @users = @group.users.order(updated_at: :desc).page(params[:page]).per(4)
   end
 
   def edit
@@ -44,7 +46,7 @@ class User::GroupsController < ApplicationController
 
   def update
     if @group.update(group_params)
-      redirect_to groups_path
+      redirect_to groups_path, notice: "グループ情報を変更しました"
     else
       @group = Group.find(params[:id])
       render "edit"
@@ -54,7 +56,7 @@ class User::GroupsController < ApplicationController
   def destroy
     @group = Group.find(params[:id])
     @group.destroy
-    redirect_to groups_path
+    redirect_to groups_path, notice: "グループを削除しました"
   end
   
   private

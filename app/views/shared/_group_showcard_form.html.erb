@@ -1,0 +1,28 @@
+ <!--部分テンプレートにより@group➩group変更-->
+ <div class="col-sm-8 mx-auto">
+    <div class="card mx-auto text-white border-dark mb-3 bg-dark" style="width:100%;">
+      <div class="row no-gutters">
+        <div class="col-sm-4">
+         <%= attachment_image_tag(group, :image , size: "240x180",fallback: "groupnoimage.jpg",class: "card-img-right flex-auto d-lg-block hover-img") %>
+        </div>
+        <div class="col-sm-7 offset-1">
+          <div class="card-body">
+            <h4 class="card-title">名前：<%= group.name %></h4>
+            <p class="card-text">紹介文：<%= group.introduction %></p>
+            <% if group.users.include?(current_user) %>
+              <%= link_to "新規投稿", new_group_post_path(group.id), class: "btn btn-outline-light hover-img m-2"%>
+            <% end %>
+            <% if group.owner_id == current_user.id %>
+            <%= link_to 'グループを編集する',edit_group_path(group), class: "btn btn-success btn-outline-light hover-img m-2" %>        
+            <%= link_to 'グループを削除する', group_path(group), method: :delete, data: { confirm: '本当にグループを消しますか？' }, class: "btn btn-danger btn-outline-light hover-img m-2"%>        
+            <% elsif group.member_by?(current_user) %>
+            <%= link_to "グループ脱退", group_groupout_path(group), method: :delete, class: "btn btn-danger btn-outline-light hover-img m-2" %>
+            <% else %>
+            <%= link_to 'グループ加入', group_join_path(group), class: 'btn btn-success btn-outline-light hover-img m-2' %>
+            <% end %>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

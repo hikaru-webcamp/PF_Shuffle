@@ -5,6 +5,11 @@ class User::PostsController < ApplicationController
     @post = Post.new
   end
   
+  def index
+    @group = Group.find(params[:group_id])
+    @posts = @group.posts.order(updated_at: :desc).page(params[:page]).per(4)
+  end
+  
   def show
     @group = Group.find(params[:group_id])
     @post = Post.find(params[:id])
@@ -36,7 +41,7 @@ class User::PostsController < ApplicationController
     @group = Group.find(params[:group_id])
      @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to group_path(@group.id)
+      redirect_to group_path(@group.id), notice: "投稿情報を更新しました"
     else
       @group = Group.find(params[:group_id])
       @post = Post.find(params[:id])
