@@ -7,8 +7,8 @@
         </div>
         <div class="col-sm-7 offset-1">
           <div class="card-body">
-            <h4 class="card-title">名前：<%= group.name %></h4>
-            <p class="card-text">紹介文：<%= group.introduction %></p>
+            <h4 class="card-title border-bottom"><%= group.name %></h4>
+            <p class="card-text border-bottom"><%= group.introduction %></p>
             <% if group.users.include?(current_user) %>
               <%= link_to "新規投稿", new_group_post_path(group.id), class: "btn btn-outline-light hover-img m-2"%>
             <% end %>

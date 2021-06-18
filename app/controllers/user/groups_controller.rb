@@ -25,19 +25,19 @@ class User::GroupsController < ApplicationController
     group = Group.find(params[:group_id])
     group_user = GroupUser.new(user_id: current_user.id, group_id: group.id) 
     group_user.save
-    redirect_to group_path(group)
+    redirect_to group_path(group), notice: "グループに加入しました"
   end
   
   def groupout
     group = Group.find(params[:group_id])
     group.users.destroy(current_user)
-    redirect_to group_path(group)
+    redirect_to group_path(group), notice: "グループから脱退しました"
   end
 
   def show
     @group = Group.find(params[:id])
     @posts = Post.all
-    @users = @group.users.order(updated_at: :desc).page(params[:page]).per(4)
+    @users = @group.users.order(updated_at: :desc).page(params[:page]).per(8)
   end
 
   def edit

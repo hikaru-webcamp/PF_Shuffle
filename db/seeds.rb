@@ -28,7 +28,7 @@ User.create!(
 75.times do |n|
   User.create!(
     name: Faker::Name.name ,
-    introduction: "宜しくお願いします",
+    introduction: "はじめまして、よろしくお願いします!", 
     email: Faker::Internet.email,
     password: "testtest",
     profile_image: File.open("#{Rails.root}/app/assets/images/user_sample_image/user_sample_image#{n}.jpg")
@@ -37,8 +37,8 @@ end
 
 75.times do |n|
   Group.create!(
-    name: "チーム#{n}",
-    introduction: "宜しくお願いします。",
+    name:  Faker::Artist.name,
+    introduction: "最高に楽しいチームです！",
     owner_id: User.find(n+1).id,
     image: File.open("#{Rails.root}/app/assets/images/group_sample_image/group_sample_image#{n}.jpg")
   )
@@ -46,16 +46,16 @@ end
 
 50.times do |n|
   Post.create!(
-    title: "#{n}月生イベント会",
-    body: Faker::Lorem.paragraph,
+    title: "#{n + 1}月生によるイベント会",
+    body: Faker::Lorem.unique.paragraph, 
     user_id: User.find(n+1).id,
-    group_id: Group.find(n+1).id,
+    group_id: Group.find(n+1).id
   )
 end
 
 15.times do |n|
   GroupUser.create!(
     user_id: User.find(n+1).id,
-    group_id: Group.find(n+1).id,
+    group_id: Group.find(n+1).id
   )
 end
