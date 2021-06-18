@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
   
-  
-  namespace :admin do
-    get 'searches/search'
-  end
   scope module: 'user' do
     root :to => 'homes#top'
     get 'search' => 'searches#search'
@@ -23,6 +19,7 @@ Rails.application.routes.draw do
       resource :group_users, only: [:create, :destroy] 
         resources :posts, only: [:index, :show, :new, :edit, :create, :update, :destroy] do
          resource :likes, only: [:create, :destroy]
+         resources :comments, only: [:index, :create, :destroy]
         end
     end
   end
@@ -31,12 +28,10 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in' => 'user/sessions#guest_sign_in'
   end
 
-
   devise_for :admins, path: '/admin', only: [:sessions], controllers: { :sessions => 'admin/sessions'}
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
     get 'search' => 'searches#search'
   end
-  
 
 end

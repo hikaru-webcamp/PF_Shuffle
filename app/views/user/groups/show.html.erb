@@ -13,10 +13,10 @@
       </div>
     </div>
   
-    <div class='row scroll-list jscroll w-100 mx-auto'>
+    <div class='row scroll-list jscroll mx-auto'>
       <% @users.each do |member| %>
         <div class="col-md-3">
-          <div class="mb-4 card-deck hover-img fadeUpTrigger"> <!--連結しないで表示したい場合は、card-deck-->
+          <div class="mb-4 card-deck hover-img "> <!--連結しないで表示したい場合は、card-deck-->
             <div class="card text-dark border-dark mb-3 bg-light ">
                 <%= link_to user_path(member) ,class: "profileimg" do %>
                   <%= attachment_image_tag(member, :profile_image, size: "240x180", fallback: "profilenoimage.jpg",class: "profileimg card-img-top img-fluid") %>

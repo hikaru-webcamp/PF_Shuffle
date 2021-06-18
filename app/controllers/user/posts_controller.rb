@@ -1,4 +1,5 @@
 class User::PostsController < ApplicationController
+  before_action :authenticate_user!
   
   def new
     @group = Group.find(params[:group_id])
@@ -13,6 +14,7 @@ class User::PostsController < ApplicationController
   def show
     @group = Group.find(params[:group_id])
     @post = Post.find(params[:id])
+    @comment = Comment.new
   end
   
   def create

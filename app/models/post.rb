@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   belongs_to :group
   belongs_to :user
   has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
   
   # イイネ用メソッド
   def liked_by?(user)
