@@ -1,8 +1,8 @@
  <!--部分テンプレートにより@groups➩groups変更-->
-<div class='row scroll-list jscroll'>
+<div class='row scroll-list jscroll mx-auto'>
   <% groups.each do |group| %>
     <div class="col-md-3">
-      <div class="mb-4 card-deck hover-img"> <!--連結しないで表示したい場合は、card-deck-->
+      <div class="mb-4 card-deck hover-img fadeUpTrigger"> <!--連結しないで表示したい場合は、card-deck-->
         <div class="card text-white border-dark mb-3 bg-dark ">
           <%= link_to group_path(group) do %>
             <%= attachment_image_tag(group, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid" )%>

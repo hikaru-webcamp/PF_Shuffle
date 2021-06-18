@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :groups, through: :group_users
   has_many :likes, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   #attachmentメソッドで、refileが指定カラムにアクセス可能にする
   attachment :profile_image, destroy: false

@@ -1,54 +1,92 @@
+<%#= attachment_image_tag(@post.user, :profile_image, size: "80x80", fallback: "profilenoimage.jpeg") %>
 <div class="sharedmargin">
-    <div class="container-md">
-      <%= render "shared/flash_message" %>
-        <h3 class="text-white col-sm-3 col-xs-6 m-2 font-italic">投稿内容</h3>
-
-      <div class='row'>
-        <div class="col-sm-7 m-2">
-          <table class="table table-dark text-center">
-            
-            <tr> 
-              <th rowspan="2"><%= attachment_image_tag(@post.user, :profile_image, size: "80x80", fallback: "profilenoimage.jpeg") %></th>
-              <td><%= @post.user.name%>さん</td>
-            </tr>
-            <tr>
-              <!--<th>上のセルと結合して消えるセル </th> -->
-              <td><%= @post.updated_at.strftime("%Y-%m-%d %H:%M") %></td>
-            </tr>
-                
-            <tbody>
-              <tr>
-                <td colspan="2" class="text-left"><%= @post.title%></td>
-              </tr>                       
-            </tbody>
-            <tbody>
-              <tr>
-                <td colspan="2" width="200" height="400" class="text-left"><%= @post.body%></td>
-              </tr>     
-            </tbody>
-            <tbody>
-              <tr>
-                <td colspan="2" width="200" height="50"class="text-left">
-                  <% if @post.user.id == current_user.id %>
-                    <%= link_to 'Edit', edit_group_post_path(@group,@post), class: "btn btn-sm btn-success m-2" %>
-                    <%= link_to 'Destroy', group_post_path(@group,@post), method: :delete, data: { confirm: '本当に消しますか？' }, 
-                    class: "btn btn-sm btn-danger m-2"%></td>
-                  <% end %>
-                 <!--イイネ機能-->
-                  <td id="like_btn_<%= @post.id %>">
-                    <%= render "user/likes/like", group: @group, post: @post %>
-                  </td>
-                 <!--イイネ機能-->
-                </td>
-              </tr>                       
-            </tbody>
-
-          </table>
+  <div class="container shadow-lg p-3">
+   <%= render "shared/flash_message" %>
+    <div class="row">
+      <div class="col-md-8 mx-auto mt-2">
+        <div class="card h-100 border-0 bg-dark text-white">
+          <%= link_to group_path(@group.id) do %>
+              <%= attachment_image_tag(@group, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid hover-img" )%>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title border-bottom ">
+              <%= link_to user_path(@post.user.id), class: 'text-reset text-decoration-none' do %>
+                <%= attachment_image_tag @post.user, :profile_image, :fill, 100, 100, size: '100x100', fallback: "profilenoimage.jpg", class: "rounded-circle m-2 hover-img" %>
+                <%= @post.user.name%>
+              <% end %>
+            </h5>
+            <p class="card-text border-bottom"><%= @post.title%></p>
+            <p class="card-text border-bottom"><%= @post.body%></p>
+            <p class="card-text">
+              <% if @post.user.id == current_user.id %>
+                <%= link_to '投稿を編集する',edit_group_post_path(@group,@post), class: "btn btn-outline-light hover-img m-2" %>
+                <%= link_to '投稿を削除する',group_post_path(@group,@post), method: :delete, data: { confirm: '本当に投稿を消しますか？' }, class: "btn btn-danger btn-outline-light hover-img m-2"%>
+              <% end %>
+            </p>
+          </div>
+          <div class="card-footer bg-transparent border-0 pt-0 d-flex">
+            <div class="flex-grow-1">
+                <div id="like_btn_<%= @post.id %>">
+                  <%= render "user/likes/like", group: @group, post: @post %>
+                </div>
+              <!--<span class="comment_button_<%#= post_image.id %> mr-1">-->
+              <!--  <%#= render 'public/post_image_comments/button', post_image: post_image %>-->
+              <!--</span>-->
+            </div>
+            <div class="text-muted text-right">
+              <%= time_ago_in_words(@post.created_at) %>前
+            </div>
+          </div>
         </div>
       </div>
     </div>
+        
+    <div class="row pt-2 text-white">
+      <div class="col-md-8 mx-auto mt-2 bg-dark">
+        <hr>
+        <h5><span class="comment_count_<%= @post.id %>"><%= @post.comments.size %></span>件のコメント</h5>
+        <% if user_signed_in? %>
+        <!--コメント部分-->
+          <div class="media mt-3 p-2">
+            <%= link_to user_path(current_user), class: 'text-reset text-decoration-none mr-2' do %>
+              <%= attachment_image_tag @comment.user, :profile_image, :fill, 100, 100, size: '100x100', fallback: "profilenoimage.jpg", class: "rounded-circle m-2 hover-img" %>
+            <% end %>
+            <div class="media-body mt-0">
+              <%= form_with model: @comment, url: group_post_comments_path(@group,@post), local: true do |f| %>
+                <div class="form-group text-right">
+                  <%= f.text_area :body, placeholder: "コメントを入力", class: "form-control" %>
+                  <%= f.submit "コメント", class: "mt-2 btn btn-sm btn-info" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="post_image_comments_<%= @post.id %>">
+      <ul class="list-unstyled text-white ">
+        <% @post.comments.order(updated_at: :desc).each do |comment| %>
+          <li class="media mt-3 p-2">
+            <%= link_to user_path(comment.user), class: 'text-reset text-decoration-none mr-2' do %>
+              <%= attachment_image_tag comment.user, :profile_image, :fill, 30, 30, size: '30x30', fallback: "profilenoimage.jpg", class: "rounded-circle mr-2" %>
+            <% end %>
+            <div class="media-body">
+              <p class="mb-1">
+                <%= link_to user_path(comment.user), class: 'text-reset text-decoration-none' do %>
+                  <%= comment.user.name %>
+                <% end %>
+                <span class="text-muted"><%= time_ago_in_words(comment.updated_at) %>前</span>
+              </p>
+              <%= comment.body %>
+              <% if comment.user == current_user %>
+                <%= link_to "削除", group_post_comment_path(@group,@post,comment.id),
+                  method: :delete, data: {confirm: "「#{comment.body}」\nこのコメントを削除しますか？"}, class: "text-muted"%>
+              <% end %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
-  
-
-
-
+</div>
