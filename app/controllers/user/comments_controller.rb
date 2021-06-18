@@ -8,7 +8,7 @@ class User::CommentsController < ApplicationController
     comment.user_id = current_user.id
     comment.post_id = post.id
     comment.save
-    redirect_to group_post_path(group.id, post.id), notice: "コメントしました"
+    # redirect_to group_post_path(group.id, post.id), notice: "コメントしました"
   end
 
   def destroy
@@ -16,7 +16,7 @@ class User::CommentsController < ApplicationController
     post = Post.find(params[:post_id])
     comment = Comment.find(params[:id])
     comment.destroy
-    redirect_to group_post_path(group.id, post.id), notice: "コメントを削除しました"
+    # redirect_to group_post_path(group.id, post.id), notice: "コメントを削除しました"
   end
   
   private

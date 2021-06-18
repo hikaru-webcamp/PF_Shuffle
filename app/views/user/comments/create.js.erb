@@ -1,0 +1,4 @@
+$('.comment_form_<%= @post.id %>').html("<%= j(render 'user/comments/comment_form', group: @group, post: @post, comment: @comment ) %>");
+$('.comments_index_<%= @post.id %>').html("<%= j(render 'user/comments/comments_index', group: @group, post: @post, comment: @comment ) %>");
+$('.comment_button_<%= @post.id %>').html("<%= j(render 'user/comments/button', post: @post) %>");
+$('.comment_count_<%= @post.id %>').html("<%= @post.comments.size %>");
