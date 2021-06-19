@@ -10,15 +10,15 @@
             <h4 class="card-title border-bottom"><%= group.name %></h4>
             <p class="card-text border-bottom"><%= group.introduction %></p>
             <% if group.users.include?(current_user) %>
-              <%= link_to "新規投稿", new_group_post_path(group.id), class: "btn btn-outline-light hover-img m-2"%>
+              <%= link_to "新規投稿", new_group_post_path(group.id), class: "btn btn-outline-light hover-img mr-2"%>
             <% end %>
             <% if group.owner_id == current_user.id %>
-            <%= link_to 'グループを編集する',edit_group_path(group), class: "btn btn-success btn-outline-light hover-img m-2" %>        
-            <%= link_to 'グループを削除する', group_path(group), method: :delete, data: { confirm: '本当にグループを消しますか？' }, class: "btn btn-danger btn-outline-light hover-img m-2"%>        
+              <p><%= link_to 'グループを編集する',edit_group_path(group), class: "btn btn-success btn-outline-light hover-img mt-3" %></p>
+              <span><%= link_to 'グループを削除する', group_path(group), method: :delete, data: { confirm: '本当にグループを消しますか？' }, class: "btn btn-danger btn-outline-light hover-img"%></span>
             <% elsif group.member_by?(current_user) %>
-            <%= link_to "グループ脱退", group_groupout_path(group), method: :delete, class: "btn btn-danger btn-outline-light hover-img m-2" %>
+              <%= link_to "グループ脱退", group_groupout_path(group), method: :delete, class: "btn btn-danger btn-outline-light hover-img m-2" %>
             <% else %>
-            <%= link_to 'グループ加入', group_join_path(group), class: 'btn btn-success btn-outline-light hover-img m-2' %>
+              <%= link_to 'グループ加入', group_join_path(group), class: 'btn btn-success btn-outline-light hover-img m-2' %>
             <% end %>
   
           </div>

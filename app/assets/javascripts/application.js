@@ -31,7 +31,7 @@ $(window).on('scroll', function() {
       contentSelector: '.scroll-list',
       nextSelector: 'span.next:last a'
     });
-    $('div.jscroll-inner').addClass('d-flex flex-wrap');
+    $('div.jscroll-inner').addClass('d-flex flex-wrap w-100');
     $('div.jscroll-added').addClass('col-12 p-0');
   }
 });

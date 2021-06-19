@@ -2,13 +2,13 @@
 <% if user_signed_in? %>
   <% if post.liked_by?(current_user) %>
     <%= link_to  group_post_likes_path(group.id, post.id), method: :delete, remote: true, class: "text-reset text-decoration-none" do %>
-     <i class="fa fa-heart fa-2x" aria-hidden="true" style="color: red;"></i>
-    <%= post.likes.count %>
+     <i class="fa fa-heart fa-2x hover-img" aria-hidden="true" style="color: red;"></i>
+    <%= post.likes.size %>
     <% end %>
   <% else %>
     <%= link_to  group_post_likes_path(group.id, post.id), method: :post, remote: true, class: "text-reset text-decoration-none"  do %>
-      <i class="fa fa-heart fa-2x" aria-hidden="true"></i>
-      <%= post.likes.count %>
+      <i class="fa fa-heart fa-2x hover-img" aria-hidden="true"></i>
+      <%= post.likes.size %>
     <% end %>
   <% end %>
 <% else %>

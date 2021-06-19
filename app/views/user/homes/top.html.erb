@@ -2,7 +2,6 @@
   <div class="video-box overlay">
     <video class="video" muted autoplay loop >
       <source src="/assets/videos/topvideo2.mp4" type="video/mp4" poster="/assets/top_image.jpeg" >
-        <%#= video_tag "/assets/videos/topvideo.mp4", playsinline: true, controls: false, autoplay: true, loop: true, muted: true,  :poster => image_path("/assets/top_image.jpeg"), width: "100%", height: "100%",class: "video" %>
     </video>
   </div>
   <div class="text-box">
@@ -25,8 +24,8 @@
     <div class='row'>
         <% @all_ranks.each do |group| %>
           <div class="col-md-4">
-            <div class="mb-4 card-deck  hover-img fadeUpTrigger"> <!--連結しないで表示したい場合は、card-deck-->
-              <div class="card text-white border-dark mb-3 bg-dark ">
+            <div class="mb-4 card-deck fadeUpTrigger"> <!--連結しないで表示したい場合は、card-deck-->
+              <div class="card text-white border-dark mb-3 bg-dark hover-img">
                 <%= link_to group_path(group) do %>
                   <%= attachment_image_tag(group, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid" )%>
                 <% end %>
