@@ -13,13 +13,7 @@
 
   <body class="min-vh-100 d-flex flex-column">
     <header>
-      <% if controller.class.parent.name == "Admin" %>
-        <%# Admin側のヘッダー %>
-        <%= render "shared/header_admin" %>
-      <% else %>
-        <%# user側のヘッダー %>
-        <%= render "shared/header_user" %>
-      <% end %>
+      <%= render "shared/header" %>
     </header>
     <main class="flex-grow-1">
       <%= yield %>
