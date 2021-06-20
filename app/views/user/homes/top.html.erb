@@ -24,21 +24,41 @@
   <div class="container-fluid shadow-lg p-3">
     <h3 class="text-white font-italic text-center m-5 fadeUpTrigger">人気グループ TOP6</h3>
     <div class='row'>
-      <% @all_ranks.each do |group| %>
+      <!--ランキング機能 同率順位も含めた記載をする-->
+      <% lastMemmber = 0 %>
+      <% j = 1 %>
+      <% @all_ranks.order(updated_at: :desc).each.with_index(1) do |ranking, i| %>
+       <% if i == 1 %>
+         <% lastMemmber = ranking.users.count %>
+       <% end %>    
         <div class="col-lg-2 col-md-3 col-sm-6">
           <div class="mb-4 card-deck fadeUpTrigger"> <!--連結しないで表示したい場合は、card-deck-->
             <div class="card text-white border-dark mb-3 bg-transparent hover-img">
-              <%= link_to group_path(group) do %>
-                <%= attachment_image_tag(group, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid" )%>
+            <% if ranking.users.count != lastMemmber %>
+              <% j = i %>
+              <h1>第<%= j %>位</h1>
+              <%= link_to group_path(ranking) do %>
+                <%= attachment_image_tag(ranking, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid" )%>
               <% end %>
               <div class="card-body">
-                <h5 class="card-title font-weight-bold"><%= group.name.truncate(15) %></h5>
-                <p class="card-text">加入メンバー<%= group.users.count %>人</p>
+                <h5 class="card-title font-weight-bold"><%= ranking.name.truncate(15) %></h5>
+                <p class="card-text">加入メンバー<%= ranking.users.count %>人</p>
               </div>
+            <% else %>
+              <h1>第<%= j %>位</h1>
+              <%= link_to group_path(ranking) do %>
+                <%= attachment_image_tag(ranking, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid" )%>
+              <% end %>
+              <div class="card-body">
+                <h5 class="card-title font-weight-bold"><%= ranking.name.truncate(15) %></h5>
+                <p class="card-text">加入メンバー<%= ranking.users.count %>人</p>
+              </div>
+            <% end %> 
             </div>
           </div>
         </div>
       <% end %> 
+      
     </div>
   </div>
 </div>
