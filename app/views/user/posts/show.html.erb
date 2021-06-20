@@ -18,11 +18,11 @@
             <p class="card-text border-bottom"><%= @post.body%></p>
             <p class="card-text">
               <% if @post.user.id == current_user.id %>
-                <%= link_to '投稿を編集する',edit_group_post_path(@group,@post), class: "btn btn-outline-light hover-img m-2" %>
-                <%= link_to '投稿を削除する',group_post_path(@group,@post), method: :delete, data: { confirm: '本当に投稿を消しますか？' }, class: "btn btn-danger btn-outline-light hover-img m-2"%>
+                <%= link_to '投稿を編集する',edit_group_post_path(@group,@post), class: "btn btn-success btn-outline-light hover-img m-1" %>
+                <%= link_to '投稿を削除する',group_post_path(@group,@post), method: :delete, data: { confirm: '本当に投稿を消しますか？' }, class: "btn btn-danger btn-outline-light hover-img m-1"%>
               <% end %>
             </p>
-          </div>
+          </div> 
           <div class="card-footer bg-transparent border-0 pt-0 d-flex">
             <div class="flex-grow-1">
               <!--いいねとコメントマーク-->

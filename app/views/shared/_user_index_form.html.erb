@@ -7,7 +7,7 @@
       <% users.each do |user| %>
         <div class="col-lg-2 col-md-3 col-sm-6">
           <div class="mb-4 card-deck fadeUpTrigger"> <!--連結しないで表示したい場合は、card-deck-->
-            <div class="card text-white border-dark mb-3 bg-dark hover-img">
+            <div class="card text-white border-dark mb-3 bg-transparent hover-img">
               <!--#adminとuserでパスが違う為、条件分岐-->
               <% if controller.class.parent.name == "Admin" %>
                 <%= link_to admin_user_path(user.id),class: "profileimg" do %>

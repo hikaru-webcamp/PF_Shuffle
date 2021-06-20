@@ -1,89 +1,72 @@
-  <nav class="navbar navbar-dark bg-dark fixed-top">
-    <div class="container-fluid">
-      <div class="topfont">
-        <%= link_to "Shuffle", root_path, class: "navbar-brand" %>
+
+  <% if current_page?(controller: "homes", action: "top")%>
+    <nav class="navbar bg-transparent fixed-top navbar-expand-lg">
+  <% else %>
+    <nav class="navbar navbar-dark fixed-top navbar-expand-lg header-color">
+  <% end %>
+      <div class="container-fluid">
+        <div class="topfont">
+          <%= link_to "Shuffle", root_path, class: "navbar-brand text-white " %>
+        </div>
+    
+        <!-- ハンバーガーメニュー -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fab fa-apple fa-2x hover-img text-white"></i> <!--アイコンをアップルに変更-->
+        </button>
+        <!-- ナビゲーションメニュー -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mr-auto ">
+            <!--管理側のヘッダー-->
+            <% if controller.class.parent.name == "Admin" %>
+              <% if admin_signed_in? %>
+              <%# 管理側サインイン済 %>
+              <li class="nav-item">
+                <%= link_to "会員一覧", admin_users_path, class: "nav-link hover-img text-white" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link hover-img text-white" %>
+              </li>
+            <% end %>
+          <% end %>
+            <!--ユーザー側のヘッダー-->
+          <% if controller.class.parent.name == "User" %>
+            <% if user_signed_in? %>
+              <%# userサインイン済 %>
+              <li class="nav-item">
+                <%= link_to "ホーム", root_path, class: "nav-link hover-img text-white" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "マイページ", user_path(current_user.id), class: "nav-link hover-img text-white" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "会員一覧", users_path, class: "nav-link hover-img text-white" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "グループ一覧", groups_path, class: "nav-link hover-img text-white" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link hover-img text-white" %>
+              </li>        
+            <% else %>
+            <ul class="navbar-nav mr-auto">
+                <%# userサインイン前 %>
+              <li class="nav-item active">
+                <%= link_to "グループリスト", groups_path, class: "nav-link btn btn-outline-light hover-img mr-2" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_user_session_path, class: "nav-link btn btn-outline-light hover-img mr-2" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'かんたんログイン', users_guest_sign_in_path, method: :post, class:"nav-link btn btn-outline-light hover-img mr-2"%>
+              </li>
+              <li class="nav-item">
+              <%= link_to "管理人ログイン", new_admin_session_path, class: "nav-link btn btn-outline-light hover-img mr-2" %>
+              </li>
+            </ul>
+            <% end %>
+          <% end %>
+          </ul>
+          <%= render "shared/header_serach" %>
+        </div>
       </div>
-
-    <!-- ハンバーガーメニュー -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <i class="fab fa-apple fa-2x hover-img"></i> <!--アイコンをアップルに変更-->
-    </button>
-    <!-- ナビゲーションメニュー -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav mr-auto">
-        <!--管理側のヘッダー-->
-        <% if controller.class.parent.name == "Admin" %>
-          <% if admin_signed_in? %>
-          <%# 管理側サインイン済 %>
-          <li class="nav-item">
-            <%= link_to "User List", admin_users_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Log Out", destroy_admin_session_path, method: :delete, class: "nav-link" %>
-          </li>
-        <% else %>
-          <%# 管理側サインイン前 %>
-          <li class="nav-item active">
-            <%= link_to "Group List", groups_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Sing UP", new_user_registration_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "User Login", new_user_session_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Gest Login', users_guest_sign_in_path, method: :post, class:"nav-link"%>
-          </li>
-          <li class="nav-item">
-          <%= link_to "Admin Login", new_admin_session_path, class: "nav-link" %>
-          </li>
-        <% end %>
-      <% end %>
-        <!--ユーザー側のヘッダー-->
-      <% if controller.class.parent.name == "User" %>
-        <% if user_signed_in? %>
-          <%# userサインイン済 %>
-          <span class="navbar-text">
-            ようこそ、<%= current_user.name %>
-          </span>
-          <li class="nav-item">
-            <%= link_to "Home", root_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "My Page", user_path(current_user.id), class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "User List", users_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Group List", groups_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "nav-link" %>
-          </li>        
-        <% else %>
-          <%# userサインイン前 %>
-          <li class="nav-item active">
-            <%= link_to "Group List", groups_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Sing UP", new_user_registration_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "User Login", new_user_session_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Gest Login', users_guest_sign_in_path, method: :post, class:"nav-link"%>
-          </li>
-          <li class="nav-item">
-          <%= link_to "Admin Login", new_admin_session_path, class: "nav-link" %>
-          </li>
-        <% end %>
-      <% end %>
-      </ul>
-        <%= render "shared/header_serach" %>
-
-    </div>
-  </div>
- </nav>
+    </nav>
