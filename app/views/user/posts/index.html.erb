@@ -17,7 +17,7 @@
       <% @posts.each do |post| %>
         <div class="col-lg-2 col-md-3 col-sm-6">
           <div class="mb-4 card-deck hover-img"> <!--連結しないで表示したい場合は、card-deck-->
-            <div class="card text-white border-dark mb-3 bg-dark ">
+            <div class="card text-dark border-dark mb-3 bg-light">
                 <%= link_to group_post_path(@group,post) do %>
                   <%= attachment_image_tag(post.user, :profile_image, size: "240x180", fallback: "profilenoimage.jpg",class: "profileimg card-img-top img-fluid") %>
                 <% end %>
@@ -27,10 +27,10 @@
                 <p class="card-text"><%= time_ago_in_words(post.created_at) %>前に作成</p>
                 <% if post.user.id == current_user.id %>
                   <p class="card-text ">
-                    <%= link_to '投稿を編集する',edit_group_post_path(@group,post), class: "btn btn-outline-light hover-img m-2" %>
+                    <%= link_to '投稿を編集する',edit_group_post_path(@group,post), class: "btn btn-success btn-outline-dark hover-img m-1" %>
                   </p>
                   <p class="card-text ">
-                    <%= link_to '投稿を削除する',group_post_path(@group,post), method: :delete, data: { confirm: '本当に投稿を消しますか？' }, class: "btn btn-danger btn-outline-light hover-img m-2"%>
+                    <%= link_to '投稿を削除する',group_post_path(@group,post), method: :delete, data: { confirm: '本当に投稿を消しますか？' }, class: "btn btn-danger btn-outline-dark hover-img m-1"%>
                   </p>
                 <% end %>
               </div>

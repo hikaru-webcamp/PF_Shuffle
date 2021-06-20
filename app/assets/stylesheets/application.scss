@@ -26,7 +26,7 @@
 // }
 
 
-// ヘッダーアイコンの枠を消す
+// ヘッダー（レスポンシブ対応時）アイコンの枠消去
 .navbar-toggler{
   border: none;
 }
@@ -43,7 +43,7 @@ button:focus{
 body {
 font-family: 'Noto Sans JP', sans-serif;
 font-family: 'Roboto', sans-serif;
-background-color: #23282F; 
+background-color: #141414;
 }
 
 .topfont {
@@ -51,7 +51,7 @@ font-family: 'Homemade Apple', cursive;
 }
 
 .sharedmargin{
-  margin-top: 150px;
+  margin-top: 50px;
 }
 .card-img-top {
     width: 100%;
@@ -101,4 +101,8 @@ opacity:0;
  
 .fadeUpTrigger{
     opacity: 0;
+}
+
+.header-color {
+background-color: #000000;
 }
