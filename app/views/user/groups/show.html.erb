@@ -15,7 +15,7 @@
   
     <div class='row scroll-list jscroll mx-auto'>
       <% @users.each do |member| %>
-        <div class="col-lg-2 col-md-3 col-sm-6">
+        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
           <div class="mb-4 card-deck hover-img "> <!--連結しないで表示したい場合は、card-deck-->
             <div class="card text-white border-dark mb-3 bg-transparent">
                 <%= link_to user_path(member) ,class: "profileimg" do %>

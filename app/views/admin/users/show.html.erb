@@ -1,8 +1,8 @@
-<div class="sharedmargin">
-    <div class="container-md shadow-lg p-3">
-      <%= render "shared/flash_message" %>
-        <h3 class="text-white font-italic text-center my-3"><%= @user.name%>さんの会員詳細</h3>
-      <!--管理側とユーザー側のユーザー詳細ページをパーシャル化-->
+  <div class="sharedmargin">
+  <div class="container-fluid shadow-lg p-3">
+    <div class="col-sm-4 mx-auto text-center" ><%= render "shared/flash_message" %></div>
+    <h3 class="text-white font-italic text-center my-3"><%= @user.name%>さんの会員詳細</h3>
+    <!--管理側とユーザー側のユーザー詳細ページをパーシャル化-->
     <%= render "shared/user_show_form", user: @user %>
-    </div>
   </div>
+</div>
