@@ -1,14 +1,19 @@
-
+<% if controller.class.parent.name == "User" %>
   <% if current_page?(controller: "homes", action: "top")%>
     <nav class="navbar bg-transparent fixed-top navbar-expand-lg">
   <% else %>
     <nav class="navbar navbar-dark fixed-top navbar-expand-lg header-color">
   <% end %>
+<% end %>
+
+<% if controller.class.parent.name == "Admin" %>
+    <nav class="navbar navbar-dark fixed-top navbar-expand-lg header-color">
+<% end %>
+
       <div class="container-fluid">
         <div class="topfont">
-          <%= link_to "Shuffle", root_path, class: "navbar-brand text-white " %>
+          <%= link_to "Shuffle", root_path, class: "navbar-brand text-white" %>
         </div>
-    
         <!-- ハンバーガーメニュー -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <i class="fab fa-apple fa-2x hover-img text-white"></i> <!--アイコンをアップルに変更-->
@@ -53,13 +58,13 @@
               <li class="nav-item active">
                 <%= link_to "グループリスト", groups_path, class: "nav-link btn btn-outline-light hover-img mr-2" %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item active">
                 <%= link_to "ログイン", new_user_session_path, class: "nav-link btn btn-outline-light hover-img mr-2" %>
               </li>
-              <li class="nav-item">
+              <li class="nav-item active">
                 <%= link_to 'かんたんログイン', users_guest_sign_in_path, method: :post, class:"nav-link btn btn-outline-light hover-img mr-2"%>
               </li>
-              <li class="nav-item">
+              <li class="nav-item active">
               <%= link_to "管理人ログイン", new_admin_session_path, class: "nav-link btn btn-outline-light hover-img mr-2" %>
               </li>
             </ul>

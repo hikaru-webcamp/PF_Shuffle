@@ -1,7 +1,7 @@
  <!--部分テンプレートにより@users➩users変更-->
 <div class="sharedmargin">
   <div class="container-fluid shadow-lg p-3">
-    <%= render "shared/flash_message" %>
+    <div class="col-sm-4 mx-auto text-center" ><%= render "shared/flash_message" %></div>
     <h3 class="text-white font-italic text-center m-4">User List</h3>
     <div class='row scroll-list jscroll w-100 mx-auto'>
       <% users.each do |user| %>
@@ -33,7 +33,6 @@
                 <div class="jscroll-pagination">
                   <%= paginate users %>
                 </div>
-                
               </div>
             </div>
           </div>
