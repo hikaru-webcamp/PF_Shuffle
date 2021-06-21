@@ -19,7 +19,7 @@
           <div class="mb-4 card-deck hover-img "> <!--連結しないで表示したい場合は、card-deck-->
             <div class="card text-white border-dark mb-3 bg-transparent">
                 <%= link_to user_path(member) ,class: "profileimg" do %>
-                  <%= attachment_image_tag(member, :profile_image, size: "240x180", fallback: "profilenoimage.jpg",class: "profileimg card-img-top img-fluid") %>
+                  <%= attachment_image_tag(member, :profile_image, size: "240x180", fallback: "profilenoimage.jpg",class: "profileimg card-img-top img-fluid mx-auto d-block") %>
                 <% end %>
               <div class="card-body">
                 <h5 class="card-title font-weight-bold"><%= member.name.truncate(15) %></h5>

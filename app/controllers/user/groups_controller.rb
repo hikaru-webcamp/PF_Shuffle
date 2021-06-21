@@ -5,7 +5,7 @@ class User::GroupsController < ApplicationController
   def index
     @groups = Group.all.order(updated_at: :desc).page(params[:page]).per(12)
   end
-  
+
   def new
     @group = Group.new
   end
@@ -23,11 +23,11 @@ class User::GroupsController < ApplicationController
 
   def join
     group = Group.find(params[:group_id])
-    group_user = GroupUser.new(user_id: current_user.id, group_id: group.id) 
+    group_user = GroupUser.new(user_id: current_user.id, group_id: group.id)
     group_user.save
     redirect_to group_path(group), notice: "グループに加入しました"
   end
-  
+
   def groupout
     group = Group.find(params[:group_id])
     group.users.destroy(current_user)
@@ -57,19 +57,17 @@ class User::GroupsController < ApplicationController
     @group.destroy
     redirect_to groups_path, notice: "グループを削除しました"
   end
-  
+
   private
 
   def group_params
-    params.require(:group).permit(:image,:name,:introduction,:owner_id)
+    params.require(:group).permit(:image, :name, :introduction, :owner_id)
   end
-  
+
   # 他人のグループ編集ページにアクセスできないメソッドを定義
   # 他人のグループ編集ページをクリックすると、グループ一覧ページに遷移。
   def ensure_correct_user
-  @group = Group.find(params[:id])
-    unless @group.owner_id == current_user.id
-      redirect_to groups_path
-    end
+    @group = Group.find(params[:id])
+    redirect_to groups_path unless @group.owner_id == current_user.id
   end
 end

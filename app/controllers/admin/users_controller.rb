@@ -21,10 +21,10 @@ class Admin::UsersController < ApplicationController
       render :edit
     end
   end
-  
+
   private
+
   def user_params
-    params.require(:user).permit(:name,:email,:is_deleted,:profile_image,:introduction)
+    params.require(:user).permit(:name, :email, :is_deleted, :profile_image, :introduction)
   end
-  
 end

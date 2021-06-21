@@ -1,6 +1,6 @@
 class User::UsersController < ApplicationController
-before_action :authenticate_user!
-before_action :ensure_correct_user, only: [:update, :edit]
+  before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:update, :edit]
 
   def index
     @users = User.all.order(updated_at: :desc).page(params[:page]).per(12)
@@ -31,10 +31,10 @@ before_action :ensure_correct_user, only: [:update, :edit]
   end
   # reset_sessionですべてのセッション情報を削除してログアウトさせる
 
-  def out_confirm
-  end
+  def out_confirm; end
 
   private
+
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image, :email)
   end
@@ -43,9 +43,6 @@ before_action :ensure_correct_user, only: [:update, :edit]
   # 他人の編集ページをクリックすると、ログインしているユーザー詳細ページに遷移。
   def ensure_correct_user
     @user = User.find(params[:id])
-    unless @user == current_user
-      redirect_to user_path(current_user)
-    end
+    redirect_to user_path(current_user) unless @user == current_user
   end
-  
 end
