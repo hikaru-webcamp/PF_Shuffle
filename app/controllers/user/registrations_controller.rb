@@ -4,18 +4,17 @@ class User::RegistrationsController < Devise::RegistrationsController
   before_action :ensure_normal_user, only: [:destroy]
   before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-  
+
   def ensure_normal_user
     if resource.email == 'guest@example.com'
-      redirect_to root_path, alert: 'ゲストユーザーの削除はできません。'
+      redirect_to root_path, alert: 'ゲストユーザーの削除はできません'
     end
   end
-
 
   # GET /resource/sign_up
   # def new
   #   super
-  # end
+  # ends
 
   # POST /resource
   # def create
@@ -50,7 +49,7 @@ class User::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-   devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:email])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
@@ -67,8 +66,8 @@ class User::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-    #アカウント登録後のリダイレクト先
+  # アカウント登録後のリダイレクト先
   def after_sign_up_path_for(resource)
-   root_path
+    root_path
   end
 end

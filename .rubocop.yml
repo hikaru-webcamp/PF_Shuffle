@@ -65,3 +65,6 @@ Metrics/AbcSize:
   # The ABC size is a calculated magnitude, so this number can be a Fixnum or
   # a Float.
   Max: 24 
+# ＃文字数制限
+Layout/LineLength:
+  Max: 150 
