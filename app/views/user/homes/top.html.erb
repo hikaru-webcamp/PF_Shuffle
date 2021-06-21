@@ -1,12 +1,13 @@
 <section class="hero">
   <div class="video-box overlay">
     <video class="video" muted autoplay loop >
-      <source src="https://movie-shuffle.s3.ap-northeast-1.amazonaws.com/topvideo2.mp4" type="video/mp4" > 
+      <source src="https://movie-shuffle.s3.ap-northeast-1.amazonaws.com/topmovie.mp4" type="video/mp4" > 
       <!--poster="/assets/top_image.jpeg-->
     </video>
   </div>
   <div class="text-box">
-    <h1 class="font-italic">最高の仲間を見つけよう<br></h1>
+    <h1 class="font-italic imagefont">We are the best team<br></h1>
+    <h1 class="font-italic imagefont"><p><%= link_to 'Login', new_user_session_path, class: "btn btn-outline-light hover-img mr-2 btn-lg" %></p></h1>
   </div>
 </section>
 
@@ -16,7 +17,7 @@
     <h1 class="display-4 topfont m-5 fadeUpTrigger">Shuffle</h1>
     <p class="lead">Shuffleは、プログラミング初学者の為のコミュニティサイトです。</p>
     <p>さっそくグループを作って仲間を集めよう！</p>
-    <p><%= link_to '新規会員登録はこちら', new_user_registration_path, class: "btn btn-secondary btn-lg hover-img" %></p>
+    <p><%= link_to '新規会員登録はこちら', new_user_registration_path, class: "btn btn-outline-light btn-lg hover-img" %></p>
   </div>
 </div>
 
@@ -25,7 +26,6 @@
     <h3 class="text-white font-italic text-center m-5 fadeUpTrigger">人気グループ TOP6</h3>
     <div class='row'>
       <!--ランキング機能同率順位も含めた記載をする-->
-      <% lastMemmber = 0 %>
       <% j = 1 %>
       <% @all_ranks.order(updated_at: :desc).each.with_index(1) do |ranking, i| %>
        <% if i == 1 %>
