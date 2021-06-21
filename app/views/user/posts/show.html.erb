@@ -3,7 +3,7 @@
     <div class="col-sm-4 mx-auto text-center" ><%= render "shared/flash_message" %></div>
     <div class="row">
       <div class="col-md-8 mx-auto mt-2">
-        <div class="card h-100 border-0 bg-dark text-white">
+        <div class="card h-100 border-0 bg-transparent text-white">
           <%= link_to group_path(@group.id) do %>
               <%= attachment_image_tag(@group, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid hover-img" )%>
           <% end %>
