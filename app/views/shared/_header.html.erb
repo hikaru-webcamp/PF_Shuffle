@@ -1,18 +1,10 @@
-<% if controller.class.parent.name == "User" %>
-  <% if current_page?(controller: "homes", action: "top")%>
-    <nav class="navbar bg-transparent fixed-top navbar-expand-lg">
-  <% else %>
-    <nav class="navbar navbar-dark fixed-top navbar-expand-lg header-color">
-  <% end %>
-<% end %>
 
-<% if controller.class.parent.name == "Admin" %>
     <nav class="navbar navbar-dark fixed-top navbar-expand-lg header-color">
-<% end %>
-
       <div class="container-fluid">
         <div class="topfont">
-          <%= link_to "Shuffle", root_path, class: "navbar-brand text-white" %>
+          <%= link_to root_path, class: "navbar-brand text-white" do %>
+            <%= image_tag 'header_logo.png', { height:60 } %>
+          <% end %>
         </div>
         <!-- ハンバーガーメニュー -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
