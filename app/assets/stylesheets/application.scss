@@ -69,19 +69,29 @@ font-family: 'Homemade Apple', cursive;
   }
 }
 
+.user-img-top {
+    width: 100%;
+    height: 10vw;
+    object-fit: cover;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+// 768px以下の際に適用される設定
+@media screen and (max-width: 768px) {
+.user-img-top {
+    width: 100%;
+    height: 30vw;
+    object-fit: cover;
+  }
+}
+  
+// 425px以下の際に適用される設定
+@media screen and (max-width: 425px) {
+.user-img-top {
+    width: 100%;
+    height: 50vw;
+    object-fit: cover;
+  }
+}
 
 .profileimg {
 	border-radius: 50%;

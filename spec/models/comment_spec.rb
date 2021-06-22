@@ -10,16 +10,16 @@ RSpec.describe 'Commentモデルのテスト', type: :model do
 
     context 'commentカラム' do
       it 'コメントが空では投稿できない' do
-        comment.comment = ''
+        comment.body = ''
         expect(comment).not_to be_valid
       end
-      it '140文字以上ではコメントできない' do
-        comment.comment = Faker::Lorem.characters(number: 141)
+      it '201文字以上ではコメントできない' do
+        comment.body = Faker::Lorem.characters(number: 201)
         p comment
         expect(comment).not_to be_valid
       end
-      it '140文字以内ではコメントできる' do
-        comment.comment = Faker::Lorem.characters(number: 140)
+      it '200文字以内ではコメントできる' do
+        comment.body = Faker::Lorem.characters(number: 200)
         expect(comment).to be_valid
       end
     end

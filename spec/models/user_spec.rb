@@ -4,14 +4,23 @@ require 'rails_helper'
 
 RSpec.describe 'Userモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
+    # テスト対象の記述を1箇所にまとめる
     subject { user.valid? }
-
-    let!(:other_user) { create(:user) }
-    let(:user)        { build(:user)  }
+     let!(:other_user) { create(:user) }
+     let(:user) { build(:user)  }
 
     context 'nameカラム' do
       it '空欄でないこと' do
         user.name = ''
+        is_expected.to eq false
+        # expect(user).not_to be_validの省略
+      end
+      it '2文字以下はNG' do
+        user.name =  Faker::Name.name(number: 2)
+        is_expected.to eq true
+      end
+      it '21文字以上はNG' do
+        user.name =  Faker::Name.name(number: 21)
         is_expected.to eq false
       end
     end
@@ -43,9 +52,9 @@ RSpec.describe 'Userモデルのテスト', type: :model do
       end
     end
 
-    context 'prefecture_code' do
-      it '空欄でないこと' do
-        user.prefecture_code = ''
+    context 'introductionカラム' do
+      it '161文字以上はNG' do
+        user.introduction = Faker::Lorem.characters(number: 161)
         is_expected.to eq false
       end
     end
@@ -70,18 +79,15 @@ RSpec.describe 'Userモデルのテスト', type: :model do
       end
     end
 
-    context 'Chatモデルとの関係' do
+    context 'グループモデルとの関係' do
       it '1:Nとなっている' do
-        expect(User.reflect_on_association(:chats).macro).to eq :has_many
+        expect(User.reflect_on_association(:groups).macro).to eq :has_many
       end
     end
 
-    context 'Notificationモデルとの関係' do
+    context 'グループユーザーモデルとの関係' do
       it '1:Nとなっている' do
-        expect(User.reflect_on_association(:active_notifications).macro).to eq :has_many
-      end
-      it '1:Nとなっている' do
-        expect(User.reflect_on_association(:passive_notifications).macro).to eq :has_many
+        expect(User.reflect_on_association(:group_users).macro).to eq :has_many
       end
     end
   end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'UserRoomモデルのテスト', type: :model do
+RSpec.describe 'Userモデルのテスト', type: :model do
   describe 'アソシエーションのテスト' do
     context 'Userモデルとの関係' do
       it 'N:1となっている' do
@@ -10,9 +10,9 @@ RSpec.describe 'UserRoomモデルのテスト', type: :model do
       end
     end
 
-    context 'Roomモデルとの関係' do
+    context 'Groupモデルとの関係' do
       it 'N:1となっている' do
-        expect(UserRoom.reflect_on_association(:room).macro).to eq :belongs_to
+        expect(UserRoom.reflect_on_association(:group).macro).to eq :belongs_to
       end
     end
   end
