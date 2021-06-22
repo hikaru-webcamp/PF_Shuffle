@@ -1,23 +1,29 @@
 <div class="sharedmargin">
   <div class="container shadow-lg p-3">
     <div class="col-sm-4 mx-auto text-center" ><%= render "shared/flash_message" %></div>
+    <% if @post.youtube_url.present? %>
+      <div class="row m-5">
+        <div class="col-md-8 mx-auto mt-2">
+          <div class="card border-0" style="height: 25em;">
+            <iframe class="video" src="https://www.youtube.com/embed/<%= @post.youtube_url.last(11)%>" frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture allowfullscreen "></iframe>          
+           </div>
+        </div>
+      </div>
+    <% end %>
     <div class="row">
       <div class="col-md-8 mx-auto mt-2">
+          <!--<iframe class="video" src="https://www.youtube.com/embed/<#%= @post.youtube_url.last(11)%>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>          -->
         <div class="card h-100 border-0 bg-transparent text-white">
-          <%= link_to group_path(@group.id) do %>
-              <%= attachment_image_tag(@group, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid hover-img" )%>
-          <% end %>
           <div class="card-body">
             <h5 class="card-title border-bottom ">
               <%= link_to user_path(@post.user.id), class: 'text-reset text-decoration-none' do %>
-                <%= attachment_image_tag @post.user, :profile_image, :fill, 100, 100, size: '100x100', fallback: "profilenoimage.jpg", class: "user-img-top rounded-circle m-2 hover-img" %>
+                <%= attachment_image_tag @post.user, :profile_image, :fill, 100, 100, size: '100x100', fallback: "profilenoimage.jpg", class: "rounded-circle m-2 hover-img" %>
                 <%= @post.user.name%>
               <% end %>
             </h5>
             <p class="card-text border-bottom"><%= @post.title%></p>
             <p class="card-text border-bottom"><%= @post.body%></p>
           </div> 
-          
           <div class="card-footer bg-transparent border-0 pt-0 d-flex">
             <div class="flex-grow-1">
               <!--いいねとコメントマーク-->

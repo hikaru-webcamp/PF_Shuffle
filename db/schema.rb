@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2021_06_18_065444) do
     t.integer "group_id", null: false
     t.string "title", null: false
     t.text "body", null: false
+    t.string "youtube_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

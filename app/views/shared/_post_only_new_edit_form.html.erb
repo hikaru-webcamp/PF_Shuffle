@@ -12,6 +12,10 @@
       <%= f.text_area :body, placeholder: "\uf249 本文を記述して下さい", :size=>"60x10" , class: 'form-control fa' %>
     </div>
     <div class="form-group row">
+      <h3 class="col-form-label">youtubu投稿URL</h3>
+      <%= f.text_field :youtube_url, placeholder: "\uf249 URLを記述して下さい https://www.youtube.com/・・・", :size=>"60x10" , class: 'form-control fa' %>
+    </div>
+    <div class="form-group row">
       <%= f.submit class: 'btn btn-secondary form-control btn-outline-light  hover-img' %>
     </div>
   </div>

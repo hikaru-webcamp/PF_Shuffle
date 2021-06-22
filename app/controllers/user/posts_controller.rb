@@ -22,8 +22,11 @@ class User::PostsController < ApplicationController
     @group = Group.find(params[:group_id])
     @post.user_id = current_user.id
     @post.group_id = @group.id
+    url = params[:post][:youtube_url] # 取得したい情報を指定
+    url = url.last(11)                # 11桁の値(video_id)を取り出し、変数urlに格納
+    @post.youtube_url = url           # 変数urlの値をインスタンス変数に格納
     if @post.save
-      redirect_to group_posts_path(@group), notice: "投稿しました"
+      redirect_to group_post_path(@group,@post), notice: "投稿しました"
     else
       @group = Group.find(params[:group_id])
       @post = Post.new
@@ -47,7 +50,7 @@ class User::PostsController < ApplicationController
     @group = Group.find(params[:group_id])
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to group_path(@group.id), notice: "投稿情報を更新しました"
+      redirect_to group_post_path(@group,@post), notice: "投稿情報を更新しました"
     else
       @group = Group.find(params[:group_id])
       @post = Post.find(params[:id])
@@ -58,7 +61,7 @@ class User::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :youtube_url)
   end
   
 end
