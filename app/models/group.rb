@@ -12,7 +12,7 @@ class Group < ApplicationRecord
   # 検索方法分岐 メソッド定義してコントローラー側で呼び出し
   # 検索部分一致で定義
   def self.looks(word)
-    where(["name LIKE?", "%#{word}%"])
+    where("name LIKE? OR introduction LIKE?", "%#{word}%", "%#{word}%")
   end
 
   # イイネ用メソッド

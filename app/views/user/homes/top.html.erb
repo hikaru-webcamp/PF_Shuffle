@@ -14,7 +14,7 @@
 <div class="jumbotron mb-0 col-12 text-white bg-transparent text-center story-card-border topcolor"> 
   <div class="col-sm-4 mx-auto text-center" ><%= render "shared/flash_message" %></div>
   <div class="container shadow-lg p-3 fadeUpTrigger">
-    <h1 class="display-4 topfont m-5 fadeUpTrigger">Shuffle</h1>
+    <h2 class="display-4 topfont m-5 fadeUpTrigger">Shuffle</h2>
     <p class="lead">Shuffleは、プログラミング初学者の為のコミュニティサイトです。</p>
     <p>さっそくグループを作って仲間を集めよう！</p>
     <p><%= link_to '新規会員登録はこちら', new_user_registration_path, class: "btn btn-outline-light btn-lg hover-img" %></p>
@@ -23,7 +23,7 @@
 
 <div class="jumbotron col-12 text-white bg-transparent text-center mb-0 story-card-border"> 
   <div class="container-fluid shadow-lg p-3">
-    <h3 class="text-white font-italic text-center m-5 fadeUpTrigger">人気グループ TOP6</h3>
+    <h3 class="text-white font-italic text-center m-5 fadeUpTrigger"><i class="fas fa-trophy"></i>人気グループ TOP6</h3>
     <div class='row'>
       <!--ランキング機能同率順位も含めた記載をする-->
       <% j = 1 %>
@@ -36,7 +36,7 @@
             <div class="card text-white border-dark mb-3 bg-transparent hover-img">
             <% if ranking.users.count != lastMemmber %>
               <% j = i %>
-              <h1>第<%= j %>位</h1>
+              <h2 class=" imagefont"><%= j %>位</h2>
               <%= link_to group_path(ranking) do %>
                 <%= attachment_image_tag(ranking, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid" )%>
               <% end %>
@@ -45,7 +45,7 @@
                 <p class="card-text">加入メンバー<%= ranking.users.count %>人</p>
               </div>
             <% else %>
-              <h1>第<%= j %>位</h1>
+              <h2 class=" imagefont"><%= j %>位</h2>
               <%= link_to group_path(ranking) do %>
                 <%= attachment_image_tag(ranking, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid" )%>
               <% end %>
