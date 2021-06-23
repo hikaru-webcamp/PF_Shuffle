@@ -25,6 +25,13 @@ User.create!(
   profile_image: File.open("./app/assets/images/admin_profil_HIKARU.jpg")
 )
 
+
+if Rails.env.production?
+  RAND_FUNC = 'RAND()'
+else
+  RAND_FUNC = 'RANDOM()'
+end
+
 75.times do |n|
   User.create!(
     name: Faker::Name.name ,
@@ -36,26 +43,32 @@ User.create!(
 end
 
 75.times do |n|
-  Group.create!(
+  group = Group.create!(
     name:  Faker::Artist.name,
     introduction: "最高に楽しいチームです！",
     owner_id: User.find(n+1).id,
     image: File.open("#{Rails.root}/app/assets/images/group_sample_image/group_sample_image#{n}.jpg")
   )
-end
-
-50.times do |n|
-  Post.create!(
+  
+  post = Post.create!(
     title: "#{n + 1}月生によるイベント会",
     body: Faker::Lorem.unique.paragraph, 
     user_id: User.find(n+1).id,
     group_id: Group.find(n+1).id
   )
+  
+  users = User.order(RAND_FUNC).limit(rand(1..10))
+  users.each do |user|
+    GroupUser.create!(user_id: user.id, group_id: group.id)
+    Post.create!(user_id: user.id, group_id: group.id, title: "#{n + 1}月生によるイベント会", body: Faker::Lorem.unique.paragraph)
+  end
+  
+  
+  users = User.order(RAND_FUNC).limit(rand(1..10))
+  users.each do |user|
+    Like.create!(user_id: user.id, post_id: post.id)
+    Comment.create!(user_id: user.id, post_id: post.id, body: Faker::Lorem.unique.paragraph)
+  end
+  
 end
 
-15.times do |n|
-  GroupUser.create!(
-    user_id: User.find(n+1).id,
-    group_id: Group.find(n+1).id
-  )
-end
