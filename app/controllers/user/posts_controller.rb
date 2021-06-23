@@ -1,5 +1,6 @@
 class User::PostsController < ApplicationController
   before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:new, :edit, :update]
 
   def new
     @group = Group.find(params[:group_id])
@@ -64,4 +65,9 @@ class User::PostsController < ApplicationController
     params.require(:post).permit(:title, :body, :youtube_url)
   end
   
+  def ensure_correct_user
+    @group = Group.find(params[:group_id])
+    @users = @group.users
+    redirect_to group_path(@group) unless @group.users.ids == current_user.id
+  end
 end

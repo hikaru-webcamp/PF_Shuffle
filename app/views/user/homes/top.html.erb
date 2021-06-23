@@ -27,7 +27,7 @@
     <div class='row'>
       <!--ランキング機能同率順位も含めた記載をする-->
       <% j = 1 %>
-      <% @all_ranks.order(updated_at: :desc).each.with_index(1) do |ranking, i| %>
+      <% @group_ranks.order(updated_at: :desc).each.with_index(1) do |ranking, i| %>
        <% if i == 1 %>
          <% lastMemmber = ranking.users.count %>
        <% end %>    
@@ -42,7 +42,7 @@
               <% end %>
               <div class="card-body">
                 <h5 class="card-title font-weight-bold"><%= ranking.name.truncate(15) %></h5>
-                <p class="card-text">加入メンバー<%= ranking.users.count %>人</p>
+                <p class="card-text"><i class="fas fa-user-friends mr-2"></i><%= ranking.users.size %>人</p>
               </div>
             <% else %>
               <h2 class=" imagefont"><%= j %>位</h2>
@@ -51,7 +51,66 @@
               <% end %>
               <div class="card-body">
                 <h5 class="card-title font-weight-bold"><%= ranking.name.truncate(15) %></h5>
-                <p class="card-text">加入メンバー<%= ranking.users.count %>人</p>
+                <p class="card-text"><i class="fas fa-user-friends mr-2"></i><%= ranking.users.size %>人</p>
+              </div>
+            <% end %> 
+            </div>
+          </div>
+        </div>
+      <% end %> 
+    </div>
+  </div>
+</div>
+
+<div class="jumbotron col-12 text-white bg-transparent text-center mb-0 story-card-border"> 
+  <div class="container-fluid shadow-lg p-3">
+    <h3 class="text-white font-italic text-center m-5 fadeUpTrigger"><i class="fas fa-trophy"></i>人気投稿 TOP6</h3>
+    <div class='row'>
+      <!--ランキング機能同率順位も含めた記載をする-->
+      <% j = 1 %>
+      <% @post_ranks.order(updated_at: :desc).each.with_index(1) do |ranking, i| %>
+       <% if i == 1 %>
+         <% lastlike = ranking.likes.count %>
+       <% end %>    
+        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+          
+          <% if ranking.youtube_url.present? %>
+          <div class="card border-0" style="height: 15em;">
+           <iframe class="video" src="https://www.youtube.com/embed/<%= ranking.youtube_url.last(11)%>" 
+           frameborder="1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture allowfullscreen"></iframe>          
+          </div>
+          <% end %>
+          
+          <div class="mb-4 card-deck fadeUpTrigger">
+            <div class="card text-white border-dark mb-3 bg-transparent hover-img">
+            <% if ranking.likes.count != lastlike %>
+              <% j = i %>
+              <h2 class=" imagefont"><%= j %>位</h2>
+              <%= link_to group_post_path(ranking.group,ranking) do %>
+                <%= attachment_image_tag(ranking.user, :profile_image, size: "180x180", fallback: "profilenoimage.jpg",class: "post-img-top img-fluid") %>
+              <% end %>
+              <div class="card-body">
+                <h5 class="card-title font-weight-bold border-bottom">題名：<%= ranking.title.truncate(10) %></h5>
+                <p class="card-text border-bottom">本文：<%= ranking.body.truncate(15, separator: "。")%></p>
+                <p class="card-text"><%= time_ago_in_words(ranking.created_at) %>前に作成</p>
+                <span>
+                  <i class="fa fa-heart fa-1x" aria-hidden="true"><%= ranking.likes.size %></i>
+                  <i class="far fa-comment fa-1x ml-2"><%= ranking.comments.size %></i>
+                </span>
+              </div>
+            <% else %>
+              <h2 class=" imagefont"><%= j %>位</h2>
+              <%= link_to group_post_path(ranking.group,ranking) do %>
+                <%= attachment_image_tag(ranking.user, :profile_image, size: "180x180", fallback: "profilenoimage.jpg",class: "post-img-top img-fluid") %>
+              <% end %>
+              <div class="card-body">
+                <h5 class="card-title font-weight-bold border-bottom">題名：<%= ranking.title.truncate(10) %></h5>
+                <p class="card-text border-bottom">本文：<%= ranking.body.truncate(15, separator: "。")%></p>
+                <p class="card-text"><%= time_ago_in_words(ranking.created_at) %>前に作成</p>
+                <span>
+                  <i class="fa fa-heart fa-1x" aria-hidden="true"><%= ranking.likes.size %></i>
+                  <i class="far fa-comment fa-1x ml-2"><%= ranking.comments.size %></i>
+                </span>
               </div>
             <% end %> 
             </div>
