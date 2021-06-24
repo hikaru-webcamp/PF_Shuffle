@@ -1,8 +1,8 @@
 class Post < ApplicationRecord
   belongs_to :group
   belongs_to :user
-  has_many :likes, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy, counter_cache: true
+  has_many :comments, dependent: :destroy, counter_cache: true
 
   # イイネ用メソッド
   def liked_by?(user)

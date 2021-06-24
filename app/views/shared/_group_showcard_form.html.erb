@@ -7,7 +7,7 @@
       <div class="card-body">
         <h5 class="card-title font-weight-bold  border-bottom"><%= group.name.truncate(15) %></h5>
         <p class="card-text  border-bottom"><%= group.introduction.truncate(20) %></p>
-        <p class="card-text">加入メンバー<%= group.users.count %>人</p>
+        <p class="card-text">加入メンバー<%= group.users.size %>人</p>
         
          <% if group.users.include?(current_user) %>
           <%= link_to "新規投稿", new_group_post_path(group.id), class: "btn btn-outline-light hover-img mr-2"%>

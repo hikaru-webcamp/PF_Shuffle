@@ -68,7 +68,7 @@
     <div class='row'>
       <!--ランキング機能同率順位も含めた記載をする-->
       <% j = 1 %>
-      <% @post_ranks.order(updated_at: :desc).each.with_index(1) do |ranking, i| %>
+      <% @post_ranks.order(updated_at: :desc).includes(:user, :group).each.with_index(1) do |ranking, i| %>
        <% if i == 1 %>
          <% lastlike = ranking.likes.count %>
        <% end %>    
