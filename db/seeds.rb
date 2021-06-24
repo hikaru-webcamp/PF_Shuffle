@@ -54,7 +54,8 @@ end
     title: "#{n + 1}月生によるイベント会",
     body: Faker::Lorem.unique.paragraph, 
     user_id: User.find(n+1).id,
-    group_id: Group.find(n+1).id
+    group_id: Group.find(n+1).id,
+    youtube_url: "https://www.youtube.com/watch?v=Xsd6VgbyJeI"
   )
   
   users = User.order(RAND_FUNC).limit(rand(1..10))

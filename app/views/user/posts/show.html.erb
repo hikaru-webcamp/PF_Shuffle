@@ -55,15 +55,16 @@
       
       <div class="col-md-8 mx-auto m-5 bg-transparent text-white">
         <h5><span class="comment_count_<%= @post.id %>"><%= @post.comments.size %></span>件のコメント</h5>
-        <% if user_signed_in? %>
+        <% if @post.user.id == current_user.id %>
+        <!--#コメントフォーム-->
         <div class="comment_form_<%= @post.id %>">
           <%= render 'user/comments/comment_form', group: @group, post: @post, comment: @comment %>
         </div>          
         <% end %>
-      
         <div class="comment_index_<%= @post.id %>">
           <%= render 'user/comments/comment_index', group: @group, post: @post, comment: @comment %>
         </div>
+        
       </div>
       
     </div>
