@@ -1,7 +1,7 @@
 class User::SearchesController < ApplicationController
   def search
     @range = params[:range]
-
+    @keyword = params[:word]
     if @range == "User"
       @users = User.looks(params[:word]).order(created_at: :desc).page(params[:page]).per(12)
     elsif @range == "Group"
