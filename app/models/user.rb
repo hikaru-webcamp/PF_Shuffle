@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :group_users
   has_many :groups, through: :group_users
+  has_many :owner_groups, class_name: "Group"
   has_many :likes, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy

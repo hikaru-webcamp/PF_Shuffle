@@ -3,7 +3,7 @@ class User::GroupsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
-    @groups = Group.all.order(updated_at: :desc).page(params[:page]).per(12)
+    @groups = Group.all.order(updated_at: :desc).includes(:owner).page(params[:page]).per(12)
   end
 
   def new

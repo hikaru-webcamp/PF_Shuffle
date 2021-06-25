@@ -1,6 +1,7 @@
 class Group < ApplicationRecord
   has_many :group_users
   has_many :users, through: :group_users
+  belongs_to :owner, class_name: "User", foreign_key: "owner_id"
   has_many :posts, dependent: :destroy
   accepts_nested_attributes_for :group_users
 

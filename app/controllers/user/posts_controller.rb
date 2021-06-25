@@ -68,6 +68,6 @@ class User::PostsController < ApplicationController
   def ensure_correct_user
     @group = Group.find(params[:group_id])
     @users = @group.users
-    redirect_to group_path(@group) unless @users.include?(current_user) 
+    redirect_to group_path(@group) unless @users.include?(current_user) || @group.owner_id == current_user.id
   end
 end

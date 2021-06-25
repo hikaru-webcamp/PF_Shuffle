@@ -10,6 +10,7 @@
           <div class="card-body">
             <h5 class="card-title font-weight-bold"><%= group.name.truncate(15) %></h5>
             <p class="card-text"><%= group.introduction.truncate(20) %></p>
+            <p class="card-text"><%= group.owner.name %></p>
             <p class="card-text"><i class="fas fa-user-friends mr-2"></i><%= group.users.size %>人</p>
           </div>
         </div>
