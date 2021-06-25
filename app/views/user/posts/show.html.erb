@@ -55,8 +55,8 @@
       </div>
       
       <div class="col-md-8 mx-auto m-5 bg-transparent text-white">
-        <h5><span class="comment_count_<%= @post.id %>"><%= @post.comments.size %></span>件のコメント</h5>
-        <% if @post.user.id == current_user.id %>
+        <h5><span class="comment_count_<%= @post.id %>"><%= @post.comments.count %></span>件のコメント</h5>
+         <% if @group.users.include?(current_user) %>
         <!--#コメントフォーム-->
         <div class="comment_form_<%= @post.id %>">
           <%= render 'user/comments/comment_form', group: @group, post: @post, comment: @comment %>
