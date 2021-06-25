@@ -9,7 +9,7 @@ class User::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @groups = @user.groups.order(updated_at: :desc).page(params[:page]).per(12)
+    @groups = @user.groups.order(updated_at: :desc).includes(:owner).page(params[:page]).per(12)
   end
 
   def edit

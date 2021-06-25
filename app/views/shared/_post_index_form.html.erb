@@ -9,8 +9,8 @@
                   <%= attachment_image_tag(post.user, :profile_image, size: "180x180", fallback: "profilenoimage.jpg",class: "post-img-top img-fluid") %>
                 <% end %>
               <div class="card-body">
-                <h5 class="card-title font-weight-bold border-bottom">題名：<%= post.title.truncate(10) %></h5>
-                <p class="card-text border-bottom">本文：<%= post.body.truncate(15, separator: "。")%></p>
+                <h5 class="card-title font-weight-bold border-bottom">題名：<%= post.title.truncate(7) %></h5>
+                <p class="card-text border-bottom">本文：<%= post.body.truncate(7, separator: "。")%></p>
                 <p class="card-text"><%= time_ago_in_words(post.created_at) %>前に作成</p>
                 <span>
                   <% if post.user.id == current_user.id %>
