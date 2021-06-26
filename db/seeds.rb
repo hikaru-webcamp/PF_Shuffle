@@ -13,7 +13,10 @@ Admin.create!(
    [
     {name: "HIKARU", email: "admin1@test.com", password: "testtest", introduction: "よろしくおねがいします", profile_image: File.open('./app/assets/images/admin_profil_HIKARU.jpg') },
     {name: "MUKKU", email: "admin2@test.com", password: "testtest", introduction: "よろしくおねがいします", profile_image: File.open('./app/assets/images/admin_profil_MUKKU.jpg') }, 
-    {name: "TATSUYA", email: "admin3@test.com", password: "testtest", introduction: "よろしくおねがいします", profile_image: File.open('./app/assets/images/admin_profil_TATSUYA.jpg') }
+    {name: "KAJI", email: "admin3@test.com", password: "testtest", introduction: "よろしくおねがいします", profile_image: File.open('./app/assets/images/admin_profil_KAJI.jpg') },
+    {name: "RIKO", email: "admin4@test.com", password: "testtest", introduction: "よろしくおねがいします", profile_image: File.open('./app/assets/images/admin_profil_RIKO.jpg') },
+    {name: "TOMA", email: "admin5@test.com", password: "testtest", introduction: "よろしくおねがいします", profile_image: File.open('./app/assets/images/admin_profil_TOMA.jpg') },
+    {name: "KASUMI", email: "admin6@test.com", password: "testtest", introduction: "よろしくおねがいします", profile_image: File.open('./app/assets/images/admin_profil_KASUMI.jpg') }
    ]
  )
 
