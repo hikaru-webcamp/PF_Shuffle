@@ -31,7 +31,7 @@
 * 生徒同士の交流会
 
 ## 設計書
-* [画面設計](https://docs.google.com/spreadsheets/d/1aAGoKETDvsaqckCsh15vlesDV_r5xcKn1EVwyik-C-4/edit?usp=sharing)
+* [画面遷移図](https://drive.google.com/file/d/1WcLErtK_tbyAiFMkTYXFZEMqAwQiQV0C/view?usp=sharing)
 * [ER図](https://drive.google.com/file/d/1ptPvzaPjyf21LPoxMy6aJP3uTTkrWB62/view?usp=sharing)
 * [テーブル定義書](https://docs.google.com/spreadsheets/d/1SqSQQm1gZpTHf3OcX7xo8yNg7s_4f1dENl2DI5zy_GQ/edit?usp=sharing)
 * [詳細設計](https://drive.google.com/file/d/11xb3GUXV8LYU4EcFpRz5xPnGj17yHM9r/view?usp=sharing)
