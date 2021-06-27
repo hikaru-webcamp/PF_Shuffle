@@ -5,7 +5,15 @@
     <!--管理側とユーザー側のユーザー詳細ページをパーシャル化-->
     <%= render "shared/user_show_form", user: @user %>
 
-    <h3 class="text-white font-italic text-center mb-4">加入グループ一覧</h3>
+    <div class="row mx-auto m-5">
+      <div class="col-xl-4 col-lg-6 col-md-8 col-sm-8 mx-auto">
+        <nav class="nav nav-pills nav-justified mb-2">
+          <%= link_to "グループ", "#", class: "nav-item nav-link active hover-img bg-light text-dark" %>
+          <%= link_to "投稿一覧", user_post_index_path(@user), class: "nav-item nav-link hover-img bg-dark text-white" %>
+        </nav>
+      </div>
+    </div>    
+    
     <!--ユーザー側のグループ一覧と検索結果ビューをパーシャル化-->
     <%= render "shared/group_index_form", groups: @groups %>
   </div>

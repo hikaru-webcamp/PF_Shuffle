@@ -12,15 +12,17 @@
                 <h5 class="card-title font-weight-bold border-bottom">題名：<%= post.title.truncate(7) %></h5>
                 <p class="card-text border-bottom">本文：<%= post.body.truncate(7, separator: "。")%></p>
                 <p class="card-text"><%= time_ago_in_words(post.created_at) %>前に作成</p>
-                <span>
                   <% if post.user.id == current_user.id %>
+                <span>
                       <%= link_to edit_group_post_path(group,post), class: "hover-img m-1 ml-3 fa-2x text-reset text-decoration-none" do %>
                         <i class="far fa-edit"></i>
                       <% end %>
-                      <%= link_to group_post_path(group,post), method: :delete, data: { confirm: '本当に投稿を消しますか？' }, class: "hover-img m-1 fa-2x text-reset text-decoration-none" do%>
+                      <%= link_to group_post_path(group,post), method: :delete, data: { confirm: '本当に投稿を消しますか？' }, class: "hover-img m-1 fa-2x text-reset text-decoration-none" do %>
                         <i class="far fa-trash-alt"></i>     
                       <% end %>
+                </span>
                   <% end %>
+                <span>
                   <i class="fa fa-heart fa-2x" aria-hidden="true"><%= post.likes.count %></i>
                   <i class="far fa-comment fa-2x ml-2"><%= post.comments.count %></i>
                 </span>
