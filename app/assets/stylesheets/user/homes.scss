@@ -75,16 +75,3 @@ h1 {
   width: 100%;
   height: 80vh;
 }
-
-/*========= スクロールをすると下のエリアが上にかぶさるCSS ===============*/
-
-
-/*下の被さるエリアの指定*/
-.con{
-  position: relative;
-  z-index:1;
-    /*以下はレイアウトのための記述*/
-  background:#fff;
-  padding:600px 0;
-  text-align: center;
-}
