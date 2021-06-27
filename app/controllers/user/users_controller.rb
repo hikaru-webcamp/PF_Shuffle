@@ -37,6 +37,10 @@ class User::UsersController < ApplicationController
   # reset_sessionですべてのセッション情報を削除してログアウトさせる
 
   def out_confirm; end
+  def post_index
+    @user = User.find(params[:user_id])
+    @posts = @user.posts.order(updated_at: :desc).page(params[:page]).per(12)
+  end
 
   private
 
