@@ -7,17 +7,29 @@ RSpec.describe 'Groupモデルのテスト', type: :model do
     # テスト対象の記述を1箇所にまとめる
     subject { group.valid? }
     
-    context 'nameカラム' do
+       context 'nameカラム' do
       it '空欄でないこと' do
         group.name = ''
         is_expected.to eq false
       end
-      it '2文字以下はNG' do
-        group.name =  Faker::Name.name(number: 2)
+      it '2文字以上であること: 1文字はNG' do
+        group.name = Faker::Lorem.characters(number: 1)
+        is_expected.to eq false
+      end
+      it '2文字以上であること: 2文字はOK' do
+        group.name = Faker::Lorem.characters(number: 2)
         is_expected.to eq true
       end
-      it '21文字以上はNG' do
-        group.name =  Faker::Name.name(number: 21)
+      it '50文字以下であること: 50文字はOK' do
+        group.name = Faker::Lorem.characters(number: 50)
+        is_expected.to eq true
+      end
+      it '50文字以下であること: 51文字はNG' do
+        group.name = Faker::Lorem.characters(number: 51)
+        is_expected.to eq false
+      end
+      it '一意性があること' do
+        group.name = other_group.name
         is_expected.to eq false
       end
     end
@@ -27,8 +39,12 @@ RSpec.describe 'Groupモデルのテスト', type: :model do
         group.introduction = ''
         is_expected.to eq false
       end
-      it '201文字以上はNG' do
-        group.introduction =  Faker::Name.name(number: 201)
+      it '200文字以下であること: 200文字は〇' do
+        group.introduction = Faker::Lorem.characters(number: 200)
+        is_expected.to eq true
+      end
+      it '200文字以下であること: 201文字は×' do
+        group.introduction = Faker::Lorem.characters(number: 201)
         is_expected.to eq false
       end
     end
@@ -49,7 +65,7 @@ RSpec.describe 'Groupモデルのテスト', type: :model do
 
     context 'グループユーザーモデルとの関係' do
       it '1:Nとなっている' do
-        expect(Group.reflect_on_association(:group_users).macro).to eq :has_many
+        expect(Group.reflect_on_association(:group_groups).macro).to eq :has_many
       end
     end
   end

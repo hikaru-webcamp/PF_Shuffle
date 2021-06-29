@@ -39,7 +39,7 @@ end
   User.create!(
     name: Faker::Name.name ,
     introduction: "はじめまして、よろしくお願いします!", 
-    email: Faker::Internet.email,
+    email: Faker::Internet.unique.email,
     password: "testtest",
     profile_image: File.open("#{Rails.root}/app/assets/images/user_sample_image/user_sample_image#{n}.jpg")
   )
@@ -47,7 +47,7 @@ end
 
 75.times do |n|
   group = Group.create!(
-    name:  Faker::Artist.name,
+    name:  Faker::Games::Witcher.unique.character,
     introduction: "最高に楽しいチームです！",
     owner_id: User.find(n+1).id,
     image: File.open("#{Rails.root}/app/assets/images/group_sample_image/group_sample_image#{n}.jpg")

@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2021_06_18_065444) do
     t.integer "owner_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_groups_on_name", unique: true
   end
 
   create_table "likes", force: :cascade do |t|

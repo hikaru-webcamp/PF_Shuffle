@@ -1,9 +1,8 @@
 FactoryBot.define do
   factory :group do
-    group_id { 1 }
+    group_id { FactoryBot.create(:group).id }
     name { Faker::Artist.name }
-    image_id { Faker::Lorem.characters(number:10) }
     introduction { Faker::Lorem.characters(number: 20) }
-    owner_id { 1 }
+    owner_id { FactoryBot.create(:user).id }
   end
 end

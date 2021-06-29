@@ -4,23 +4,23 @@ require 'rails_helper'
 
 RSpec.describe 'Commentモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
+    subject { comment.valid? }
     let(:user)    { create(:user)                                            }
     let(:post)    { create(:post, user_id: user.id)                          }
     let(:comment) { create(:comment, user_id: user.id, post_id: post.id)     }
 
     context 'commentカラム' do
-      it 'コメントが空では投稿できない' do
+      it '空欄でないこと' do
         comment.body = ''
-        expect(comment).not_to be_valid
+        is_expected.to eq false
       end
-      it '201文字以上ではコメントできない' do
-        comment.body = Faker::Lorem.characters(number: 201)
-        p comment
-        expect(comment).not_to be_valid
-      end
-      it '200文字以内ではコメントできる' do
+      it '200文字以下であること: 200文字はOK' do
         comment.body = Faker::Lorem.characters(number: 200)
-        expect(comment).to be_valid
+        is_expected.to eq true
+      end
+      it '200文字以下であること: 201文字はNG' do
+        comment.body = Faker::Lorem.characters(number: 201)
+        is_expected.to eq false
       end
     end
   end
