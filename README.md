@@ -1,6 +1,7 @@
 <img width="500" alt="header_logo" src="https://user-images.githubusercontent.com/79980351/123764919-38235880-d900-11eb-87a9-622eab84fa61.png">
 
-# Shuffle
+# Shuffle シャッフル 色々な人を混ぜ合わせるコミュニティアプリ
+サイトURLはこちら http://shuffle21.xyz/
 * 自分でグループを作れて、メンバー同士で情報発信ができるコミュニティアプリです。
 * 自身がもつ情報をグループ内でかんたんに共有(YouTubeも共有可)できます。
 * レスポンシブ対応しているので、スマホからもご確認いただけます。
@@ -31,6 +32,18 @@
 * [テーブル定義書](https://docs.google.com/spreadsheets/d/1SqSQQm1gZpTHf3OcX7xo8yNg7s_4f1dENl2DI5zy_GQ/edit?usp=sharing)
 * [詳細設計](https://drive.google.com/file/d/11xb3GUXV8LYU4EcFpRz5xPnGj17yHM9r/view?usp=sharing)
 * [アプリ土台作りのコマンド一覧](https://docs.google.com/spreadsheets/d/1A6Ea8L6Mus-K7u3EqCJokGCaN2bOZ_SFgmy01pj3FFI/edit?usp=sharing)
+## 使用技術
+* Ruby 2.6.3
+* Ruby on Rails 5.2.5
+* MySQL 5.7.22
+* Nginx
+* Puma
+* AWS
+ * VPC
+ * EC2
+ * RDS
+ * S3
+* RSpec
 
 ## 機能一覧
 * ユーザー＆管理者認証（devise）
