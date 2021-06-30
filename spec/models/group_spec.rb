@@ -7,6 +7,7 @@ RSpec.describe 'Groupモデルのテスト', type: :model do
     # テスト対象の記述を1箇所にまとめる
     subject { group.valid? }
     
+    
        context 'nameカラム' do
       it '空欄でないこと' do
         group.name = ''
@@ -65,7 +66,7 @@ RSpec.describe 'Groupモデルのテスト', type: :model do
 
     context 'グループユーザーモデルとの関係' do
       it '1:Nとなっている' do
-        expect(Group.reflect_on_association(:group_groups).macro).to eq :has_many
+        expect(Group.reflect_on_association(:group_user).macro).to eq :has_many
       end
     end
   end

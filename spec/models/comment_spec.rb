@@ -4,12 +4,9 @@ require 'rails_helper'
 
 RSpec.describe 'Commentモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
-    subject { comment.valid? }
-    let(:user)    { create(:user)                                            }
-    let(:post)    { create(:post, user_id: user.id)                          }
-    let(:comment) { create(:comment, user_id: user.id, post_id: post.id)     }
+    subject { comment.valid? } 
 
-    context 'commentカラム' do
+    context 'bodyカラム' do
       it '空欄でないこと' do
         comment.body = ''
         is_expected.to eq false

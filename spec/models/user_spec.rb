@@ -6,8 +6,8 @@ RSpec.describe 'Userモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
     # テスト対象の記述を1箇所にまとめる
     subject { user.valid? }
-     let!(:other_user) { create(:user) }
      let(:user) { build(:user)  }
+    
 
     context 'nameカラム' do
       it '空欄でないこと' do
@@ -30,36 +30,12 @@ RSpec.describe 'Userモデルのテスト', type: :model do
         user.name = Faker::Lorem.characters(number: 21)
         is_expected.to eq false
       end
-      it '一意性があること' do
-        user.name = other_user.name
-        is_expected.to eq false
-      end
     end
 
     context 'emailカラム' do
       it '空欄でないこと' do
         user.email = ''
         is_expected.to eq false
-      end
-      it '一意性があること' do
-        user.email = other_user.email
-        is_expected.to eq false
-      end
-      it '正規表記でしか登録できないこと' do
-        user.email = 'user@example,com'
-        expect(user).not_to be_valid
-
-        user.email = 'user_at_foo.org'
-        expect(user).not_to be_valid
-
-        user.email = 'user.name@example.'
-        expect(user).not_to be_valid
-
-        user.email = 'foo@bar_baz.com'
-        expect(user).not_to be_valid
-
-        user.email = 'foo@bar+baz.com'
-        expect(user).not_to be_valid
       end
     end
 

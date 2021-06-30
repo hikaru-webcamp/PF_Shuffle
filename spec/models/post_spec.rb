@@ -6,7 +6,7 @@ RSpec.describe 'Postモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
     subject { post.valid? }
     
-    let(:user)  { create(:user)                   }
+    let(:user)  { create(:user) }
     let!(:post) { create(:post, user_id: user.id) }
 
     context 'titleカラム' do
