@@ -1,6 +1,6 @@
 <div class="col-lg-3 col-md-6 col-sm-8 mx-auto mb-3">
   <div class="mb-4 card-deckr"> <!--連結しないで表示したい場合は、card-deck-->
-    <div class="card text-white border-dark mb-3 bg-transparent hover-img">
+    <div class="card text-white border-dark mb-3 bg-transparent">
       <%= link_to group_path(group) do %>
         <%= attachment_image_tag(group, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid mx-auto d-block" )%>
       <% end %>
@@ -17,17 +17,17 @@
         <% end %>
         
         <% if group.owner_id == current_user.id %>
-          <p>
-            <%= link_to new_group_post_path(group.id), class: "hover-img m-1 fa-2x text-reset text-decoration-none" do %>
-              <i class="fas fa-plus-circle"></i>
+          <span>
+            <%= link_to new_group_post_path(group.id), class: "m-1 fa-2x text-reset text-decoration-none" do %>
+              <i class="fas fa-plus-circle hover-img"></i>
             <% end %>
-            <%= link_to edit_group_path(group), class: "hover-img m-1 fa-2x text-reset text-decoration-none" do %>
-              <i class="far fa-edit"></i>
+            <span class="hover-img m-1 fa-2x  text-decoration-none" data-toggle="modal" data-target="#modal1">
+              <i class="far fa-edit modal-fullscreen-xl-down hover-img"></i>
+            </span>    
+            <%= link_to group_path(group), method: :delete, data: { confirm: '本当にグループを消しますか？' }, class: "m-1 fa-2x text-reset text-decoration-none" do %>            
+              <i class="far fa-trash-alt hover-img"></i>     
             <% end %>
-            <%= link_to group_path(group), method: :delete, data: { confirm: '本当にグループを消しますか？' }, class: "hover-img m-1 fa-2x text-reset text-decoration-none" do %>            
-              <i class="far fa-trash-alt"></i>     
-            <% end %>
-          </p>
+          </span>
 
         <% elsif group.member_by?(current_user) %>
             <%= link_to group_groupout_path(group), method: :delete, class: "hover-img m-1 fa-2x text-reset text-decoration-none" do %>
@@ -38,7 +38,28 @@
             <i class="fas fa-user-plus"></i>
           <% end %>
         <% end %>
-
+ 
+       <!--モーダルウィンドウの記述-->
+        <div class="modal fade" id="modal1" tabindex="-1"
+              role="dialog" aria-labelledby="label1" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content bg-transparent">
+              <div class="modal-header">
+                <h5 class="modal-title text-white" id="label1">グループ編集</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <%= render "shared/group_only_new_edit_form", group: @group %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-transparent hover-img text-white" data-dismiss="modal">閉じる</button>
+              </div>
+            </div>
+          </div>
+        </div>
+       <!--モーダルウィンドウの記述ここまで-->
       </div>
     </div>
   </div>

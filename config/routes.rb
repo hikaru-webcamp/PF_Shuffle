@@ -9,12 +9,11 @@ Rails.application.routes.draw do
     }
 
     resources :users, only: [:index, :show, :edit, :update] do
-      get 'out_confirm' => 'users#out_confirm'
       get 'post_index' => 'users#post_index'
       patch 'out' => 'users#out'
     end
 
-    resources :groups, only: [:index, :show, :new, :edit, :create, :update, :destroy] do
+    resources :groups, only: [:index, :show, :create, :update, :destroy] do
       get 'join' => 'groups#join'
       delete 'groupout' => 'groups#groupout'
         resources :posts, only: [:index, :show, :new, :edit, :create, :update, :destroy] do

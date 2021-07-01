@@ -42,11 +42,6 @@ class User::PostsController < ApplicationController
     redirect_to group_posts_path(@group.id), notice: "投稿を削除しました"
   end
 
-  def edit
-    @group = Group.find(params[:group_id])
-    @post = Post.find(params[:id])
-  end
-
   def update
     @group = Group.find(params[:group_id])
     @post = Post.find(params[:id])

@@ -4,11 +4,31 @@
     <div class="col-sm-4 mx-auto text-center" ><%= render "shared/flash_message" %></div>
     <h3 class="text-white font-italic text-center m-4">Group List</h3>
       <div class="text-center m-4">
-        <%= link_to new_group_path, class: "btn btn-light rounded-circle hover-img" do %>
-          <i class="fa fa-users fa-3x "><h5>New Group</h5></i> 
-        <% end %>
+        <button type="button" class="btn btn-light hover-img mb-3" data-toggle="modal" data-target="#modal1">
+            <i class="fa fa-users fa-3x modal-fullscreen-xl-down "><h5>グループを作成する</h5></i> 
+        </button>    
       </div>
-        
+       <!--モーダルウィンドウの記述-->
+        <div class="modal fade" id="modal1" tabindex="-1"
+              role="dialog" aria-labelledby="label1" aria-hidden="true">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content bg-transparent">
+              <div class="modal-header">
+                <h5 class="modal-title text-white" id="label1">グループ作成</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <%= render "shared/group_only_new_edit_form", group: @group %>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-transparent hover-img text-white" data-dismiss="modal">閉じる</button>
+              </div>
+            </div>
+          </div>
+        </div>
+       <!--モーダルウィンドウの記述-->
     <%= render "shared/group_index_form", groups: @groups %>
   </div>
 </div>

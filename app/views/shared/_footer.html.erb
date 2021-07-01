@@ -4,7 +4,7 @@
       <div class="col-sm-12 text-center">
         <span class="text-muted">
           <% if user_signed_in? %>      
-            <%= link_to "", :back,class: "btn btn-light fas fa-undo-alt m-2 fa-2x hover-img rounded-circle" %>
+            <%= link_to "", :back, size: '50x50', class: "btn btn-light fas fa-undo-alt m-2 fa-2x hover-img rounded-circle " %>
             <%= link_to user_path(current_user), class: 'text-reset text-decoration-none m-2' do %>
               <%= attachment_image_tag current_user, :profile_image,  size: '50x50', fallback: "profilenoimage.jpg", class: "rounded-circle hover-img" %>
             <% end %> 

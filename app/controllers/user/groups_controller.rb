@@ -4,9 +4,6 @@ class User::GroupsController < ApplicationController
 
   def index
     @groups = Group.all.order(updated_at: :desc).includes(:owner).page(params[:page]).per(12)
-  end
-
-  def new
     @group = Group.new
   end
 
@@ -16,8 +13,9 @@ class User::GroupsController < ApplicationController
     if @group.save
       redirect_to group_path(@group), notice: "グループを作成しました"
     else
+      @groups = Group.all.order(updated_at: :desc).includes(:owner).page(params[:page]).per(12)
       @group = Group.new
-      render 'new'
+      render 'index'
     end
   end
 
@@ -39,16 +37,14 @@ class User::GroupsController < ApplicationController
     @users = @group.users.order(updated_at: :desc).page(params[:page]).per(12)
   end
 
-  def edit
-    @group = Group.find(params[:id])
-  end
-
   def update
+    group = Group.find(params[:id])
     if @group.update(group_params)
-      redirect_to groups_path, notice: "グループ情報を変更しました"
+      redirect_to group_path(group.id), notice: "グループ情報を変更しました"
     else
       @group = Group.find(params[:id])
-      render "edit"
+      @users = @group.users.order(updated_at: :desc).page(params[:page]).per(12)
+      render "show"
     end
   end
 
