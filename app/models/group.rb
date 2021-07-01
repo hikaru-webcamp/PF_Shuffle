@@ -7,7 +7,7 @@ class Group < ApplicationRecord
 
   attachment :image
   # バリデーションの記述(空白禁止と文字制限)
-  validates :name, presence: true, length: { maximum: 20, minimum: 2 }
+  validates :name, presence: true,length: { maximum: 50, minimum: 2 }
   validates :introduction, presence: true, length: { maximum: 200 }
 
   # 検索方法分岐 メソッド定義してコントローラー側で呼び出し
