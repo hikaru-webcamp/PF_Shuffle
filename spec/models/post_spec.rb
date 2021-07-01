@@ -4,38 +4,32 @@ require 'rails_helper'
 
 RSpec.describe 'Postモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
-    subject { post.valid? }
-    
-    let(:user)  { create(:user) }
-    let!(:post) { create(:post, user_id: user.id) }
+    let!(:owner){create(:user)}
+    let!(:group){create(:group, owner_id: owner.id)}
+    let!(:user){create(:user)}
+  
 
     context 'titleカラム' do
-      it '空欄では保存されない' do
-        post.title = ''
-        is_expected.to eq false
+      it '空欄でないこと' do
+        expect(build(:post,user_id: user.id, group_id: group.id, title: "")).to be_invalid
       end
       it '30文字以下であること：30文字はOK' do
-        post.title = Faker::Lorem.characters(number: 30)
-        is_expected.to eq true
+        expect(build(:post,user_id: user.id, group_id: group.id, title: Faker::Lorem.characters(number: 30) )).to be_valid
       end
       it '30文字以下であること：31文字はNG' do
-        post.title = Faker::Lorem.characters(number: 31)
-        is_expected.to eq false
+        expect(build(:post,user_id: user.id, group_id: group.id,  title: Faker::Lorem.characters(number: 31) )).to be_invalid
       end
     end
 
     context 'bodyカラム' do
       it '空欄では保存されない' do
-        post.body = ''
-        is_expected.to eq false
+        expect(build(:post,user_id: user.id, group_id: group.id,  body: "")).to be_invalid
       end
       it '500文字以下であること：500文字以上はOK' do
-        post.body = Faker::Lorem.characters(number: 500)
-        is_expected.to eq true
+        expect(build(:post,user_id: user.id, group_id: group.id, body: Faker::Lorem.characters(number: 500) )).to be_valid
       end
       it '500文字以下であること：501文字以上はNG' do
-        post.body = Faker::Lorem.characters(number: 501)
-        is_expected.to eq false
+        expect(build(:post,user_id: user.id, group_id: group.id, body: Faker::Lorem.characters(number: 501) )).to be_invalid
       end
     end
   end
