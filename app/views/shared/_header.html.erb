@@ -16,14 +16,27 @@
             <!--管理側のヘッダー-->
             <% if controller.class.parent.name == "Admin" %>
               <% if admin_signed_in? %>
-              <%# 管理側サインイン済 %>
-              <li class="nav-item">
-                <%= link_to "会員一覧", admin_users_path, class: "nav-link hover-img text-white" %>
-              </li>
-              <li class="nav-item">
-                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link hover-img text-white" %>
-              </li>
-            <% end %>
+                <%# 管理側サインイン済 %>
+                <li class="nav-item">
+                  <%= link_to "会員一覧", admin_users_path, class: "nav-link hover-img text-white" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link hover-img text-white" %>
+                </li>
+              <% else %>
+                <ul class="navbar-nav mr-auto">
+                    <%# userサインイン前 %>
+                  <li class="nav-item active">
+                    <%= link_to "グループリスト", groups_path, class: "nav-link hover-img text-white mr-2" %>
+                  </li>
+                  <li class="nav-item active">
+                    <%= link_to 'かんたんログイン', users_guest_sign_in_path, method: :post, class:"nav-link hover-img text-white mr-2"%>
+                  </li>
+                  <li class="nav-item active">
+                  <%= link_to "管理人ログイン", new_admin_session_path, class: "nav-link hover-img text-white mr-2" %>
+                  </li>
+                </ul>              
+              <% end %>
           <% end %>
             <!--ユーザー側のヘッダー-->
           <% if controller.class.parent.name == "User" %>
