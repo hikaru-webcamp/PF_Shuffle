@@ -27,8 +27,8 @@ class User::UsersController < ApplicationController
   def out
     @user = current_user
     if @user.email == "user1@test.com"
-      redirect_to user_path(current_user),alert: "テストユーザーは退会できません"
-    else  
+      redirect_to user_path(current_user), alert: "テストユーザーは退会できません"
+    else
       @user.update(is_deleted: true)
       reset_session
       redirect_to root_path, alert: "退会しました"
@@ -53,11 +53,10 @@ class User::UsersController < ApplicationController
     @user = User.find(params[:id])
     redirect_to user_path(current_user) unless @user == current_user
   end
-  #ゲストユーザーを編集できないように設定
+
+  # ゲストユーザーを編集できないように設定
   def ensure_guest_user
     @user = User.find(params[:id])
-    if @user.email == 'guest@example.com'
-       redirect_to user_path(current_user) , alert: 'ゲストユーザーは編集できません'
-    end   
+    redirect_to user_path(current_user), alert: 'ゲストユーザーは編集できません' if @user.email == 'guest@example.com'
   end
 end

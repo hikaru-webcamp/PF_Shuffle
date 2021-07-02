@@ -4,16 +4,15 @@ require 'rails_helper'
 
 RSpec.describe 'Commentモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
-
     context 'bodyカラム' do
       it '空欄でないこと' do
         expect(build(:comment, body: "")).to be_invalid
       end
       it '200文字以下であること: 200文字はOK' do
-        expect(build(:comment, body: Faker::Lorem.characters(number: 200) )).to be_valid
+        expect(build(:comment, body: Faker::Lorem.characters(number: 200))).to be_valid
       end
       it '200文字以下であること: 201文字はNG' do
-        expect(build(:comment, body: Faker::Lorem.characters(number: 201) )).to be_invalid
+        expect(build(:comment, body: Faker::Lorem.characters(number: 201))).to be_invalid
       end
     end
   end

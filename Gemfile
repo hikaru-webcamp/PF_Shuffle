@@ -53,6 +53,7 @@ group :development do
    # 追加項目
   gem 'rubocop', require:false
   gem 'rubocop-rails', require:false
+  gem 'pre-commit', require:false
   gem 'bullet'
 end
 

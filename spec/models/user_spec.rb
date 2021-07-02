@@ -6,8 +6,7 @@ RSpec.describe 'Userモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
     # テスト対象の記述を1箇所にまとめる
     subject { user.valid? }
-     let(:user) { build(:user)  }
-    
+    let(:user) { build(:user) }
 
     context 'nameカラム' do
       it '空欄でないこと' do

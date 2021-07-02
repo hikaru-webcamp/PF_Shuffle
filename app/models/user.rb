@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :group_users
+  has_many :group_users, dependent: :destroy
   has_many :groups, through: :group_users
-  has_many :owner_groups, class_name: "Group"
+  has_many :owner_groups, class_name: "Group", dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -29,12 +29,11 @@ class User < ApplicationRecord
   def self.looks(word)
     where(["name LIKE?", "%#{word}%"])
   end
-  
+
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲストユーザー"
     end
-  end  
-  
+  end
 end
