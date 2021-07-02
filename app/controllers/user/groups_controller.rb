@@ -35,6 +35,7 @@ class User::GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @users = @group.users.order(updated_at: :desc).page(params[:page]).per(12)
+    @post = Post.new
   end
 
   def update

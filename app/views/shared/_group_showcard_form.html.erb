@@ -11,15 +11,15 @@
         <p class="card-text"><i class="fas fa-user-friends mr-2"></i><%= group.users.size %>人</p>
         
          <% if group.users.include?(current_user) %>
-            <%= link_to new_group_post_path(group.id), class: "hover-img m-1 fa-2x text-reset text-decoration-none" do %>
-              <i class="fas fa-plus-circle"></i>
-            <% end %>        
+            <%= link_to new_group_post_path(group.id), class: "m-1 fa-2x text-reset text-decoration-none" do %>
+              <i class="fas fa-plus-circle hover-img">投稿する</i>
+            <% end %>
         <% end %>
         
         <% if group.owner_id == current_user.id %>
           <span>
             <%= link_to new_group_post_path(group.id), class: "m-1 fa-2x text-reset text-decoration-none" do %>
-              <i class="fas fa-plus-circle hover-img"></i>
+              <i class="fas fa-plus-circle hover-img">投稿する</i>
             <% end %>
             <span class="hover-img m-1 fa-2x  text-decoration-none" data-toggle="modal" data-target="#modal1">
               <i class="far fa-edit modal-fullscreen-xl-down hover-img"></i>
