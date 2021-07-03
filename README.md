@@ -1,3 +1,4 @@
+
 <img width="700" alt="header_logo" src="https://user-images.githubusercontent.com/79980351/123764919-38235880-d900-11eb-87a9-622eab84fa61.png">
 
 # Shuffle シャッフル 色々な人を混ぜ合わせるコミュニティアプリ
@@ -69,6 +70,8 @@
 * RSpec
  * 単体テスト(model)
  * 統合テスト(feature)
+ # 静的コード解析ツール
+  * Rubocop
 
 ## チャレンジ要素一覧
 * [チャレンジ要素一覧はこちら](https://docs.google.com/spreadsheets/d/1ZBt6QmwcLDN9bYTRuAtxePyoyASKBGyHLJTQEikMtGQ/edit?usp=sharing)
@@ -79,9 +82,9 @@
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
-## FB
+## ユーザーからのフィードバック
 * [ポートフォリオに対するフィードバック](https://docs.google.com/spreadsheets/d/1L-M3-jYlHcIsOXhosFG5ke3RuXdZwe_r7sNHqSozTc0/edit?usp=sharing)
-* [現役エンジニアからのポートフォリオに対するフィードバック.pdf](https://github.com/hikaru-webcamp/PF_Shuffle/files/6758360/default.pdf)
+* [現役エンジニアからのポートフォリオに対するフィードバック.pdf](https://github.com/hikaru-webcamp/PF_Shuffle/files/6759057/default.pdf)
 
 ## 使用素材
 * [Pinterest](https://www.pinterest.jp/pin/657947826807735666/)
