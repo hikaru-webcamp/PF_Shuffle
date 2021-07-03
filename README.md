@@ -81,6 +81,7 @@
 
 ## FB
 * [ポートフォリオに対するフィードバック](https://docs.google.com/spreadsheets/d/1L-M3-jYlHcIsOXhosFG5ke3RuXdZwe_r7sNHqSozTc0/edit?usp=sharing)
+* [現役エンジニアによるポートフォリオに対するフィードバック.pdf](https://github.com/hikaru-webcamp/PF_Shuffle/files/6758360/default.pdf)
 
 ## 使用素材
 * [Pinterest](https://www.pinterest.jp/pin/657947826807735666/)
