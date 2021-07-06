@@ -134,11 +134,10 @@ transition: 0.2s;
   }
 }
 
-/* fadeUp */
-
+// フェイドアップの記述
 .fadeUp{
 animation-name:fadeUpAnime;
-animation-duration:0.5s;
+animation-duration:1s;
 animation-fill-mode:forwards;
 opacity:0;
 }
@@ -155,12 +154,13 @@ opacity:0;
   }
 }
 
-
 /* スクロールをしたら出現する要素にはじめに透過0を指定　*/
 .fadeUpTrigger{
     opacity: 0;
 }
+// フェイドアップの記述ここまで
 
 .header-color {
 background-color: #000000;
 }
+

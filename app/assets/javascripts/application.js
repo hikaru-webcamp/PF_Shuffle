@@ -17,7 +17,6 @@
 //= require rails-ujs
 //= require jquery.jscroll.min
 //= require activestorage
-//= require turbolinks
 //= require_tree .
 
 /* global $*/
@@ -43,7 +42,7 @@ function fadeAnime(){
 
   // ふわっ
   $('.fadeUpTrigger').each(function(){ //fadeUpTriggerというクラス名が
-    var elemPos = $(this).offset().top-50;//要素より、50px上の
+    var elemPos = $(this).offset().top-150;//要素より、150px上の
     var scroll = $(window).scrollTop();
     var windowHeight = $(window).height();
     if (scroll >= elemPos - windowHeight){
