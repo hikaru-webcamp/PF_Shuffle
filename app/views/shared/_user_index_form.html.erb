@@ -1,43 +1,37 @@
  <!--部分テンプレートにより@users➩users変更-->
-<div class="sharedmargin">
-  <div class="container-fluid shadow-lg p-3">
-    <div class="col-sm-4 mx-auto text-center" ><%= render "shared/flash_message" %></div>
-    <h3 class="text-white font-italic text-center m-4">User List</h3>
-    <div class='row scroll-list jscroll w-100 mx-auto'>
-      <% users.each do |user| %>
-        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
-          <div class="mb-4 card-deck fadeUpTrigger"> <!--連結しないで表示したい場合は、card-deck-->
-            <div class="card text-white border-dark mb-3 bg-transparent hover-img">
-              <!--#adminとuserでパスが違う為、条件分岐-->
-              <% if controller.class.parent.name == "Admin" %>
-                <%= link_to admin_user_path(user.id),class: "profileimg" do %>
-                  <%= attachment_image_tag(user, :profile_image, size: "240x180", fallback: "profilenoimage.jpg",class: "profileimg user-img-top img-fluid mx-auto d-block") %>
+<div class='row scroll-list jscroll w-100 mx-auto'>
+  <% users.each do |user| %>
+    <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+      <div class="mb-4 card-deck fadeUpTrigger"> <!--連結しないで表示したい場合は、card-deck-->
+        <div class="card text-white border-dark mb-3 bg-transparent hover-img">
+          <!--#adminとuserでパスが違う為、条件分岐-->
+          <% if controller.class.parent.name == "Admin" %>
+            <%= link_to admin_user_path(user.id),class: "profileimg" do %>
+              <%= attachment_image_tag(user, :profile_image, size: "240x180", fallback: "profilenoimage.jpg",class: "profileimg user-img-top img-fluid mx-auto d-block") %>
+            <% end %>
+          <% else %>
+            <%= link_to user_path(user),class: "profileimg" do %>
+              <%= attachment_image_tag(user, :profile_image, size: "240x180", fallback: "profilenoimage.jpg",class: "profileimg user-img-top img-fluid mx-auto d-block") %>
+            <% end %>
+          <% end %>
+          
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold"><%= user.name.truncate(15) %></h5>
+            <p class="card-text"><%= user.introduction %></p>
+            <% if controller.class.parent.name == "Admin" %>
+              <p class="card-text"><%= user.email.truncate(20) %></p>
+                <% if user.is_deleted %>
+                  <p class="card-text text-danger">ステータス: 退会</p>
+                <% else %>
+                  <p class="card-text text-success">ステータス: 有効</p>
                 <% end %>
-              <% else %>
-                <%= link_to user_path(user),class: "profileimg" do %>
-                  <%= attachment_image_tag(user, :profile_image, size: "240x180", fallback: "profilenoimage.jpg",class: "profileimg user-img-top img-fluid mx-auto d-block") %>
-                <% end %>
-              <% end %>
-              
-              <div class="card-body">
-                <h5 class="card-title font-weight-bold"><%= user.name.truncate(15) %></h5>
-                <p class="card-text"><%= user.introduction %></p>
-                <% if controller.class.parent.name == "Admin" %>
-                  <p class="card-text"><%= user.email.truncate(20) %></p>
-                    <% if user.is_deleted %>
-                      <p class="card-text text-danger">ステータス: 退会</p>
-                    <% else %>
-                      <p class="card-text text-success">ステータス: 有効</p>
-                    <% end %>
-                <% end %>
-                <div class="jscroll-pagination">
-                  <%= paginate users %>
-                </div>
-              </div>
+            <% end %>
+            <div class="jscroll-pagination">
+              <%= paginate users %>
             </div>
           </div>
         </div>
-      <% end %> 
+      </div>
     </div>
-  </div>
+  <% end %> 
 </div>

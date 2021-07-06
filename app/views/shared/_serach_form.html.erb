@@ -1,15 +1,23 @@
-<!--部分テンプレートにより@users➩users,@groups➩groupsに変更-->
+<!--部分テンプレートにより@users➩users,@groups➩groups @keyword➩keywordに変更-->
 <!--管理側とユーザー側での検索結果フォームにして使用-->
+	
   <% if controller.class.parent.name == "Admin" %>
     <%= render "shared/user_index_form", users: users %>
   <% end %>
   
   <% if controller.class.parent.name == "User" %>
     <% if @range == "User" %>
+      <div class="sharedmargin">
+        <div class="container-fluid shadow-lg p-3">
+        <h2 class ="text-white text-center mb-3" ><%= "「#{keyword}」の検索結果" %></h2>
+         <h3 class="text-white font-italic text-center m-4">User List</h3>
       <%= render "shared/user_index_form", users: users %>
+        </div>
+      </div>
     <% elsif @range == "Group" %>
       <div class="sharedmargin">
         <div class="container-fluid shadow-lg p-3">
+        	<h2 class ="text-white text-center mb-3" ><%= "「#{keyword}」の検索結果" %></h2>
           <h3 class="text-white font-italic text-center m-4">Group List</h3>
           <%= render "shared/group_index_form", groups: groups %>
         </div>
@@ -17,6 +25,7 @@
     <% elsif @range == "Post" %>
       <div class="sharedmargin">
         <div class="container-fluid p-3">
+        	<h2 class ="text-white text-center mb-3" ><%= "「#{keyword}」の検索結果" %></h2>
           <h3 class="text-white font-italic text-center m-4">Post List</h3>
           <%= render "shared/post_index_form", posts: posts, group: groups %>
         </div>
@@ -24,6 +33,7 @@
     <% else %>
         <div class="sharedmargin">
           <div class="container-fluid p-3 text-white text-center">
+        	  <h2 class ="text-white text-center mb-3" ><%= "「#{keyword}」の検索結果" %></h2>
             <h2>該当するキーワードがありません</h2>
           </div>
         </div>
