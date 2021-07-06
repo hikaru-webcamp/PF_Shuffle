@@ -2,7 +2,7 @@
 <img width="700" alt="header_logo" src="https://user-images.githubusercontent.com/79980351/123764919-38235880-d900-11eb-87a9-622eab84fa61.png">
 
 # Shuffle シャッフル 色々な人を混ぜ合わせるコミュニティアプリ
-サイトURLはこちら http://shuffle21.xyz/
+サイトURLはこちら https://shuffle21.xyz/
 * 自分でグループを作れて、メンバー同士で情報発信ができるコミュニティアプリです。
 * 自身がもつ情報をグループ内でかんたんに共有(YouTubeも共有可)できます。
 * レスポンシブ対応しているので、スマホからもご確認いただけます。
