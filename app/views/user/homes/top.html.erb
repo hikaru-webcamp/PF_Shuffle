@@ -8,7 +8,9 @@
   </div>
   <div class="text-box">
     <h1 class="font-italic imagefont">We are the best team<br></h1>
+    <% unless user_signed_in? || admin_signed_in? %>
     <h1 class="font-italic imagefont"><p><%= link_to 'Login', new_user_session_path, class: "btn btn-outline-light hover-img mr-2 btn-lg" %></p></h1>
+    <% end %>
   </div>
 </section>
 <div class="jumbotron jumbotron-fluid mb-0 text-white bg-transparent text-center story-card-border topcolor"> 
