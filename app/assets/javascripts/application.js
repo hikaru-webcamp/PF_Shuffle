@@ -18,7 +18,7 @@
 //= require jquery.jscroll.min
 //= require activestorage
 //= require_tree .
-
+//= require turbolinks
 /* global $*/
 /* 会員一覧無限スクロール */
 $(window).on('scroll', function() {
