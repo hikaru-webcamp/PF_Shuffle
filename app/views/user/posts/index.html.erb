@@ -2,16 +2,19 @@
 <div class="sharedmargin">
   <div class="container-fluid shadow-lg p-3">
     <div class="col-sm-4 mx-auto text-center" ><%= render "shared/flash_message" %></div>
-    <!--post indexとの部分テンプレート-->
-     <%= render "shared/group_showcard_form", group: @group %>
-    <div class="row mx-auto m-5">
-      <div class="col-xl-4 col-lg-6 col-md-8 col-sm-8 mx-auto">
-        <nav class="nav nav-pills nav-justified mb-2">
-          <%= link_to "メンバー", group_path(@group.id), class: "nav-item nav-link hover-img bg-dark text-white" %>
-          <%= link_to "投稿一覧", "#", class: "nav-item nav-link active hover-img bg-light text-dark" %>
-        </nav>
+      <div class="row m-1">
+        <!--post indexとの部分テンプレート-->
+         <%= render "shared/group_showcard_form", group: @group %>
+         
+        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 mx-auto">
+          <nav class="nav nav-pills nav-justified mb-5">
+            <%= link_to "メンバー", group_path(@group.id), class: "nav-item nav-link hover-img bg-dark text-white" %>
+            <%= link_to "投稿一覧", "#", class: "nav-item nav-link active hover-img bg-light text-dark" %>
+          </nav>
+          <%= render "shared/post_index_form", posts: @posts, group: @group %>
+        </div>
+        
       </div>
     </div>
-    <%= render "shared/post_index_form", posts: @posts, group: @group %>
   </div>
 </div>
