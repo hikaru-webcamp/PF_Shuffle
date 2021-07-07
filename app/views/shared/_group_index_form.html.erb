@@ -8,8 +8,8 @@
             <%= attachment_image_tag(group, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid mx-auto d-block" )%>
           <% end %>
           <div class="card-body">
-            <h5 class="card-title font-weight-bold"><%= group.name.truncate(15) %></h5>
-            <p class="card-text"><%= group.introduction.truncate(20) %></p>
+            <h5 class="card-title font-weight-bold text-truncate"><%= group.name %></h5>
+            <p class="card-text text-truncate"><%= group.introduction %></p>
             <p class="card-text"><%= group.owner.name %></p>
             <p class="card-text"><i class="fas fa-user-friends mr-2"></i><%= group.users.size %>人</p>
           </div>
