@@ -59,22 +59,22 @@
 * グループ機能（メンバー加入、脱退）
 * YouTube投稿機能（投稿フォームにてYouTubeの埋め込み）
 * グループ一覧とユーザー一覧機能
+* N+1問題への対応（gem'bullet'）
 * 会員とグループと投稿の検索機能
 * ランキング機能（グループと投稿）
 * ページング機能(kaminari)
 * 無限スクロール(jscroll)
 * タブメニュー：ユーザーが加入したグループ一覧画面 / 投稿一覧画面切り替え機能 
 * UI/UX
- * レスポンシブ対応（スマートフォン/タブレット)
+ * レスポンシブ対応（スマートフォン/タブレット)  
+[その他・機能・実装の詳細はこちら](https://docs.google.com/spreadsheets/d/1ZBt6QmwcLDN9bYTRuAtxePyoyASKBGyHLJTQEikMtGQ/edit?usp=sharing)
 ## テスト
 * RSpec
  * 単体テスト(model)
  * 統合テスト(feature)
  ## 静的コード解析ツール
   * Rubocop
-
-## チャレンジ要素一覧
-* [チャレンジ要素一覧はこちら](https://docs.google.com/spreadsheets/d/1ZBt6QmwcLDN9bYTRuAtxePyoyASKBGyHLJTQEikMtGQ/edit?usp=sharing)
+ 
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
