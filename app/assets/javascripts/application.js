@@ -34,8 +34,6 @@ $(window).on('scroll', function() {
   }
 });
 
-
-
 // 動きのきっかけとなるアニメーションの名前を定義
 function fadeAnime(){
 
