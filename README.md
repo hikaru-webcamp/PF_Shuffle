@@ -83,7 +83,7 @@
 - IDE：Cloud9  
 
 ## 本番環境
-- AWS (EC2、RDS、Route53)
+- AWS (EC2、RDS)
 - Nginx、 Puma
 - Github actionを用いた自動デプロイ
 
