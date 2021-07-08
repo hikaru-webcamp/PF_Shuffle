@@ -80,7 +80,12 @@
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
-- IDE：Cloud9
+- IDE：Cloud9  
+
+## 本番環境
+- AWS (EC2、RDS、Route53)
+- Nginx、 Puma
+- Github actionを用いた自動デプロイ
 
 ## ユーザーからのフィードバック
 * [ポートフォリオに対するフィードバック](https://docs.google.com/spreadsheets/d/1L-M3-jYlHcIsOXhosFG5ke3RuXdZwe_r7sNHqSozTc0/edit?usp=sharing)
