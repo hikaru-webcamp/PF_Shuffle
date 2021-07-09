@@ -19,18 +19,18 @@
 //= require activestorage
 //= require_tree .
 /* global $*/
-/* 会員一覧無限スクロール */
+
+// 無限スクロール
 $(window).on('scroll', function() {
   var scrollHeight = $(document).height();
   var scrollPosition = $(window).height() + $(window).scrollTop();
-  if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.1) {
+  if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.5) {
     $('.jscroll').jscroll({
-      loadingHtml: '<div class="text-center mb-3"><i class="fa fa-spinner fa-spin fa-3x text-light"></i></div>',
       contentSelector: '.scroll-list',
-      nextSelector: 'span.next:last a'
+      nextSelector: 'span.next:last a',
+      loadingHtml: '<div class="spinner-border text-white" role="status"></div>'
     });
-    $('div.jscroll-inner').addClass('d-flex flex-wrap w-100');
-    $('div.jscroll-added').addClass('col-12 p-0');
+    $('div.jscroll-inner').addClass('d-flex flex-wrap w-100 ');
   }
 });
 
