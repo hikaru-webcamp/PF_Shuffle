@@ -9,16 +9,16 @@
         <p class="card-text  border-bottom text-truncate"><%= group.introduction %></p>
         <p class="card-text border-bottom"><%= group.owner.name %></p>
         <p class="card-text"><i class="fas fa-user-friends mr-2"></i><%= group.users.size %>人</p>
-        
+        <!--#自分が投稿できるよう設定-->
          <% if group.users.include?(current_user) %>
-            <%= link_to new_group_post_path(group.id), class: "m-1 fa-2x text-reset text-decoration-none" do %>
+            <%= link_to new_group_post_path(group.id), class: "m-1 text-decoration-none btn btn-outline-success hover-img" do %>
               <i class="fas fa-plus-circle hover-img">投稿</i>
             <% end %>
         <% end %>
-        
+        <!--#グループメンバーのみが投稿できるよう設定-->
         <% if group.owner_id == current_user.id %>
           <span>
-            <%= link_to new_group_post_path(group.id), class: "m-1 fa-2x text-reset text-decoration-none" do %>
+            <%= link_to new_group_post_path(group.id), class: "m-1 text-decoration-none btn btn-outline-success hover-img" do %>
               <i class="fas fa-plus-circle hover-img">投稿</i>
             <% end %>
             <span class="hover-img m-1 fa-2x  text-decoration-none" data-toggle="modal" data-target="#modal1">
@@ -30,12 +30,12 @@
           </span>
 
         <% elsif group.member_by?(current_user) %>
-            <%= link_to group_groupout_path(group), method: :delete, class: "hover-img m-1 fa-2x text-reset text-decoration-none" do %>
-            <i class="fas fa-user-minus hover-img">脱退</i>
+            <%= link_to group_groupout_path(group), method: :delete, class: "m-1 text-decoration-none btn btn-outline-danger hover-img" do %>
+            <i class="fas fa-user-minus hover-img">グループ脱退</i>
             <% end %>
         <% else %>
-            <%= link_to group_join_path(group), class: "hover-img m-1 fa-2x text-reset text-decoration-none" do%>
-            <i class="fas fa-user-plus hover-img">加入</i>
+            <%= link_to group_join_path(group), class: "m-1 text-decoration-none btn btn-outline-primary hover-img" do%>
+            <i class="fas fa-user-plus hover-img">グループ加入</i>
           <% end %>
         <% end %>
  
