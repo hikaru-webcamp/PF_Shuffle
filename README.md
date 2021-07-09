@@ -5,16 +5,16 @@
 サイトURLはこちら https://shuffle21.xyz/
 * 自分でグループを作れて、メンバー同士で情報発信ができるコミュニティアプリです。
 ## 技術的なポイント
- * ・AWS EC2/RDSを用いたRails本番環境構築
- * ・AWS ACMでSSL証明書を発行し、SSL化
- * ・独自ドメイン取得、使用
- * ・N+1問題を意識したパフォーマンス
- * ・Gitによる自動デプロイ
- * ・RSpecを取り入れたバグの検知
- * ・Ajaxを用いた非同期処理（フォロー機能、いいね機能、コメント機能）
- * ・Bootstrapによるレスポンシブ対応
- * ・Rubocopを使用したコード規約に沿った開発
- * ・8つのモデルをそれぞれ関連付けて使用
+ * AWS EC2/RDSを用いたRails本番環境構築
+ * AWS CertbotでSSL証明書を発行し、SSL化
+ * 独自ドメイン取得、使用
+ * N+1問題を意識したパフォーマンス
+ * Gitによる自動デプロイ
+ * RSpecを取り入れたバグの検知
+ * Ajaxを用いた非同期処理（フォロー機能、いいね機能、コメント機能）
+ * Bootstrapによるレスポンシブ対応
+ * Rubocopを使用したコード規約に沿った開発
+ * 8つのモデルをそれぞれ関連付けて使用
 
 <img width="700" alt="スクリーンショット 2021-06-29 17 29 07" src="https://user-images.githubusercontent.com/79980351/123764226-8e43cc00-d8ff-11eb-8f57-37e6ef2f08c8.png">
 <img width="700" alt="スクリーンショット 2021-06-29 18 45 42" src="https://user-images.githubusercontent.com/79980351/123776585-61e17d00-d90a-11eb-9786-65af1809bcb1.png">
