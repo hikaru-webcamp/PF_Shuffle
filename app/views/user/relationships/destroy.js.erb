@@ -1,0 +1,5 @@
+$('.follow_button_<%= @user.id %>').html("<%= j(render 'shared/button', user: @user) %>");
+$('.following_count_<%= @user.id %>').html("<%= @user.following_users.size %>");
+$('.follower_count_<%= @user.id %>').html("<%= @user.follower_users.size %>");
+$('.following_count_<%= current_user.id %>').html("<%= current_user.following_users.size %>");
+$('.follower_count_<%= current_user.id %>').html("<%= current_user.follower_users.size %>");

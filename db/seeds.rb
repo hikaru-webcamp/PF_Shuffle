@@ -45,6 +45,13 @@ end
   )
 end
 
+User.all.each do |user|
+  follow_users = User.order(RAND_FUNC).limit(rand(1..10))
+  follow_users.each do |follow_user|
+    user.follow(follow_user)
+  end
+end
+
 101.times do |n|
   group = Group.create!(
     name:  Faker::Movie.unique.title,

@@ -10,6 +10,12 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
+  # ====================自分がフォローしているユーザーとの関連 ===================================
+  has_many :active_relationships, class_name: "Relationship", foreign_key: :follower_id, dependent: :destroy
+  has_many :following_users, through: :active_relationships,  source: :followed
+  # ====================自分がフォローされるユーザーとの関連 ===================================
+  has_many :passive_relationships, class_name: "Relationship", foreign_key: :followed_id, dependent: :destroy
+  has_many :follower_users,  through: :passive_relationships, source: :follower
 
   # attachmentメソッドで、refileが指定カラムにアクセス可能にする
   attachment :profile_image, destroy: false
@@ -28,6 +34,24 @@ class User < ApplicationRecord
   # 検索方法は、部分一致で定義
   def self.looks(word)
     where(["name LIKE?", "%#{word}%"])
+  end
+
+  def follow(user)
+    return if self == user || following_users.include?(user)
+
+    Relationship.create(follower_id: id, followed_id: user.id)
+  end
+
+  def unfollow(user)
+    return if following_users.exclude?(user)
+
+    relationship = Relationship.find_by(follower_id: id, followed_id: user.id)
+    relationship.destroy
+  end
+
+  # フォロー用メソッド
+  def followed_by?(user)
+    follower_users.include?(user)
   end
 
   def self.guest

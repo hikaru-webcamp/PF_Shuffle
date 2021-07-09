@@ -1,2 +1,0 @@
-module User::GroupUsersHelper
-end

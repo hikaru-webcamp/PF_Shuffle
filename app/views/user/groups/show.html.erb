@@ -4,32 +4,15 @@
     <div class="col-sm-4 mx-auto text-center" ><%= render "shared/flash_message" %></div>
     <div class="row m-1">
       <!--post indexとの部分テンプレート-->
-      <%= render "shared/group_showcard_form", group: @group %>
+      <%= render "shared/group_showcard", group: @group %>
 
       <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 mx-auto">
         <nav class="nav nav-pills nav-justified mb-5">
           <%= link_to "メンバー", "#", class: "nav-item nav-link active hover-img bg-light text-dark" %>
           <%= link_to "投稿一覧", group_posts_path(@group.id), class: "nav-item nav-link hover-img bg-dark text-white" %>
         </nav>
-
-        <div class='row scroll-list jscroll mx-auto fadeUp'>
-          <% @users.each do |member| %>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-              <div class="mb-4 card-deck hover-img "> <!--連結しないで表示したい場合は、card-deck-->
-                <div class="card text-white border-dark mb-3 bg-transparent">
-                    <%= link_to user_path(member) ,class: "profileimg" do %>
-                      <%= attachment_image_tag(member, :profile_image, size: "240x180", fallback: "profilenoimage.jpg",class: "profileimg card-img-top img-fluid mx-auto d-block") %>
-                    <% end %>
-                  <div class="card-body">
-                    <h5 class="card-title font-weight-bold text-truncate"><%= member.name %></h5>
-                    <p class="card-text text-truncate"><%= member.introduction%></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-          <div class="jscroll-pagination"><%= paginate @users %></div>
-        </div>
+        <!--ユーザー詳細とフォロービューをパーシャル化-->
+          <%= render "shared/user_index_follow", users: @users %>
       </div>
       
     </div>

@@ -4,7 +4,7 @@
     <div class="col-sm-4 mx-auto text-center" ><%= render "shared/flash_message" %></div>
     <div class="row m-1">
       <!--管理側とユーザー側のユーザー詳細ページをパーシャル化-->
-        <%= render "shared/user_show_form", user: @user %>    
+        <%= render "shared/user_showcard", user: @user %>    
       <!--post indexとの部分テンプレート-->
         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 mx-auto">
           <nav class="nav nav-pills nav-justified mb-5">
@@ -26,8 +26,8 @@
                         <p class="card-text border-bottom text-truncate">本文：<%= post.body%></p>
                         <p class="card-text"><%= time_ago_in_words(post.created_at) %>前に作成</p>
                         <span>
-                          <i class="fa fa-heart fa-2x" aria-hidden="true"><%= post.likes.count %></i>
-                          <i class="far fa-comment fa-2x ml-2"><%= post.comments.count %></i>
+                          <i class="fa fa-heart fa-1x" aria-hidden="true"><%= post.likes.count %></i>
+                          <i class="far fa-comment fa-1x ml-2"><%= post.comments.count %></i>
                         </span>
                           <% if post.user.id == current_user.id %>
                         <span>
