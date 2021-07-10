@@ -8,13 +8,14 @@ class User::GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.new(group_params)
-    @group.owner_id = current_user.id
-    if @group.save
-      redirect_to group_path(@group), notice: "グループを作成しました"
+    group = Group.new(group_params)
+    group.owner_id = current_user.id
+    if group.save
+      redirect_to group_path(group), notice: "グループを作成しました"
     else
       @groups = Group.all.order(updated_at: :desc).includes(:owner).page(params[:page]).per(12)
       @group = Group.new
+      flash.now[:alert] = 'グループを作成できませんでした'
       render 'index'
     end
   end
@@ -39,11 +40,12 @@ class User::GroupsController < ApplicationController
 
   def update
     group = Group.find(params[:id])
-    if @group.update(group_params)
+    if group.update(group_params)
       redirect_to group_path(group.id), notice: "グループ情報を変更しました"
     else
       @group = Group.find(params[:id])
       @users = @group.users.order(updated_at: :desc).page(params[:page]).per(12)
+      flash.now[:alert] = "グループ情報を変更できませんでした"
       render "show"
     end
   end

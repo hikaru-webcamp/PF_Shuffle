@@ -186,6 +186,12 @@ describe 'ユーザログイン前のテスト' do
       it '指定の値のリンクが存在するか ログアウト' do
         expect(page).to have_link "ログアウト"
       end
+      it '検索フォームが表示される' do
+        expect(page).to have_field 'word'
+      end
+      it 'セレクトフォームが表示される' do
+        expect(page).to have_field 'range'
+      end
       it '検索ボタンが表示される' do
         expect(page).to have_button '検索'
       end

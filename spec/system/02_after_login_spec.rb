@@ -114,6 +114,18 @@ describe ' ユーザログイン後のテスト' do
         expect(page).to have_link "フォロー中"
       end
     end
+    context 'フォローの確認' do
+      before do
+        click_on 'フォロー'
+      end
+      it 'フォロー中のリンクが存在するか' do
+        expect(page).to have_link "フォロー中"
+      end
+      it 'フォローのリンクが存在するか' do
+        click_on 'フォロー中'
+        expect(page).to have_link "フォロー"
+      end
+    end
   end
 
   describe 'グループ一覧画面のテスト' do
@@ -181,18 +193,19 @@ describe ' ユーザログイン後のテスト' do
       end
     end
 
-    context 'グループ加入時の確認' do
+    context 'グループ加入と脱退の確認' do
       before do
         click_on 'グループ加入'
-      end
-      it 'グループ加入ボタンを押してグループに加入できるか' do
-        expect(owner.groups.size).to eq 1
       end
       it 'グループ脱退のリンクが存在するか' do
         expect(page).to have_link "グループ脱退"
       end
       it '投稿のリンクが存在するか' do
         expect(page).to have_link "投稿"
+      end
+      it 'グループ加入のリンクが存在するか' do
+        click_on 'グループ脱退'
+        expect(page).to have_link "グループ加入"
       end
     end
   end

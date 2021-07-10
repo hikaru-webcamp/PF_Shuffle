@@ -14,6 +14,7 @@ Rails.application.routes.draw do
         get 'follower'
       end
       get 'post_index' => 'users#post_index'
+      get 'group_in' => 'users#group_in'
       patch 'out' => 'users#out'
     end
 

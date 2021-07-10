@@ -26,7 +26,7 @@
             <%= link_to new_group_post_path(group.id), class: "m-1 text-decoration-none btn btn-outline-success hover-img" do %>
               <i class="fas fa-plus-circle hover-img">投稿</i>
             <% end %>
-            <span class="hover-img m-1 fa-2x  text-decoration-none" data-toggle="modal" data-target="#modal1">
+            <span class="hover-img m-3 fa-2x  text-decoration-none" data-toggle="modal" data-target="#modal1">
               <i class="far fa-edit modal-fullscreen-xl-down hover-img"></i>
             </span>    
             <%= link_to group_path(group), method: :delete, data: { confirm: '本当にグループを消しますか？' }, class: "m-1 fa-2x text-reset text-decoration-none" do %>            

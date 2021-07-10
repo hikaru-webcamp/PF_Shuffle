@@ -9,7 +9,7 @@ class User::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @groups = @user.groups.order(updated_at: :desc).includes(:owner).page(params[:page]).per(12)
+    @groups = Group.where(owner_id: @user.id).order(updated_at: :desc).includes(:owner).page(params[:page]).per(12)
   end
 
   def edit
@@ -20,6 +20,7 @@ class User::UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(@user), notice: "会員情報を変更しました"
     else
+      flash.now[:alert] = "会員情報を変更できませんでした"
       render :edit
     end
   end
@@ -39,6 +40,11 @@ class User::UsersController < ApplicationController
   def post_index
     @user = User.find(params[:user_id])
     @posts = @user.posts.order(updated_at: :desc).page(params[:page]).per(12)
+  end
+
+  def group_in
+    @user = User.find(params[:user_id])
+    @groups = @user.groups.order(updated_at: :desc).includes(:owner).page(params[:page]).per(12)
   end
 
   private

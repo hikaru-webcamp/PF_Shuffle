@@ -31,6 +31,7 @@ class User::PostsController < ApplicationController
     else
       @group = Group.find(params[:group_id])
       @post = Post.new
+      flash.now[:alert] = "投稿ができませんでした"
       render 'new'
     end
   end
@@ -50,6 +51,7 @@ class User::PostsController < ApplicationController
     else
       @group = Group.find(params[:group_id])
       @post = Post.find(params[:id])
+      flash.now[:alert] = "投稿情報を変更できませんでした"
       render "edit"
     end
   end

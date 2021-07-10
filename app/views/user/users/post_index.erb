@@ -8,7 +8,8 @@
       <!--post indexとの部分テンプレート-->
         <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 mx-auto">
           <nav class="nav nav-pills nav-justified mb-5">
-            <%= link_to "グループ", user_path(@user), class: "nav-item nav-link hover-img bg-dark text-white" %>
+            <%= link_to "マイグループ", user_path(@user), class: "nav-item nav-link active hover-img bg-dark text-white" %>
+            <%= link_to "加入グループ", user_group_in_path(@user), class: "nav-item nav-link hover-img bg-dark text-white" %>
             <%= link_to "投稿一覧", "#", class: "nav-item nav-link active hover-img bg-light text-dark" %>
           </nav>
 
@@ -31,7 +32,7 @@
                         </span>
                           <% if post.user.id == current_user.id %>
                         <span>
-                            <%= link_to group_post_path(post.group.id,post), method: :delete, data: { confirm: '本当に投稿を消しますか？' }, class: "hover-img m-1 fa-2x text-reset text-decoration-none" do %>
+                            <%= link_to group_post_path(post.group.id,post), method: :delete, data: { confirm: '本当に投稿を消しますか？' }, class: "hover-img m-1 fa-1x text-reset text-decoration-none" do %>
                               <i class="far fa-trash-alt"></i>
                             <% end %>
                         </span>
