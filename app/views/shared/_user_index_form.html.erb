@@ -18,6 +18,7 @@
           <div class="card-body">
             <h5 class="card-title font-weight-boldtext-truncate"><%= user.name %></h5>
             <p class="card-text text-truncate"><%= user.introduction %></p>
+            <p class="card-text mt-2">加入グループ <%= user.groups.size %></p>
             <div class="card-text">
             <%= link_to following_user_relationships_path(user), class: "card-link" do %>
               <span class="following_count_<%= user.id %>"><%= user.following_users.size %></span>
@@ -29,7 +30,6 @@
               <span class="text-white">フォロワー</span>
             <% end %>          
             </div>
-            <p class="card-text mt-2"><%= user.groups.size %> グループ</p>
             <% if controller.class.parent.name == "Admin" %>
               <p class="card-text text-truncate"><%= user.email%></p>
                 <% if user.is_deleted %>
