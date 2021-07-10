@@ -21,6 +21,7 @@
         <% if controller.class.parent.name == "User" %>
           <h4 class="card-title border-bottom"><%= user.name %></h4>
           <p class="card-text border-bottom"><%= user.introduction %></p>
+          <p class="card-text mt-3">加入グループ <%= user.groups.size %></p>
           <div class="card-text">
           <%= link_to following_user_relationships_path(user), class: "card-link" do %>
             <span class="following_count_<%= user.id %>"><%= user.following_users.size %></span>
@@ -31,13 +32,12 @@
             <span class="text-white">フォロワー</span>
           <% end %>          
           </div>
-          
           <div class="card-text mt-3">
             <span class="follow_button_<%= user.id %>">
               <%= render "shared/button", user: user %>
             </span>
           </div>
-          
+
           <% if user.id == current_user.id %>
           <p class="card-text"><%= link_to '編集する',edit_user_path(user.id), class: "btn btn-outline-light  my-2 my-sm-0 hover-img" %></p>        
           <% end %>

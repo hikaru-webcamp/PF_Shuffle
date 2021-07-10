@@ -4,7 +4,6 @@ require 'rails_helper'
 
 RSpec.describe 'Groupモデルのテスト', type: :model do
   describe 'バリデーションのテスト' do
-    # テスト対象の記述を1箇所にまとめる
     let!(:owner) { create(:user) }
 
     context 'nameカラム' do

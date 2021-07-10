@@ -15,7 +15,12 @@
           <div class="card-body">
             <h5 class="card-title font-weight-bold text-truncate"><%= group.name %></h5>
             <p class="card-text text-truncate"><%= group.introduction %></p>
-            <p class="card-text"><%= group.owner.name %></p>
+            <span>リーダー名</span>
+            <p class="card-text">
+            <%= link_to user_path(group.owner) do %>
+              <span><%= group.owner.name %></span>
+            <% end %>
+            </p>
             <p class="card-text"><i class="fas fa-user-friends mr-2"></i><%= group.users.size %>人</p>
           </div>
         </div>

@@ -7,7 +7,12 @@
       <div class="card-body">
         <h5 class="card-title font-weight-bold  border-bottom text-truncate"><%= group.name %></h5>
         <p class="card-text  border-bottom text-truncate"><%= group.introduction %></p>
-        <p class="card-text border-bottom"><%= group.owner.name %></p>
+        <p class="card-text border-bottom">
+          <span class="mr-2">リーダー名</span>
+          <%= link_to user_path(group.owner) do %>
+            <span><%= group.owner.name %></span>
+          <% end %>          
+        </p>
         <p class="card-text"><i class="fas fa-user-friends mr-2"></i><%= group.users.size %>人</p>
         <!--#自分が投稿できるよう設定-->
          <% if group.users.include?(current_user) %>
