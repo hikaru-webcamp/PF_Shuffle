@@ -43,9 +43,9 @@ describe ' ユーザログイン後のテスト' do
     context '表示内容の確認' do
       it '「User List」と表示される' do
         expect(page).to have_content 'User List'
-      end      
+      end
       it '会員一覧画面のURLが正しい' do
-        expect(current_path).to eq '/users' 
+        expect(current_path).to eq '/users'
       end
       it '自分と他人の画像のリンク先が正しい' do
         expect(page).to have_link '', href: user_path(user)
@@ -68,15 +68,15 @@ describe ' ユーザログイン後のテスト' do
         expect(page).to have_content owner.following_users.size
       end
       it '自分と他人のフォロワー数が表示される' do
-        expect(page).to have_content user.follower_users.size 
-        expect(page).to have_content owner.follower_users.size 
+        expect(page).to have_content user.follower_users.size
+        expect(page).to have_content owner.follower_users.size
       end
       it '無限スクロールのクラスは存在するか' do
         expect(page).to have_selector '.jscroll, scroll-list, jscroll-pagination'
       end
     end
   end
-  
+
   describe '会員詳細画面のテスト' do
     before do
       visit user_path(owner)
@@ -99,7 +99,7 @@ describe ' ユーザログイン後のテスト' do
         expect(page).to have_content owner.following_users.size
       end
       it '自分のフォロワー数が表示される' do
-        expect(page).to have_content owner.follower_users.size 
+        expect(page).to have_content owner.follower_users.size
       end
       it 'グループのリンクが存在するか' do
         expect(page).to have_link "グループ"
@@ -124,9 +124,9 @@ describe ' ユーザログイン後のテスト' do
     context '表示内容の確認' do
       it '「Group List」と表示される' do
         expect(page).to have_content 'Group List'
-      end      
+      end
       it 'グループ一覧画面のURLが正しい' do
-        expect(current_path).to eq '/groups' 
+        expect(current_path).to eq '/groups'
       end
       it 'グループの画像のリンク先が正しい' do
         expect(page).to have_link '', href: group_path(group)
@@ -147,8 +147,8 @@ describe ' ユーザログイン後のテスト' do
         expect(page).to have_selector '.jscroll, scroll-list, jscroll-pagination'
       end
     end
-  end 
-  
+  end
+
   describe 'グループ詳細画面のテスト' do
     before do
       visit group_path(group)
@@ -180,25 +180,20 @@ describe ' ユーザログイン後のテスト' do
         expect(page).to have_link "グループ加入"
       end
     end
- 
+
     context 'グループ加入時の確認' do
       before do
         click_on 'グループ加入'
       end
       it 'グループ加入ボタンを押してグループに加入できるか' do
-        expect(owner.groups.size).to eq (1)
+        expect(owner.groups.size).to eq 1
       end
       it 'グループ脱退のリンクが存在するか' do
         expect(page).to have_link "グループ脱退"
-      end      
+      end
       it '投稿のリンクが存在するか' do
         expect(page).to have_link "投稿"
-      end      
+      end
     end
-
   end
-
- 
- 
- 
 end

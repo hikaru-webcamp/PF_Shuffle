@@ -20,7 +20,7 @@ describe 'ユーザログイン前のテスト' do
         expect(page).to have_link "かんたんログイン"
       end
     end
-    
+
     context 'リンクの内容を確認' do
       subject { current_path }
 
@@ -32,8 +32,8 @@ describe 'ユーザログイン前のテスト' do
         click_on '新規会員登録'
         is_expected.to eq new_user_registration_path
       end
-    end    
-    
+    end
+
     context 'ヘッダー：ログインしていない場合の表示内容確認' do
       it '指定の値のリンクが存在するか グループリストが表示されている' do
         expect(page).to have_link "グループリスト"
@@ -45,7 +45,7 @@ describe 'ユーザログイン前のテスト' do
         expect(page).to have_link "かんたんログイン"
       end
     end
-    
+
     context 'ヘッダー：リンクの内容を確認' do
       subject { current_path }
 
@@ -59,7 +59,7 @@ describe 'ユーザログイン前のテスト' do
       end
     end
   end
-  
+
   describe '新規会員登録のテスト' do
     before do
       visit new_user_registration_path
@@ -88,7 +88,7 @@ describe 'ユーザログイン前のテスト' do
         expect(page).to have_button '新規登録'
       end
     end
-    
+
     context '新規登録成功のテスト' do
       before do
         fill_in 'user[name]', with: Faker::Lorem.characters(number: 10)
@@ -212,5 +212,4 @@ describe 'ユーザログイン前のテスト' do
       end
     end
   end
-  
 end
