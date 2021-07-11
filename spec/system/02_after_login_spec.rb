@@ -4,6 +4,7 @@ describe ' ユーザログイン後のテスト' do
   let(:user) { create(:user) }
   let!(:owner) { create(:user) }
   let!(:group) { create(:group, owner_id: owner.id) }
+  let(:post) { create(:post, owner_id: owner.id , group_id: group.id) }
 
   before do
     visit new_user_session_path
@@ -114,18 +115,6 @@ describe ' ユーザログイン後のテスト' do
         expect(page).to have_link "フォロー中"
       end
     end
-    context 'フォローの確認' do
-      before do
-        click_on 'フォロー'
-      end
-      it 'フォロー中のリンクが存在するか' do
-        expect(page).to have_link "フォロー中"
-      end
-      it 'フォローのリンクが存在するか' do
-        click_on 'フォロー中'
-        expect(page).to have_link "フォロー"
-      end
-    end
   end
 
   describe 'グループ一覧画面のテスト' do
@@ -152,6 +141,9 @@ describe ' ユーザログイン後のテスト' do
       it 'グループに加入したメンバー数が表示される' do
         expect(page).to have_content group.users.size
       end
+      it 'グループを作成した人の名前が表示される' do
+        expect(page).to have_content group.owner.name 
+      end         
       it 'グループの作成ボタンが表示される' do
         expect(page).to have_button 'グループを作成する'
       end
@@ -197,6 +189,10 @@ describe ' ユーザログイン後のテスト' do
       before do
         click_on 'グループ加入'
       end
+      
+      it 'フラッシュメッセージが表示される' do
+        expect(page).to have_content 'グループに加入しました'
+      end
       it 'グループ脱退のリンクが存在するか' do
         expect(page).to have_link "グループ脱退"
       end
@@ -207,6 +203,127 @@ describe ' ユーザログイン後のテスト' do
         click_on 'グループ脱退'
         expect(page).to have_link "グループ加入"
       end
+      it 'グループ加入のリンクが存在するか' do
+        click_on 'グループ脱退'
+        expect(page).to have_content 'グループから脱退しました'
+      end
     end
   end
+  
+  describe 'グループ投稿画面のテスト' do
+    before do
+      visit groups_path
+      click_on 'グループを作成する'
+      attach_file 'group[image]', "#{Rails.root}/spec/factories/image/test.jpg"
+      fill_in 'group[name]', with: Faker::Lorem.characters(number: 5)
+      fill_in 'group[introduction]', with: Faker::Lorem.characters(number: 20)
+      click_on '登録する'
+    end
+  
+    context '表示の確認' do
+      it '作成完了のメッセージが表示される' do
+        expect(page).to have_content 'グループを作成しました'
+      end   
+      it 'グループ作成後グループ詳細画面に遷移する' do
+        expect(current_path).to eq '/groups/' + Group.last.id.to_s
+      end   
+    end
+  end
+  
+  describe '検索のテスト' do
+    context '会員で検索した時の表示確認' do
+      before do
+        select 'User', from: 'range'
+        fill_in 'word', with: user.name
+        click_on '検索'
+      end      
+      
+      it '検索したワードが表示される' do
+        expect(page).to have_content "「#{user.name}」の検索結果"
+      end   
+      it '検索対象のリストが表示される' do
+        expect(page).to have_content "User List"
+      end
+      it '会員の画像のリンク先が正しい' do
+        expect(page).to have_link '', href: user_path(user)
+      end      
+      it '会員の名前が表示される' do
+        expect(page).to have_content user.name
+      end   
+      it '会員の自己紹介文が表示される' do
+        expect(page).to have_content user.introduction
+      end   
+      it '会員のグループ数が表示される' do
+        expect(page).to have_content user.groups.size
+      end   
+      it '会員のフォロー数が表示される' do
+        expect(page).to have_content user.following_users.size
+      end   
+      it '会員のフォロワー数が表示される' do
+        expect(page).to have_content user.follower_users.size
+      end   
+    end
+    
+    context 'グループで検索した時の表示確認' do
+      before do
+        select 'Group', from: 'range'
+        fill_in 'word', with: group.name
+        click_on '検索'
+      end      
+      
+      it '検索したワードが表示される' do
+        expect(page).to have_content "「#{group.name}」の検索結果"
+      end   
+      it '検索対象のリストが表示される' do
+        expect(page).to have_content 'Group List'
+      end   
+      it 'グループの画像のリンク先が正しい' do
+        expect(page).to have_link '', href: group_path(group)
+      end
+      it 'グループ名前が表示される' do
+        expect(page).to have_content group.name
+      end   
+      it 'グループの自己紹介文が表示される' do
+        expect(page).to have_content group.introduction
+      end   
+      it 'グループを作成した人の名前が表示される' do
+        expect(page).to have_content group.owner.name 
+      end   
+      it 'グループに加入したメンバー数が表示される' do
+        expect(page).to have_content group.users.size
+      end   
+    end
+    
+    # context '投稿で検索した時の表示確認' do
+    #   before do
+    #     select 'Post', from: 'range'
+    #     fill_in 'word', with: post.title
+    #     click_on '検索'
+    #   end      
+      
+    #   it '検索したワードが表示される' do
+    #     expect(page).to have_content "「#{post.title}」の検索結果"
+    #   end   
+    #   it '検索対象のリストが表示される' do
+    #     expect(page).to have_content 'Group List'
+    #   end   
+    #   it 'グループの画像のリンク先が正しい' do
+    #     expect(page).to have_link '', href: group_path(group)
+    #   end
+    #   it 'グループ名前が表示される' do
+    #     expect(page).to have_content group.name
+    #   end   
+    #   it 'グループの自己紹介文が表示される' do
+    #     expect(page).to have_content group.introduction
+    #   end   
+    #   it 'グループを作成した人の名前が表示される' do
+    #     expect(page).to have_content group.owner.name 
+    #   end   
+    #   it 'グループに加入したメンバー数が表示される' do
+    #     expect(page).to have_content group.users.size
+    #   end   
+    # end
+    
+  end
+  
 end
