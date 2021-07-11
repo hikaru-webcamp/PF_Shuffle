@@ -80,31 +80,31 @@ RSpec.describe 'Userモデルのテスト', type: :model do
         expect(User.reflect_on_association(:group_users).macro).to eq :has_many
       end
     end
-    
+
     context 'フォローモデルとの関係' do
       it '1:Nとなっている' do
         expect(User.reflect_on_association(:active_relationships).macro).to eq :has_many
       end
-    end    
+    end
     context 'フォロワーモデルとの関係' do
       it '1:Nとなっている' do
         expect(User.reflect_on_association(:passive_relationships).macro).to eq :has_many
       end
-    end    
+    end
     context 'ユーザーモデル(フォローする側）との関係' do
       it '1:Nとなっている' do
         expect(User.reflect_on_association(:following_users).macro).to eq :has_many
       end
-    end    
+    end
     context 'ユーザーモデル(フォローされる側）との関係' do
       it '1:Nとなっている' do
         expect(User.reflect_on_association(:follower_users).macro).to eq :has_many
       end
-    end    
+    end
     context 'グループモデル（オーナーグループ）との関係' do
       it '1:Nとなっている' do
         expect(User.reflect_on_association(:owner_groups).macro).to eq :has_many
       end
-    end    
+    end
   end
 end
