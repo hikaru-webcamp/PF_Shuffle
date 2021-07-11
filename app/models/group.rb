@@ -10,12 +10,6 @@ class Group < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50, minimum: 2 }
   validates :introduction, presence: true, length: { maximum: 200 }
 
-  # 検索方法分岐 メソッド定義してコントローラー側で呼び出し
-  # 検索部分一致で定義
-  def self.looks(word)
-    where("name LIKE? OR introduction LIKE?", "%#{word}%", "%#{word}%")
-  end
-
   # イイネ用メソッド
   def member_by?(user)
     group_users.where(user_id: user.id).exists?

@@ -1,15 +1,12 @@
 <div class="bg-transparent py-3">
-  <div class="container fixed-bottom">
+  <div class="container">
     <div class="row">
       <div class="col-sm-12 text-center">
         <span class="text-muted">
-          <% if user_signed_in? %>      
-            <%= link_to "", :back, size: '50x50', class: "btn btn-light fas fa-undo-alt m-2 fa-2x hover-img rounded-circle " %>
-            <%= link_to user_path(current_user), class: 'text-reset text-decoration-none m-2' do %>
-              <%= attachment_image_tag current_user, :profile_image,  size: '50x50', fallback: "profilenoimage.jpg", class: "rounded-circle hover-img" %>
-            <% end %> 
-            <%= link_to "", users_path,class: "btn btn-light fas fa-users m-2 fa-2x hover-img rounded-circle" %>
-            <%= link_to "", groups_path,class: "btn btn-light fas fa-object-group m-2 fa-2x hover-img rounded-circle" %>
+          <% unless user_signed_in? %>      
+            <div class="py-3 text-white text-center">
+              <p> © 2021 Shuffle All Rights Reserved.</p>
+            </div>         
           <% end %>
         </span>
       </div>

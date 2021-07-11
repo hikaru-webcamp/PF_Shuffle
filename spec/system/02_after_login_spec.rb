@@ -214,6 +214,7 @@ describe ' ユーザログイン後のテスト' do
     before do
       visit groups_path
       click_on 'グループを作成する'
+      # Rubocopにより、パスの書き方を修正
       attach_file 'group[image]', Rails.root.join('spec', 'factories', 'image', 'test.jpg')
       fill_in 'group[name]', with: Faker::Lorem.characters(number: 5)
       fill_in 'group[introduction]', with: Faker::Lorem.characters(number: 20)

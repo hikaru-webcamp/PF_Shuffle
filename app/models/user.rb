@@ -30,12 +30,6 @@ class User < ApplicationRecord
     super && is_deleted == false
   end
 
-  # 検索方法分岐 メソッド定義してコントローラー側で呼び出し
-  # 検索方法は、部分一致で定義
-  def self.looks(word)
-    where(["name LIKE?", "%#{word}%"])
-  end
-
   def follow(user)
     return if self == user || following_users.include?(user)
 
