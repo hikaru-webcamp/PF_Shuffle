@@ -4,7 +4,7 @@ describe ' ユーザログイン後のテスト' do
   let(:user) { create(:user) }
   let!(:owner) { create(:user) }
   let!(:group) { create(:group, owner_id: owner.id) }
-  let(:post) { create(:post, owner_id: owner.id, group_id: group.id) }
+  let!(:post) { create(:post, user: owner, group: group) }
 
   before do
     visit new_user_session_path
@@ -234,16 +234,12 @@ describe ' ユーザログイン後のテスト' do
   describe '検索のテスト' do
     context '会員で検索した時の表示確認' do
       before do
-        select 'User', from: 'range'
         fill_in 'word', with: user.name
         click_on '検索'
       end
 
       it '検索したワードが表示される' do
         expect(page).to have_content "「#{user.name}」の検索結果"
-      end
-      it '検索対象のリストが表示される' do
-        expect(page).to have_content "User List"
       end
       it '会員の画像のリンク先が正しい' do
         expect(page).to have_link '', href: user_path(user)
@@ -267,16 +263,12 @@ describe ' ユーザログイン後のテスト' do
 
     context 'グループで検索した時の表示確認' do
       before do
-        select 'Group', from: 'range'
         fill_in 'word', with: group.name
         click_on '検索'
       end
 
       it '検索したワードが表示される' do
         expect(page).to have_content "「#{group.name}」の検索結果"
-      end
-      it '検索対象のリストが表示される' do
-        expect(page).to have_content 'Group List'
       end
       it 'グループの画像のリンク先が正しい' do
         expect(page).to have_link '', href: group_path(group)
@@ -292,6 +284,26 @@ describe ' ユーザログイン後のテスト' do
       end
       it 'グループに加入したメンバー数が表示される' do
         expect(page).to have_content group.users.size
+      end
+    end
+
+    context '投稿で検索した時の表示確認' do
+      before do
+        fill_in 'word', with: post.title
+        click_on '検索'
+      end
+
+      it '検索したワードが表示される' do
+        expect(page).to have_content "「#{post.title}」の検索結果"
+      end
+      it '投稿の画像のリンク先が正しい' do
+        expect(page).to have_link '', href: group_post_path(post.group, post)
+      end
+      it '投稿の題名が表示される' do
+        expect(page).to have_content post.title
+      end
+      it '投稿の本文が表示される' do
+        expect(page).to have_content post.body
       end
     end
   end

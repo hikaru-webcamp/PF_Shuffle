@@ -9,7 +9,7 @@ class User::PostsController < ApplicationController
 
   def index
     @group = Group.find(params[:group_id])
-    @posts = @group.posts.order(updated_at: :desc).page(params[:page]).per(12)
+    @posts = @group.posts.includes(:user).order(updated_at: :desc).page(params[:page]).per(12)
   end
 
   def show

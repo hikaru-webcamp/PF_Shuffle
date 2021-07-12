@@ -1,25 +1,25 @@
  <!--@posts ➩ posts @group➩group-->
-    <div class='row scroll-list jscroll mx-auto fadeUp'>
-      <% posts.includes(:user).each do |post| %>
-        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-          <div class="mb-4 card-deck hover-img">
-           
-            <div class="card text-white border-dark mb-3 bg-transparent">
-                <%= link_to group_post_path(group,post) do %>
-                  <%= attachment_image_tag(post.user, :profile_image, size: "180x180", fallback: "profilenoimage.jpg",class: "post-img-top img-fluid") %>
-                <% end %>
-              <div class="card-body">
-                <h5 class="card-title font-weight-bold border-bottom text-truncate">題名：<%= post.title %></h5>
-                <p class="card-text border-bottom text-truncate">本文：<%= post.body%></p>
-                <p class="card-text"><%= time_ago_in_words(post.created_at) %>前に作成</p>
-                <span>
-                  <i class="fa fa-heart fa-1x" aria-hidden="true"><%= post.likes.count %></i>
-                  <i class="far fa-comment fa-1x ml-2"><%= post.comments.count %></i>
-                </span>
-              </div>
-            </div>
+<div class='row scroll-list jscroll mx-auto fadeUp'>
+  <% posts.each do |post| %>
+    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+      <div class="mb-4 card-deck hover-img">
+       
+        <div class="card text-white border-dark mb-3 bg-transparent">
+            <%= link_to group_post_path(group,post) do %>
+              <%= attachment_image_tag(post.user, :profile_image, size: "180x180", fallback: "profilenoimage.jpg",class: "post-img-top img-fluid") %>
+            <% end %>
+          <div class="card-body">
+            <h5 class="card-title font-weight-bold border-bottom text-truncate">題名：<%= post.title %></h5>
+            <p class="card-text border-bottom text-truncate">本文：<%= post.body%></p>
+            <p class="card-text"><%= time_ago_in_words(post.created_at) %>前に作成</p>
+            <span>
+              <i class="fa fa-heart fa-1x" aria-hidden="true"><%= post.likes.count %></i>
+              <i class="far fa-comment fa-1x ml-2"><%= post.comments.count %></i>
+            </span>
           </div>
         </div>
-      <% end %>
-      <div class="jscroll-pagination"><%= paginate posts %></div>
+      </div>
     </div>
+  <% end %>
+  <div class="jscroll-pagination"><%= paginate posts %></div>
+</div>
