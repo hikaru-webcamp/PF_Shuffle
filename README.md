@@ -1,4 +1,5 @@
 
+
 <img width="700" alt="header_logo" src="https://user-images.githubusercontent.com/79980351/123764919-38235880-d900-11eb-87a9-622eab84fa61.png">
 
 # Shuffle(シャッフル) 色々な人を混ぜ合わせるコミュニティアプリ
@@ -18,7 +19,7 @@
  * 8つのモデルをそれぞれ関連付けて使用
 
 <img width="700" alt="スクリーンショット 2021-06-29 17 29 07" src="https://user-images.githubusercontent.com/79980351/123764226-8e43cc00-d8ff-11eb-8f57-37e6ef2f08c8.png">
-<img width="700" alt="スクリーンショット 2021-06-29 18 45 42" src="https://user-images.githubusercontent.com/79980351/123776585-61e17d00-d90a-11eb-9786-65af1809bcb1.png">
+<img width="700" alt="スクリーンショット 2021-07-12 20 18 43" src="https://user-images.githubusercontent.com/79980351/125279131-8730ab00-e34e-11eb-9f33-3780c82096fb.png">
 
 ## 制作背景
 コロナ渦により、オンライン環境でのプログラミング学習がふえてきました。  
