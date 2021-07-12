@@ -18,13 +18,13 @@
 @import "font-awesome";
 
 // ヘッダー（レスポンシブ対応時）アイコンの枠消去
-.navbar-toggler{
+.navbar-toggler {
   border: none;
 }
-.navbar-toggler:active{
+.navbar-toggler:active {
   outline: none;
 }
-button:focus{
+button:focus {
   outline: none;
 }
 
@@ -32,36 +32,36 @@ button:focus{
 // 総称フォント名(sans-serif)は""で囲わない
 // 背景色
 .topfont {
-  font-family: cursive
+  font-family: cursive;
 }
 
 body {
-font-family: 'Helvetica Neue','Helvetica','Arial', sans-serif;
-background-color: #141414;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  background-color: #141414;
 }
 
-.sharedmargin{
+.sharedmargin {
   margin-top: 100px;
 }
 // ==レスポンシブ対応（カード画像）==
 // 全ての画面サイズ以下の際に適用される設定
 .card-img-top {
-    width: 100%;
-    height: 10vw;
-    object-fit: cover;
+  width: 100%;
+  height: 10vw;
+  object-fit: cover;
 }
 // 768px以下の際に適用される設定
 @media screen and (max-width: 768px) {
-.card-img-top {
+  .card-img-top {
     width: 100%;
     height: 20vw;
     object-fit: cover;
   }
 }
-  
+
 // 425px以下の際に適用される設定
 @media screen and (max-width: 425px) {
-.card-img-top {
+  .card-img-top {
     width: 100%;
     height: 50vw;
     object-fit: cover;
@@ -69,48 +69,47 @@ background-color: #141414;
 }
 
 .user-img-top {
-    width: 100%;
-    height: 10vw;
-    object-fit: cover;
+  width: 100%;
+  height: 10vw;
+  object-fit: cover;
 }
 
 // 768px以下の際に適用される設定
 @media screen and (max-width: 768px) {
-.user-img-top {
+  .user-img-top {
     width: 100%;
     height: 30vw;
     object-fit: cover;
   }
 }
-  
+
 // 425px以下の際に適用される設定
 @media screen and (max-width: 425px) {
-.user-img-top {
+  .user-img-top {
     width: 100%;
     height: 50vw;
     object-fit: cover;
   }
 }
 
-
 .post-img-top {
-    width: 100%;
-    height: 5vw;
-    object-fit: cover;
+  width: 100%;
+  height: 5vw;
+  object-fit: cover;
 }
 
 // 768px以下の際に適用される設定
 @media screen and (max-width: 768px) {
-.post-img-top {
+  .post-img-top {
     width: 100%;
     height: 15vw;
     object-fit: cover;
   }
 }
-  
+
 // 425px以下の際に適用される設定
 @media screen and (max-width: 425px) {
-.post-img-top {
+  .post-img-top {
     width: 100%;
     height: 30vw;
     object-fit: cover;
@@ -118,15 +117,15 @@ background-color: #141414;
 }
 
 .profileimg {
-	border-radius: 50%;
+  border-radius: 50%;
 }
 
 nav.pagination {
   display: none;
-} 
+}
 
 .hover-img {
-transition: 0.2s;
+  transition: 0.2s;
   &:hover {
     transform: scale(1.1);
     z-index: 10;
@@ -134,33 +133,33 @@ transition: 0.2s;
 }
 
 // フェイドアップの記述
-.fadeUp{
-animation-name:fadeUpAnime;
-animation-duration:1s;
-animation-fill-mode:forwards;
-opacity:0;
+.fadeUp {
+  animation-name: fadeUpAnime;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  opacity: 0;
 }
 
-@keyframes fadeUpAnime{
+@keyframes fadeUpAnime {
   from {
     opacity: 0;
-  transform: translateY(100px);
+    transform: translateY(100px);
   }
 
   to {
     opacity: 1;
-  transform: translateY(0);
+    transform: translateY(0);
   }
 }
 
 /* スクロールをしたら出現する要素にはじめに透過0を指定　*/
-.fadeUpTrigger{
-    opacity: 0;
+.fadeUpTrigger {
+  opacity: 0;
 }
 // フェイドアップの記述ここまで
 
 .header-color {
-background-color: #000000;
+  background-color: #000000;
 }
 
 .jscroll-added {

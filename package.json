@@ -1,5 +1,7 @@
 {
   "name": "Shuffle",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@prettier/plugin-ruby": "^1.6.1"
+  }
 }
