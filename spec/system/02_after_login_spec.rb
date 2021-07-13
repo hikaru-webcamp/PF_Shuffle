@@ -118,10 +118,6 @@ describe " ユーザログイン後のテスト" do
   end
 
   describe "グループ一覧画面のテスト" do
-    before do
-      visit groups_path
-    end
-
     context "表示内容の確認" do
       it "「Group List」と表示される" do
         expect(page).to have_content "Group List"
@@ -296,27 +292,6 @@ describe " ユーザログイン後のテスト" do
       end
       it "投稿後に投稿詳細画面に遷移する" do
         expect(current_path).to eq "/groups/" + Group.last.id.to_s + "/posts/" + Post.last.id.to_s
-      end
-    end
-  end
-  describe "投稿詳細画面のテスト" do
-    context "コメントの投稿のテスト" do
-      before do
-        visit group_path(group)
-        click_on "グループ加入"
-        visit new_group_post_path(group)
-        fill_in "post[title]", with: Faker::Lorem.characters(number: 5)
-        fill_in "post[body]", with: Faker::Lorem.characters(number: 20)
-        click_on "登録する"
-        fill_in "comment[body]", with: Faker::Lorem.characters(number: 5)
-        click_link "コメント"
-      end
-
-      it "投稿した後、コメントしたユーザーの名前が表示されるか" do
-        expect(page).to have_content comment.user.name
-      end
-      it "コメントフォーム表示が表示される" do
-        expect(page).to have_content comment.body
       end
     end
   end
