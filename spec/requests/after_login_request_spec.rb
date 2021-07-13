@@ -9,8 +9,8 @@ describe " ユーザログイン後のリクエストテスト", type: :request 
   describe "Homes" do
     context "GET /" do
       it "トップページの表示が取得できること" do
-        get root_path #HTTPリクエストの送信
-        expect(response).to have_http_status(200) #HTTPレスポンスのステータスコードが200
+        get root_path # HTTPリクエストの送信
+        expect(response).to have_http_status(200) # HTTPレスポンスのステータスコードが200
         # puts response.body #ログでhtmlの情報出力したい時
       end
     end
