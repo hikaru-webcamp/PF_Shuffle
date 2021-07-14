@@ -16,6 +16,7 @@
  * Ajaxを用いた非同期処理（フォロー機能、いいね機能、コメント機能）
  * Bootstrapによるレスポンシブ対応
  * Rubocopを使用したコード規約に沿った開発
+ * 複数キーワードに対応した検索
  * 8つのモデルをそれぞれ関連付けて使用
 
 <img width="700" alt="スクリーンショット 2021-06-29 17 29 07" src="https://user-images.githubusercontent.com/79980351/123764226-8e43cc00-d8ff-11eb-8f57-37e6ef2f08c8.png">
