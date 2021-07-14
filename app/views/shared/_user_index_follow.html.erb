@@ -2,14 +2,14 @@
 <div class='row scroll-list jscroll mx-auto fadeUp'>
   <% users.each do |member| %>
     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-      <div class="mb-4 card-deck hover-img "> 
+      <div class="mb-4 card-deck hover-img ">
         <div class="card text-white border-dark mb-3 bg-transparent">
-            <%= link_to user_path(member) ,class: "profileimg" do %>
-              <%= attachment_image_tag(member, :profile_image, size: "240x180", fallback: "profilenoimage.jpg",class: "profileimg card-img-top img-fluid mx-auto d-block") %>
+            <%= link_to user_path(member), class: "profileimg" do %>
+              <%= attachment_image_tag(member, :profile_image, size: "240x180", fallback: "profilenoimage.jpg", class: "profileimg card-img-top img-fluid mx-auto d-block") %>
             <% end %>
           <div class="card-body">
             <h5 class="card-title font-weight-bold text-truncate"><%= member.name %></h5>
-            <p class="card-text text-truncate"><%= member.introduction%></p>
+            <p class="card-text text-truncate"><%= member.introduction %></p>
           </div>
         </div>
       </div>

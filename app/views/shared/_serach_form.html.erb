@@ -1,25 +1,25 @@
 <!--部分テンプレートにより@users➩users,@groups➩groups @keyword➩keywordに変更-->
-	
+
 <!--管理側とユーザー側での検索結果フォームにして使用-->
   <% if controller.class.parent.name == "Admin" %>
     <%= render "shared/user_index_form", users: users %>
   <% end %>
-  
+
   <% if controller.class.parent.name == "User" %>
     <div class="sharedmargin">
       <div class="container-fluid shadow-lg p-3">
         <h2 class ="text-white text-center mb-3" ><%= "「#{keyword}」の検索結果" %></h2>
-        
+
         <nav class="nav nav-pills nav-justified m-5">
           <%= link_to "会員", "#users_tab", class: "nav-item nav-link active", "data-toggle": "pill", "role": "tab" %>
           <%= link_to "グループ", "#groups_tab", class: "nav-item nav-link", "data-toggle": "pill", "role": "tab" %>
           <%= link_to "投稿", "#posts_tab", class: "nav-item nav-link", "data-toggle": "pill", "role": "tab" %>
         </nav>
-        
+
         <div class="tab-content">
           <div class="tab-pane fade show active" id="users_tab" role="tabpanel" aria-labelledby="pills-home-tab">
             <ul id="users" class="px-0">
-              <% if  users.blank?%>
+              <% if users.blank? %>
                 <div class="sharedmargin">
                   <div class="container-fluid p-3 text-white text-center">
                     <h2>該当する情報はありませんでした</h2>
@@ -31,7 +31,7 @@
           </div>
           <div class="tab-pane fade" id="groups_tab" role="tabpanel" aria-labelledby="pills-home-tab">
             <ul id="groups" class="px-0 pb-3">
-              <% if  groups.blank?%>
+              <% if groups.blank? %>
                 <div class="sharedmargin">
                   <div class="container-fluid p-3 text-white text-center">
                     <h2>該当する情報はありませんでした</h2>
@@ -43,7 +43,7 @@
           </div>
           <div class="tab-pane fade" id="posts_tab" role="tabpanel" aria-labelledby="pills-home-tab">
             <ul id="posts" class="px-0 pb-3">
-             <% if  posts.blank?%>
+             <% if posts.blank? %>
                 <div class="sharedmargin">
                   <div class="container-fluid p-3 text-white text-center">
                     <h2>該当する情報はありませんでした</h2>
@@ -54,14 +54,14 @@
                 <% posts.each do |post| %>
                   <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
                     <div class="mb-4 card-deck hover-img">
-                     
+
                       <div class="card text-white border-dark mb-3 bg-transparent">
-                          <%= link_to group_post_path(post.group,post) do %>
-                            <%= attachment_image_tag(post.user, :profile_image, size: "180x180", fallback: "profilenoimage.jpg",class: "post-img-top img-fluid") %>
+                          <%= link_to group_post_path(post.group, post) do %>
+                            <%= attachment_image_tag(post.user, :profile_image, size: "180x180", fallback: "profilenoimage.jpg", class: "post-img-top img-fluid") %>
                           <% end %>
                         <div class="card-body">
                           <h5 class="card-title font-weight-bold border-bottom text-truncate">題名：<%= post.title %></h5>
-                          <p class="card-text border-bottom text-truncate">本文：<%= post.body%></p>
+                          <p class="card-text border-bottom text-truncate">本文：<%= post.body %></p>
                           <p class="card-text"><%= time_ago_in_words(post.created_at) %>前に作成</p>
                           <span>
                             <i class="fa fa-heart fa-1x" aria-hidden="true"><%= post.likes.count %></i>
@@ -73,8 +73,8 @@
                   </div>
                 <% end %>
                 <div class="jscroll-pagination"><%= paginate posts %></div>
-              </div>              
-                            
+              </div>
+
             </ul>
           </div>
         </div>
@@ -82,4 +82,3 @@
     </div>
 
   <% end %>
-

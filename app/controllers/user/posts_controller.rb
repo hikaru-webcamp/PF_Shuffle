@@ -32,7 +32,7 @@ class User::PostsController < ApplicationController
       @group = Group.find(params[:group_id])
       @post = Post.new
       flash.now[:alert] = "投稿ができませんでした"
-      render 'new'
+      render "new"
     end
   end
 

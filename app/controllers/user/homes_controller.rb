@@ -1,7 +1,7 @@
 class User::HomesController < ApplicationController
   def top
-    @group_ranks = Group.where(id: GroupUser.group(:group_id).order('count(group_id) desc').limit(6).pluck(:group_id))
-    @post_ranks = Post.where(id: Like.group(:post_id).order('count(post_id) desc').limit(6).pluck(:post_id))
+    @group_ranks = Group.all_group_ranks # Group.rbでメソッド定義
+    @post_ranks = Post.all_post_ranks # Post.rbでメソッド定義
     @admins = Admin.first(6)
   end
 end

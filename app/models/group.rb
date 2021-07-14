@@ -6,6 +6,7 @@ class Group < ApplicationRecord
   accepts_nested_attributes_for :group_users
 
   attachment :image
+
   # バリデーションの記述(空白禁止と文字制限)
   validates :name, presence: true, length: { maximum: 50, minimum: 2 }
   validates :introduction, presence: true, length: { maximum: 200 }
@@ -14,8 +15,10 @@ class Group < ApplicationRecord
   def member_by?(user)
     group_users.where(user_id: user.id).exists?
   end
-end
 
-# accepts_nested_attributes_forは
-# 他のモデルを一括で更新、保存できるようにするもの。
-# groupを保存するのと同時にgroup_usersを更新できるようにしています。
+  # ランキング用メソッド
+  def self.all_group_ranks
+    # グループのランキング
+    where(id: GroupUser.group(:group_id).order("count(group_id) desc").limit(6).pluck(:group_id))
+  end
+end

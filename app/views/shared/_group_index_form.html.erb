@@ -10,7 +10,7 @@
       <div class="mb-4 card-deck">
         <div class="card text-white border-dark mb-3 bg-transparent hover-img" >
           <%= link_to group_path(group) do %>
-            <%= attachment_image_tag(group, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid mx-auto d-block" )%>
+            <%= attachment_image_tag(group, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid mx-auto d-block") %>
           <% end %>
           <div class="card-body">
             <h5 class="card-title font-weight-bold text-truncate"><%= group.name %></h5>
@@ -29,5 +29,5 @@
     <div class="jscroll-pagination">
     <%= paginate groups %>
     </div>
-  <% end %> 
+  <% end %>
 </div>

@@ -1,0 +1,7 @@
+<%= link_to group_path(ranking) do %>
+  <%= attachment_image_tag(ranking, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid") %>
+<% end %>
+<div class="card-body">
+  <h5 class="card-title font-weight-bold text-truncate"><%= ranking.name %></h5>
+  <p class="card-text"><i class="fas fa-user-friends mr-2"></i><%= ranking.users.size %>人</p>
+</div>
