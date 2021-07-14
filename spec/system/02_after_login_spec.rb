@@ -25,6 +25,10 @@ describe " ユーザログイン後のテスト" do
         click_on "マイページ"
         is_expected.to eq "/users/" + user.id.to_s
       end
+      it "投稿一覧を押すと、会員一覧ページに遷移する" do
+        click_on "投稿一覧"
+        is_expected.to eq group_post_index_groups_path
+      end
       it "会員一覧を押すと、会員一覧ページに遷移する" do
         click_on "会員一覧"
         is_expected.to eq users_path
@@ -42,8 +46,8 @@ describe " ユーザログイン後のテスト" do
     end
 
     context "表示内容の確認" do
-      it "「User List」と表示される" do
-        expect(page).to have_content "User List"
+      it "「会員一覧」と表示される" do
+        expect(page).to have_content "会員一覧"
       end
       it "会員一覧画面のURLが正しい" do
         expect(current_path).to eq "/users"
@@ -71,6 +75,39 @@ describe " ユーザログイン後のテスト" do
       it "自分と他人のフォロワー数が表示される" do
         expect(page).to have_content user.follower_users.size
         expect(page).to have_content owner.follower_users.size
+      end
+      it "無限スクロールのクラスは存在するか" do
+        expect(page).to have_selector ".jscroll, scroll-list, jscroll-pagination"
+      end
+    end
+  end
+
+  describe "投稿一覧画面のテスト" do
+    before do
+      visit group_post_index_groups_path
+    end
+
+    context "表示内容の確認" do
+      it "「投稿一覧」と表示される" do
+        expect(page).to have_content "投稿一覧"
+      end
+      it "会員一覧画面のURLが正しい" do
+        expect(current_path).to eq "/groups/group_post_index"
+      end
+      it "画像のリンク先が正しい" do
+        expect(page).to have_link "", href: group_post_path(post.group, post)
+      end
+      it "投稿のタイトルが表示される" do
+        expect(page).to have_content post.title
+      end
+      it "投稿の本文が表示される" do
+        expect(page).to have_content post.body
+      end
+      it "投稿のいいね数が表示される" do
+        expect(page).to have_content post.likes.count
+      end
+      it "投稿のコメント数が表示される" do
+        expect(page).to have_content post.comments.count
       end
       it "無限スクロールのクラスは存在するか" do
         expect(page).to have_selector ".jscroll, scroll-list, jscroll-pagination"
@@ -119,8 +156,8 @@ describe " ユーザログイン後のテスト" do
 
   describe "グループ一覧画面のテスト" do
     context "表示内容の確認" do
-      it "「Group List」と表示される" do
-        expect(page).to have_content "Group List"
+      it "「グループ一覧」と表示される" do
+        expect(page).to have_content "グループ一覧"
       end
       it "グループ一覧画面のURLが正しい" do
         expect(current_path).to eq "/groups"
