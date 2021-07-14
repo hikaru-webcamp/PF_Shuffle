@@ -6,15 +6,15 @@
         <div class="card text-white border-dark mb-3 bg-transparent hover-img">
           <!--#adminとuserでパスが違う為、条件分岐-->
           <% if controller.class.parent.name == "Admin" %>
-            <%= link_to admin_user_path(user.id),class: "profileimg" do %>
-              <%= attachment_image_tag(user, :profile_image, size: "240x180", fallback: "profilenoimage.jpg",class: "profileimg user-img-top img-fluid mx-auto d-block")  %>
+            <%= link_to admin_user_path(user.id), class: "profileimg" do %>
+              <%= attachment_image_tag(user, :profile_image, size: "240x180", fallback: "profilenoimage.jpg", class: "profileimg user-img-top img-fluid mx-auto d-block") %>
             <% end %>
           <% else %>
-            <%= link_to user_path(user),class: "profileimg" do %>
-              <%= attachment_image_tag(user, :profile_image, size: "240x180", fallback: "profilenoimage.jpg",class: "profileimg user-img-top img-fluid mx-auto d-block") %>
+            <%= link_to user_path(user), class: "profileimg" do %>
+              <%= attachment_image_tag(user, :profile_image, size: "240x180", fallback: "profilenoimage.jpg", class: "profileimg user-img-top img-fluid mx-auto d-block") %>
             <% end %>
           <% end %>
-          
+
           <div class="card-body">
             <h5 class="card-title font-weight-boldtext-truncate"><%= user.name %></h5>
             <p class="card-text text-truncate"><%= user.introduction %></p>
@@ -28,10 +28,10 @@
             <%= link_to follower_user_relationships_path(user), class: "card-link" do %>
               <span class="follower_count_<%= user.id %>"><%= user.follower_users.size %></span>
               <span class="text-white">フォロワー</span>
-            <% end %>          
+            <% end %>
             </div>
             <% if controller.class.parent.name == "Admin" %>
-              <p class="card-text text-truncate"><%= user.email%></p>
+              <p class="card-text text-truncate"><%= user.email %></p>
                 <% if user.is_deleted %>
                   <p class="card-text text-danger">ステータス: 退会</p>
                 <% else %>
@@ -45,5 +45,5 @@
         </div>
       </div>
     </div>
-  <% end %> 
+  <% end %>
 </div>

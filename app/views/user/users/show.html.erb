@@ -7,13 +7,13 @@
       <%= render "shared/user_showcard", user: @user %>
 
       <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 mx-auto">
-        <nav class="nav nav-pills nav-justified mb-5">
+          <nav class="nav nav-pills nav-justified mb-5">
           <%= link_to "マイグループ", "#", class: "nav-item nav-link active hover-img bg-light text-dark" %>
           <%= link_to "加入グループ", user_group_in_path(@user), class: "nav-item nav-link active hover-img bg-dark text-white" %>
           <%= link_to "投稿一覧", user_post_index_path(@user), class: "nav-item nav-link hover-img bg-dark text-white" %>
         </nav>
         <!--ユーザー側のグループ一覧と検索結果ビューをパーシャル化-->
-        <%= render "shared/group_index_form", groups: @groups %>
+          <%= render "shared/group_index_form", groups: @groups %>
       </div>
     </div>
   </div>

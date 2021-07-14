@@ -2,17 +2,18 @@
 <section class="hero">
   <div class="video-box overlay">
     <video class="video" playsinline muted autoplay >
-      <source src="https://movie-shuffle.s3.ap-northeast-1.amazonaws.com/topmovie.mp4" type="video/mp4" > 
+      <source src="https://movie-shuffle.s3.ap-northeast-1.amazonaws.com/topmovie.mp4" type="video/mp4" >
     </video>
   </div>
   <div class="text-box">
     <h1 class="font-italic imagefont">We are the best team<br></h1>
     <% unless user_signed_in? || admin_signed_in? %>
-    <h1 class="font-italic imagefont"><p><%= link_to 'Login', new_user_session_path, class: "btn btn-outline-light hover-img mr-2 btn-lg" %></p></h1>
+    <h1 class="font-italic imagefont"><p><%= link_to "Login", new_user_session_path, class: "btn btn-outline-light hover-img mr-2 btn-lg" %></p></h1>
     <% end %>
   </div>
 </section>
-<div class="jumbotron jumbotron-fluid mb-0 text-white bg-transparent text-center card-border topcolor"> 
+
+<div class="jumbotron jumbotron-fluid mb-0 text-white bg-transparent text-center card-border topcolor">
   <div class="col-sm-4 mx-auto text-center"><%= render "shared/flash_message" %></div>
     <div class="container-fluid shadow-lg fadeUpTrigger">
       <div class="row">
@@ -22,14 +23,14 @@
           <p class="lead my-4">自分でグループを作って、仲間を集めて情報交換ができます。</p>
           <% unless user_signed_in? || admin_signed_in? %>
           <p class="mt-3">グループを作るには会員登録から</p>
-          <p><%= link_to '新規会員登録はこちら', new_user_registration_path, class: "btn btn-outline-light btn-lg hover-img" %></p>
+          <p><%= link_to "新規会員登録はこちら", new_user_registration_path, class: "btn btn-outline-light btn-lg hover-img" %></p>
           <p class="lead mt-3">こちらは、かんたんログインです</p>
-          <p><%= link_to 'かんたんログイン',  users_guest_sign_in_path, method: :post, class: "btn btn-outline-light btn-lg hover-img" %></p>
+          <p><%= link_to "かんたんログイン", users_guest_sign_in_path, method: :post, class: "btn btn-outline-light btn-lg hover-img" %></p>
           <% end %>
         </div>
           <div class="video-box2 overlay mx-auto col-xl-6 col-lg-6 col-md-6 fadeUpTrigger">
             <video class="video img-fluid" playsinline muted autoplay loop>
-              <source src="https://movie-shuffle.s3.ap-northeast-1.amazonaws.com/setumei.mp4" type="video/mp4" > 
+              <source src="https://movie-shuffle.s3.ap-northeast-1.amazonaws.com/setumei.mp4" type="video/mp4" >
             </video>
           </div>
       </div>
@@ -37,7 +38,7 @@
   </div>
 </div>
 
-<div class="jumbotron col-12 text-white bg-transparent text-center mb-0 card-border text-shadow"> 
+<div class="jumbotron col-12 text-white bg-transparent text-center mb-0 card-border text-shadow">
   <div class="container-fluid shadow-lg p-3">
     <h3 class="text-white font-italic text-center m-5 fadeUpTrigger"><i class="fas fa-trophy"></i>人気グループ TOP6</h3>
     <div class='row'>
@@ -46,90 +47,56 @@
       <% @group_ranks.order(updated_at: :desc).each.with_index(1) do |ranking, i| %>
        <% if i == 1 %>
          <% lastMemmber = ranking.users.count %>
-       <% end %>    
+       <% end %>
         <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
           <div class="mb-4 card-deck fadeUpTrigger"> <!--連結しないで表示したい場合は、card-deck-->
             <div class="card text-white border-dark mb-3 bg-transparent hover-img">
             <% if ranking.users.count != lastMemmber %>
               <% j = i %>
               <h2 class=" imagefont"><%= j %>位</h2>
-              <%= link_to group_path(ranking) do %>
-                <%= attachment_image_tag(ranking, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid" )%>
-              <% end %>
-              <div class="card-body">
-                <h5 class="card-title font-weight-bold"><%= ranking.name.truncate(15) %></h5>
-                <p class="card-text"><i class="fas fa-user-friends mr-2"></i><%= ranking.users.size %>人</p>
-              </div>
+               <%= render "shared/top_group_ranking", ranking: ranking %>
             <% else %>
               <h2 class=" imagefont"><%= j %>位</h2>
-              <%= link_to group_path(ranking) do %>
-                <%= attachment_image_tag(ranking, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid" )%>
-              <% end %>
-              <div class="card-body">
-                <h5 class="card-title font-weight-bold"><%= ranking.name.truncate(15) %></h5>
-                <p class="card-text"><i class="fas fa-user-friends mr-2"></i><%= ranking.users.size %>人</p>
-              </div>
-            <% end %> 
+               <%= render "shared/top_group_ranking", ranking: ranking %>
+            <% end %>
             </div>
           </div>
         </div>
-      <% end %> 
+      <% end %>
     </div>
   </div>
 </div>
 
-<div class="jumbotron col-12 text-white bg-transparent text-center mb-0 card-border text-shadow"> 
+<div class="jumbotron col-12 text-white bg-transparent text-center mb-0 card-border text-shadow">
   <div class="container-fluid shadow-lg p-3">
     <h3 class="text-white font-italic text-center m-5 fadeUpTrigger"><i class="fas fa-trophy"></i>人気投稿 TOP6</h3>
     <div class='row'>
       <!--ランキング機能同率順位も含めた記載をする-->
       <% j = 1 %>
-      <% @post_ranks.order(updated_at: :desc).includes(:user,:group).each.with_index(1) do |ranking, i| %>
+      <% @post_ranks.order(updated_at: :desc).includes(:user, :group).each.with_index(1) do |ranking, i| %>
        <% if i == 1 %>
          <% lastlike = ranking.likes.count %>
-       <% end %>    
+       <% end %>
         <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
           <div class="mb-4 card-deck fadeUpTrigger">
             <div class="card text-white border-dark mb-3 bg-transparent hover-img">
             <% if ranking.likes.count != lastlike %>
               <% j = i %>
               <h2 class=" imagefont"><%= j %>位</h2>
-              <%= link_to group_post_path(ranking.group,ranking) do %>
-                <%= attachment_image_tag(ranking.user, :profile_image, size: "180x180", fallback: "profilenoimage.jpg",class: "post-img-top img-fluid") %>
-              <% end %>
-              <div class="card-body">
-                <h5 class="card-title font-weight-bold border-bottom">題名：<%= ranking.title.truncate(10) %></h5>
-                <p class="card-text border-bottom">本文：<%= ranking.body.truncate(15, separator: "。")%></p>
-                <p class="card-text"><%= time_ago_in_words(ranking.created_at) %>前に作成</p>
-                <span>
-                  <i class="fa fa-heart fa-1x" aria-hidden="true"><%= ranking.likes.count %></i>
-                  <i class="far fa-comment fa-1x ml-2"><%= ranking.comments.count %></i>
-                </span>
-              </div>
+               <%= render "shared/top_post_ranking", ranking: ranking %>
             <% else %>
               <h2 class=" imagefont"><%= j %>位</h2>
-              <%= link_to group_post_path(ranking.group,ranking) do %>
-                <%= attachment_image_tag(ranking.user, :profile_image, size: "180x180", fallback: "profilenoimage.jpg",class: "post-img-top img-fluid") %>
-              <% end %>
-              <div class="card-body">
-                <h5 class="card-title font-weight-bold border-bottom">題名：<%= ranking.title.truncate(10) %></h5>
-                <p class="card-text border-bottom">本文：<%= ranking.body.truncate(15, separator: "。")%></p>
-                <p class="card-text"><%= time_ago_in_words(ranking.created_at) %>前に作成</p>
-                <span>
-                  <i class="fa fa-heart fa-1x" aria-hidden="true"><%= ranking.likes.count %></i>
-                  <i class="far fa-comment fa-1x ml-2"><%= ranking.comments.count %></i>
-                </span>
-              </div>
-            <% end %> 
+               <%= render "shared/top_post_ranking", ranking: ranking %>
+            <% end %>
             </div>
           </div>
         </div>
-      <% end %> 
+      <% end %>
     </div>
   </div>
 </div>
-    
-<div class="jumbotron col-12 text-white bg-transparent text-center mb-0 text-shadow"> 
+
+<div class="jumbotron col-12 text-white bg-transparent text-center mb-0 text-shadow">
   <div class="container-fluid shadow-lg p-3">
   <h3 class="text-white font-italic text-center m-5 fadeUpTrigger text-shadow">運営メンバー紹介</h3>
     <div class='row'>
@@ -137,7 +104,7 @@
         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mx-auto">
           <div class="mb-4 card-deck fadeUpTrigger"> <!--連結しないで表示したい場合は、card-deck-->
             <div class="card text-white border-transparent mb-3 bg-transparent border-0 ">
-                <%= attachment_image_tag(admin, :profile_image, size: "240x180", fallback: "profilenoimage.jpg",class: "card-img-top img-fluid") %>
+                <%= attachment_image_tag(admin, :profile_image, size: "240x180", fallback: "profilenoimage.jpg", class: "card-img-top img-fluid") %>
               <div class="card-body">
                 <h5 class="card-title font-weight-bold"><%= admin.name %></h5>
                 <p class="card-text"><%= admin.introduction %></p>
@@ -145,7 +112,7 @@
             </div>
           </div>
         </div>
-      <% end %> 
+      <% end %>
     </div>
   </div>
 </div>

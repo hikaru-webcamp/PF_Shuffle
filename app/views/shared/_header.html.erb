@@ -3,7 +3,7 @@
       <div class="container-fluid">
         <div class="topfont">
           <%= link_to root_path, class: "navbar-brand text-white" do %>
-            <%= image_tag 'header_logo.png', { height:60 } %>
+            <%= image_tag "header_logo.png", { height: 60 } %>
           <% end %>
         </div>
         <!-- ハンバーガーメニュー -->
@@ -16,7 +16,7 @@
             <!--管理側のヘッダー-->
             <% if controller.class.parent.name == "Admin" %>
               <% if admin_signed_in? %>
-                <%# 管理側サインイン済 %>
+                <% # 管理側サインイン済 %>
                 <li class="nav-item">
                   <%= link_to "会員一覧", admin_users_path, class: "nav-link hover-img text-white" %>
                 </li>
@@ -25,28 +25,31 @@
                 </li>
               <% else %>
                 <ul class="navbar-nav mr-auto">
-                    <%# userサインイン前 %>
+                    <% # userサインイン前 %>
                   <li class="nav-item active">
                     <%= link_to "グループリスト", groups_path, class: "nav-link hover-img text-white mr-2" %>
                   </li>
                   <li class="nav-item active">
-                    <%= link_to 'かんたんログイン', users_guest_sign_in_path, method: :post, class:"nav-link hover-img text-white mr-2"%>
+                    <%= link_to "かんたんログイン", users_guest_sign_in_path, method: :post, class: "nav-link hover-img text-white mr-2" %>
                   </li>
                   <li class="nav-item active">
                   <%= link_to "管理人ログイン", new_admin_session_path, class: "nav-link hover-img text-white mr-2" %>
                   </li>
-                </ul>              
+                </ul>
               <% end %>
           <% end %>
             <!--ユーザー側のヘッダー-->
           <% if controller.class.parent.name == "User" %>
             <% if user_signed_in? %>
-              <%# userサインイン済 %>
+              <% # userサインイン済 %>
               <li class="nav-item">
                 <%= link_to "ホーム", root_path, class: "nav-link hover-img text-white" %>
               </li>
               <li class="nav-item">
                 <%= link_to "マイページ", user_path(current_user.id), class: "nav-link hover-img text-white" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "投稿一覧", group_post_index_groups_path, class: "nav-link hover-img text-white" %>
               </li>
               <li class="nav-item">
                 <%= link_to "会員一覧", users_path, class: "nav-link hover-img text-white" %>
@@ -56,15 +59,15 @@
               </li>
               <li class="nav-item">
                 <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link hover-img text-white" %>
-              </li>        
+              </li>
             <% else %>
             <ul class="navbar-nav mr-auto">
-                <%# userサインイン前 %>
+                <% # userサインイン前 %>
               <li class="nav-item active">
                 <%= link_to "グループリスト", groups_path, class: "nav-link hover-img text-white mr-2" %>
               </li>
               <li class="nav-item active">
-                <%= link_to 'かんたんログイン', users_guest_sign_in_path, method: :post, class:"nav-link hover-img text-white mr-2"%>
+                <%= link_to "かんたんログイン", users_guest_sign_in_path, method: :post, class: "nav-link hover-img text-white mr-2" %>
               </li>
               <li class="nav-item active">
               <%= link_to "管理人ログイン", new_admin_session_path, class: "nav-link hover-img text-white mr-2" %>

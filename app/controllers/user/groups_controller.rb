@@ -15,8 +15,8 @@ class User::GroupsController < ApplicationController
     else
       @groups = Group.all.order(updated_at: :desc).includes(:owner).page(params[:page]).per(12)
       @group = Group.new
-      flash.now[:alert] = 'グループを作成できませんでした'
-      render 'index'
+      flash.now[:alert] = "グループを作成できませんでした"
+      render "index"
     end
   end
 
@@ -24,13 +24,13 @@ class User::GroupsController < ApplicationController
     group = Group.find(params[:group_id])
     group_user = GroupUser.new(user_id: current_user.id, group_id: group.id)
     group_user.save
-    redirect_to group_path(group), notice: "グループに加入しました"
+    redirect_to group_path(group.id), notice: "グループに加入しました"
   end
 
   def groupout
     group = Group.find(params[:group_id])
     group.users.destroy(current_user)
-    redirect_to group_path(group), notice: "グループから脱退しました"
+    redirect_to group_path(group.id), notice: "グループから脱退しました"
   end
 
   def show
@@ -54,6 +54,10 @@ class User::GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @group.destroy
     redirect_to groups_path, notice: "グループを削除しました"
+  end
+
+  def group_post_index
+    @posts = Post.all.order(updated_at: :desc).includes(:user, :group).page(params[:page]).per(12)
   end
 
   private
