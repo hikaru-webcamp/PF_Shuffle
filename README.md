@@ -92,7 +92,7 @@
 * タブメニュー の切り替え
   * 会員詳細、グループ詳細、検索結果にて使用 
 * UI/UX
-  * レスポンシブ対応（スマートフォン/タブレット)  
+  * レスポンシブ対応（スマートフォン/タブレット)    
 [その他・機能・実装の詳細はこちら](https://docs.google.com/spreadsheets/d/1ZBt6QmwcLDN9bYTRuAtxePyoyASKBGyHLJTQEikMtGQ/edit?usp=sharing)
 ## テスト
 * RSpec
