@@ -87,8 +87,9 @@
 [その他・機能・実装の詳細はこちら](https://docs.google.com/spreadsheets/d/1ZBt6QmwcLDN9bYTRuAtxePyoyASKBGyHLJTQEikMtGQ/edit?usp=sharing)
 ## テスト
 * RSpec
- * 単体テスト(model)
- * 統合テスト(feature)
+  * 単体テスト(model)
+  * 統合テスト(feature)
+  * リクエストテスト(requests)
  ## 静的コード解析ツール
   * Rubocop
  
