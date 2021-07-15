@@ -12,10 +12,10 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   # ====================自分がフォローしているユーザーとの関連 ===================================
   has_many :active_relationships, class_name: "Relationship", foreign_key: :follower_id, inverse_of: "follower", dependent: :destroy
-  has_many :following_users, through: :active_relationships,  source: :followed
+  has_many :following_users, through: :active_relationships, source: :followed
   # ====================自分がフォローされるユーザーとの関連 ===================================
   has_many :passive_relationships, class_name: "Relationship", foreign_key: :followed_id, inverse_of: "followed", dependent: :destroy
-  has_many :follower_users,  through: :passive_relationships, source: :follower
+  has_many :follower_users, through: :passive_relationships, source: :follower
 
   # attachmentメソッドで、refileが指定カラムにアクセス可能にする
   attachment :profile_image, destroy: false
@@ -49,9 +49,10 @@ class User < ApplicationRecord
   end
 
   def self.guest
-    find_or_create_by!(email: 'guest@example.com') do |user|
+    find_or_create_by!(email: "guest@example.com") do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲストユーザー"
+      user.introduction = "よろしくおねがいします"
     end
   end
 end

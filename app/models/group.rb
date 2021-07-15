@@ -19,6 +19,6 @@ class Group < ApplicationRecord
   # ランキング用メソッド
   def self.all_group_ranks
     # グループのランキング
-    where(id: GroupUser.group(:group_id).order("count(group_id) desc").limit(6).pluck(:group_id))
+    find(GroupUser.group(:group_id).order("count(group_id) desc").limit(6).pluck(:group_id))
   end
 end

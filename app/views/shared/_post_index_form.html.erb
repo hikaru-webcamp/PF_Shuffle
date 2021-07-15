@@ -15,7 +15,7 @@
             <h5 class="card-title font-weight-bold border-bottom text-truncate">題名：<%= post.title %></h5>
             <p class="card-text border-bottom text-truncate">本文：<%= post.body %></p>
             <% if post.youtube_url.present? %>
-              <p class="card-text border-bottom text-primary">Youtube有</p>
+              <p class="card-text border-bottom text-primary">YouTube有</p>
             <% end %>
             <p class="card-text"><%= time_ago_in_words(post.created_at) %>前に作成</p>
             <span>

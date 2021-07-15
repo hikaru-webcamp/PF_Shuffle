@@ -15,7 +15,9 @@ class Post < ApplicationRecord
 
   # ランキング用メソッド
   def self.all_post_ranks
-    # ポストのランキング
-    where(id: Like.group(:post_id).order("count(post_id) desc").limit(6).pluck(:post_id))
+    # 投稿の番号(post_id)が同じものにグループを分ける
+    # pluckで:post_idカラムのみを数字で取り出すように指定。
+    # ポストのランキング limirで表示する最大数を指定する
+    find(Like.group(:post_id).order("count(post_id) desc").limit(6).pluck(:post_id))
   end
 end

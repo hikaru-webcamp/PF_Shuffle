@@ -43,22 +43,12 @@
     <h3 class="text-white font-italic text-center m-5 fadeUpTrigger"><i class="fas fa-trophy"></i>人気グループ TOP6</h3>
     <div class='row'>
       <!--ランキング機能同率順位も含めた記載をする-->
-      <% j = 1 %>
-      <% @group_ranks.order(updated_at: :desc).each.with_index(1) do |ranking, i| %>
-       <% if i == 1 %>
-         <% lastMemmber = ranking.users.count %>
-       <% end %>
+      <% @group_ranks.each.with_index(1) do |ranking, i| %>
         <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
           <div class="mb-4 card-deck fadeUpTrigger"> <!--連結しないで表示したい場合は、card-deck-->
             <div class="card text-white border-dark mb-3 bg-transparent hover-img">
-            <% if ranking.users.count != lastMemmber %>
-              <% j = i %>
-              <h2 class=" imagefont"><%= j %>位</h2>
+              <h2 class=" imagefont"><%= i %>位</h2>
                <%= render "shared/top_group_ranking", ranking: ranking %>
-            <% else %>
-              <h2 class=" imagefont"><%= j %>位</h2>
-               <%= render "shared/top_group_ranking", ranking: ranking %>
-            <% end %>
             </div>
           </div>
         </div>
@@ -71,23 +61,12 @@
   <div class="container-fluid shadow-lg p-3">
     <h3 class="text-white font-italic text-center m-5 fadeUpTrigger"><i class="fas fa-trophy"></i>人気投稿 TOP6</h3>
     <div class='row'>
-      <!--ランキング機能同率順位も含めた記載をする-->
-      <% j = 1 %>
-      <% @post_ranks.order(updated_at: :desc).includes(:user, :group).each.with_index(1) do |ranking, i| %>
-       <% if i == 1 %>
-         <% lastlike = ranking.likes.count %>
-       <% end %>
+      <% @post_ranks.each.with_index(1) do |ranking, i| %>
         <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
           <div class="mb-4 card-deck fadeUpTrigger">
             <div class="card text-white border-dark mb-3 bg-transparent hover-img">
-            <% if ranking.likes.count != lastlike %>
-              <% j = i %>
-              <h2 class=" imagefont"><%= j %>位</h2>
+              <h2 class=" imagefont"><%= i %>位</h2>
                <%= render "shared/top_post_ranking", ranking: ranking %>
-            <% else %>
-              <h2 class=" imagefont"><%= j %>位</h2>
-               <%= render "shared/top_post_ranking", ranking: ranking %>
-            <% end %>
             </div>
           </div>
         </div>
