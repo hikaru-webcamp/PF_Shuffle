@@ -58,6 +58,15 @@ class User::GroupsController < ApplicationController
 
   def group_post_index
     @posts = Post.all.order(updated_at: :desc).includes(:user, :group).page(params[:page]).per(12)
+    @post_all = Post.all.includes(:user)
+
+    respond_to do |format|
+      format.html do
+      end
+      format.csv do
+        send_data render_to_string, filename: "投稿一覧.csv", type: :csv
+      end
+    end
   end
 
   private
