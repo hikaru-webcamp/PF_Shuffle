@@ -16,6 +16,14 @@ class User::PostsController < ApplicationController
     @group = Group.find(params[:group_id])
     @post = Post.find(params[:id])
     @comment = Comment.new
+
+    respond_to do |format|
+      format.html do
+      end
+      format.csv do
+        send_data render_to_string, filename: "投稿詳細.csv", type: :csv
+      end
+    end
   end
 
   def create

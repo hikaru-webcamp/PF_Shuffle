@@ -49,6 +49,9 @@
                 <i class="fas fa-undo-alt"></i>
                 <% end %>
               </span>
+              <span>
+                <%= link_to "CSV", group_post_path(format: :csv), class: "hover-img ml-3 mb-3 btn btn-outline-primary" %>
+              </span>
             </div>
 
             <div class="text-muted text-right text-white">
@@ -72,23 +75,23 @@
   </div>
 </div>
 
-      <!--モーダルウィンドウの記述-->
-      <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content bg-transparent">
-            <div class="modal-header">
-              <h5 class="modal-title text-white" id="label1">投稿の編集</h5>
-              <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <%= render "shared/post_only_new_edit_form", group: @group, post: @post %>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-transparent hover-img text-white" data-dismiss="modal">閉じる</button>
-            </div>
-          </div>
-        </div>
+<!--モーダルウィンドウの記述-->
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="label1" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content bg-transparent">
+      <div class="modal-header">
+        <h5 class="modal-title text-white" id="label1">投稿の編集</h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <!--モーダルウィンドウの記述ここまで-->
+      <div class="modal-body">
+        <%= render "shared/post_only_new_edit_form", group: @group, post: @post %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-transparent hover-img text-white" data-dismiss="modal">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--モーダルウィンドウの記述ここまで-->
