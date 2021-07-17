@@ -15,7 +15,6 @@ class User::CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     comment = Comment.find(params[:id])
     comment.destroy
-    # redirect_to group_post_path(group.id, post.id), notice: "コメントを削除しました"
   end
 
   private
