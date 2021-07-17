@@ -21,9 +21,9 @@ Rails.application.routes.draw do
       collection do
         get "group_post_index" => "groups#group_post_index"
       end
-      get "join" => "groups#join"
-      delete "groupout" => "groups#groupout"
-      get "group_post" => "groups#groupout"
+      get "join" => "groups#group_join"
+      delete "groupout" => "groups#group_out"
+      get "group_post" => "groups#group_out"
       resources :posts, only: [:index, :show, :new, :edit, :create, :update, :destroy] do
         resource :likes, only: [:create, :destroy]
         resources :comments, only: [:index, :create, :destroy]

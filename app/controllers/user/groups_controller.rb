@@ -1,6 +1,7 @@
 class User::GroupsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
-  before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :authenticate_user!, except: %i[index]
+  before_action :set_group, only: %i[show update destroy]
+  before_action :set_group_join, only: %i[group_join group_out]
 
   def index
     @groups = Group.all.order(updated_at: :desc).includes(:owner).page(params[:page]).per(12)
@@ -13,45 +14,36 @@ class User::GroupsController < ApplicationController
     if group.save
       redirect_to group_path(group), notice: "グループを作成しました"
     else
-      @groups = Group.all.order(updated_at: :desc).includes(:owner).page(params[:page]).per(12)
-      @group = Group.new
-      flash.now[:alert] = "グループを作成できませんでした"
-      render "index"
+      redirect_to request.referer
+      flash[:danger] = "グループ作成に失敗しました"
     end
   end
 
-  def join
-    group = Group.find(params[:group_id])
-    group_user = GroupUser.new(user_id: current_user.id, group_id: group.id)
+  def group_join
+    group_user = GroupUser.new(user_id: current_user.id, group_id: @group.id)
     group_user.save
-    redirect_to group_path(group.id), notice: "グループに加入しました"
+    redirect_to group_path(@group.id), notice: "グループに加入しました"
   end
 
-  def groupout
-    group = Group.find(params[:group_id])
-    group.users.destroy(current_user)
-    redirect_to group_path(group.id), notice: "グループから脱退しました"
+  def group_out
+    @group.users.destroy(current_user)
+    redirect_to group_path(@group.id), notice: "グループから脱退しました"
   end
 
   def show
-    @group = Group.find(params[:id])
     @users = @group.users.order(updated_at: :desc).page(params[:page]).per(12)
   end
 
   def update
-    group = Group.find(params[:id])
-    if group.update(group_params)
-      redirect_to group_path(group.id), notice: "グループ情報を変更しました"
+    if @group.update(group_params)
+      redirect_to group_path(@group.id), notice: "グループ情報を変更しました"
     else
-      @group = Group.find(params[:id])
-      @users = @group.users.order(updated_at: :desc).page(params[:page]).per(12)
-      flash.now[:alert] = "グループ情報を変更できませんでした"
-      render "show"
+      redirect_to request.referer
+      flash[:danger] = "グループ情報を変更できませんでした"
     end
   end
 
   def destroy
-    @group = Group.find(params[:id])
     @group.destroy
     redirect_to groups_path, notice: "グループを削除しました"
   end
@@ -75,10 +67,11 @@ class User::GroupsController < ApplicationController
     params.require(:group).permit(:image, :name, :introduction, :owner_id)
   end
 
-  # 他人のグループ編集ページにアクセスできないメソッドを定義
-  # 他人のグループ編集ページをクリックすると、グループ一覧ページに遷移。
-  def ensure_correct_user
+  def set_group
     @group = Group.find(params[:id])
-    redirect_to groups_path unless @group.owner_id == current_user.id
+  end
+
+  def set_group_join
+    @group = Group.find(params[:group_id])
   end
 end
