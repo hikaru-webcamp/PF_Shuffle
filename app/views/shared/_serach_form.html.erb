@@ -2,7 +2,13 @@
 
 <!--管理側とユーザー側での検索結果フォームにして使用-->
   <% if controller.class.parent.name == "Admin" %>
-    <%= render "shared/user_index_form", users: users %>
+    <div class="sharedmargin">
+      <div class="container-fluid shadow-lg p-3">
+      <div class="col-sm-4 mx-auto text-center"><%= render "shared/flash_message" %></div>
+        <h3 class="text-white font-italic text-center m-4">会員一覧</h3>
+        <%= render "shared/user_index_form", users: users %>
+      </div>
+    </div>
   <% end %>
 
   <% if controller.class.parent.name == "User" %>
