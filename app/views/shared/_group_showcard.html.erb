@@ -2,7 +2,7 @@
   <div class="mb-4 card-deckr"> <!--連結しないで表示したい場合は、card-deck-->
     <div class="card text-white border-dark mb-3 bg-transparent">
       <%= link_to group_path(group) do %>
-        <%= attachment_image_tag(group, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid mx-auto d-block" )%>
+        <%= attachment_image_tag(group, :image, size: "240x180", fallback: "groupnoimage.jpg", class: "card-img-top img-fluid mx-auto d-block") %>
       <% end %>
       <div class="card-body">
         <h5 class="card-title font-weight-bold  border-bottom text-truncate"><%= group.name %></h5>
@@ -11,14 +11,14 @@
           <span class="mr-2">リーダー名</span>
           <%= link_to user_path(group.owner) do %>
             <span><%= group.owner.name %></span>
-          <% end %>          
+          <% end %>
         </p>
         <p class="card-text"><i class="fas fa-user-friends mr-2"></i><%= group.users.size %>人</p>
         <!--#自分が投稿できるよう設定-->
-         <% if group.users.include?(current_user) %>
-            <%= link_to new_group_post_path(group.id), class: "m-1 text-decoration-none btn btn-outline-success hover-img" do %>
-              <i class="fas fa-plus-circle hover-img">投稿</i>
-            <% end %>
+        <% if group.users.include?(current_user) %>
+          <%= link_to new_group_post_path(group.id), class: "m-1 text-decoration-none btn btn-outline-success hover-img" do %>
+            <i class="fas fa-plus-circle hover-img">投稿</i>
+          <% end %>
         <% end %>
         <!--#グループメンバーのみが投稿できるよう設定-->
         <% if group.owner_id == current_user.id %>
@@ -28,44 +28,43 @@
             <% end %>
             <span class="hover-img m-3 fa-2x  text-decoration-none" data-toggle="modal" data-target="#modal1">
               <i class="far fa-edit modal-fullscreen-xl-down hover-img"></i>
-            </span>    
-            <%= link_to group_path(group), method: :delete, data: { confirm: '本当にグループを消しますか？' }, class: "m-1 fa-2x text-reset text-decoration-none" do %>            
-              <i class="far fa-trash-alt hover-img"></i>     
+            </span>
+            <%= link_to group_path(group), method: :delete, data: { confirm: "本当にグループを消しますか？" }, class: "m-1 fa-2x text-reset text-decoration-none" do %>
+              <i class="far fa-trash-alt hover-img"></i>
             <% end %>
           </span>
 
         <% elsif group.member_by?(current_user) %>
-            <%= link_to group_groupout_path(group), method: :delete, class: "m-1 text-decoration-none btn btn-outline-danger hover-img" do %>
-            <i class="fas fa-user-minus hover-img">グループ脱退</i>
+          <%= link_to group_groupout_path(group), method: :delete, class: "m-1 text-decoration-none btn btn-outline-danger hover-img" do %>
+          <i class="fas fa-user-minus hover-img">グループ脱退</i>
             <% end %>
         <% else %>
-            <%= link_to group_join_path(group), class: "m-1 text-decoration-none btn btn-outline-primary hover-img" do%>
+          <%= link_to group_join_path(group), class: "m-1 text-decoration-none btn btn-outline-primary hover-img" do %>
             <i class="fas fa-user-plus hover-img">グループ加入</i>
           <% end %>
         <% end %>
- 
-       <!--モーダルウィンドウの記述-->
-        <div class="modal fade" id="modal1" tabindex="-1"
-              role="dialog" aria-labelledby="label1" aria-hidden="true">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content bg-transparent">
-              <div class="modal-header">
-                <h5 class="modal-title text-white" id="label1">グループ編集</h5>
-                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <%= render "shared/group_only_new_edit_form", group: @group %>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-transparent hover-img text-white" data-dismiss="modal">閉じる</button>
-              </div>
-            </div>
-          </div>
-        </div>
-       <!--モーダルウィンドウの記述ここまで-->
       </div>
     </div>
   </div>
 </div>
+<!--モーダルウィンドウの記述-->
+<div class="modal fade" id="modal1" tabindex="-1"
+      role="dialog" aria-labelledby="label1" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content bg-transparent">
+      <div class="modal-header">
+        <h5 class="modal-title text-white" id="label1">グループ編集</h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render "shared/group_only_new_edit_form", group: @group %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-transparent hover-img text-white" data-dismiss="modal">閉じる</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--モーダルウィンドウの記述ここまで-->

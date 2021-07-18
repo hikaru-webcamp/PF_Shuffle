@@ -38,7 +38,7 @@ $(window).on('scroll', function() {
 function fadeAnime(){
 
   // 下から要素を浮かばせるアクション
-  $('.fadeUpTrigger').each(function(){ 
+  $('.fadeUpTrigger').each(function(){
     var elemPos = $(this).offset().top-150;
     var scroll = $(window).scrollTop();
     var windowHeight = $(window).height();
@@ -58,4 +58,20 @@ function fadeAnime(){
 // 画面が読み込まれたらすぐに動かしたい場合の記述
   $(window).on('load', function(){
     fadeAnime();
+  });
+// 画像プレビューの記述
+  $(function () {
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $('.img_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $('.img_field').change(function () {
+      readURL(this);
+    });
   });

@@ -166,3 +166,10 @@ nav.pagination {
   margin-left: auto;
   margin-right: auto;
 }
+
+// 追記
+.img_prev:hover {
+  cursor: pointer;
+  opacity: 0.7;
+  transform: scale(1.01, 1.01);
+}
