@@ -26,7 +26,7 @@ Rails.application.routes.draw do
       get "group_post" => "groups#group_out"
       resources :posts, only: [:index, :show, :new, :edit, :create, :update, :destroy] do
         resource :likes, only: [:create, :destroy]
-        resources :comments, only: [:index, :create, :destroy]
+        resources :comments, only: [:create, :destroy]
       end
     end
   end

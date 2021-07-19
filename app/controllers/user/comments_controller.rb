@@ -7,7 +7,7 @@ class User::CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment.user_id = current_user.id
     @comment.post_id = @post.id
-    return unless @comment.save
+    @comment.save
   end
 
   def destroy
