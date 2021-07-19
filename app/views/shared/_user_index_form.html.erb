@@ -19,18 +19,28 @@
             <h5 class="card-title font-weight-boldtext-truncate"><%= user.name %></h5>
             <p class="card-text text-truncate"><%= user.introduction %></p>
             <p class="card-text mt-2">加入グループ <%= user.groups.size %></p>
-            <div class="card-text">
-            <%= link_to following_user_relationships_path(user), class: "card-link" do %>
-              <span class="following_count_<%= user.id %>"><%= user.following_users.size %></span>
-              <span class="text-white">フォロー中</span>
+            <% if controller.class.parent.name == "User" %>
+              <div class="card-text">
+              <%= link_to following_user_relationships_path(user), class: "card-link" do %>
+                <span class="following_count_<%= user.id %>"><%= user.following_users.size %></span>
+                <span class="text-white">フォロー中</span>
+              <% end %>
+              <br>
+              <%= link_to follower_user_relationships_path(user), class: "card-link" do %>
+                <span class="follower_count_<%= user.id %>"><%= user.follower_users.size %></span>
+                <span class="text-white">フォロワー</span>
+              <% end %>
+              </div>
             <% end %>
-            <br>
-            <%= link_to follower_user_relationships_path(user), class: "card-link" do %>
-              <span class="follower_count_<%= user.id %>"><%= user.follower_users.size %></span>
-              <span class="text-white">フォロワー</span>
-            <% end %>
-            </div>
+
             <% if controller.class.parent.name == "Admin" %>
+              <div class="card-text">
+                <span class="following_count_<%= user.id %>"><%= user.following_users.size %></span>
+                <span class="text-white">フォロー中</span>
+              <br>
+                <span class="follower_count_<%= user.id %>"><%= user.follower_users.size %></span>
+                <span class="text-white">フォロワー</span>
+              </div>
               <p class="card-text text-truncate"><%= user.email %></p>
                 <% if user.is_deleted %>
                   <p class="card-text text-danger">ステータス: 退会</p>
