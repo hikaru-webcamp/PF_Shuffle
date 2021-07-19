@@ -1,2 +1,20 @@
-<h1>User::Groups#show</h1>
-<p>Find me in app/views/user/groups/show.html.erb</p>
+<% content_for :title, "グループ詳細" %>
+<div class="sharedmargin">
+  <div class="container-fluid shadow-lg p-3">
+    <div class="col-sm-4 mx-auto text-center" ><%= render "shared/flash_message" %></div>
+    <div class="row m-1">
+      <!--post indexとの部分テンプレート-->
+      <%= render "shared/group_showcard", group: @group %>
+
+      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 mx-auto">
+        <nav class="nav nav-pills nav-justified mb-5">
+          <%= link_to "メンバー", "#", class: "nav-item nav-link active hover-img bg-light text-dark" %>
+          <%= link_to "投稿一覧", group_posts_path(@group.id), class: "nav-item nav-link hover-img bg-dark text-white" %>
+        </nav>
+        <!--ユーザー詳細とフォロービューをパーシャル化-->
+          <%= render "shared/user_index_follow", users: @users %>
+      </div>
+      
+    </div>
+  </div>
+</div>

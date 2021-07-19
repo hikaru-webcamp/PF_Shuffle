@@ -1,4 +1,4 @@
 class User::SearchesController < ApplicationController
-  def search
-  end
+  include Search
+  before_action :search
 end

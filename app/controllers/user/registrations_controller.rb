@@ -1,13 +1,17 @@
 # frozen_string_literal: true
 
 class User::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+
+  def ensure_normal_user
+    redirect_to root_path, alert: 'ゲストユーザーの更新・削除はできません。' if resource.email == 'guest@example.com'
+  end
 
   # GET /resource/sign_up
   # def new
   #   super
-  # end
+  # ends
 
   # POST /resource
   # def create
@@ -38,12 +42,12 @@ class User::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_sign_up_params
-  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
-  # end
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email])
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
@@ -59,4 +63,12 @@ class User::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  # アカウント登録後のリダイレクト先
+  def after_sign_up_path_for(resource)
+    user_path(current_user)
+  end
+
+  def after_update_path_for(resource)
+    user_path(current_user)
+  end
 end

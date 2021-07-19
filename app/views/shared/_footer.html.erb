@@ -1,0 +1,15 @@
+<div class="bg-transparent py-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <span class="text-muted">
+          <% unless user_signed_in? || admin_signed_in? %>
+            <div class="py-3 text-white text-center">
+              <p> © 2021 Shuffle All Rights Reserved.</p>
+            </div>
+          <% end %>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,2 +1,3 @@
-<h1>User::Users#edit</h1>
-<p>Find me in app/views/user/users/edit.html.erb</p>
+<% content_for :title, "会員編集" %>
+<!--ユーザー編集画面を管理側とユーザー側でパーシャル化-->
+<%= render "shared/user_edit_form", user: @user %>

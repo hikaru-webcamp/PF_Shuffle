@@ -1,0 +1,14 @@
+<% if user_signed_in? && user != current_user%>
+  <% if user.followed_by?(current_user) %>
+    <%= link_to user_relationships_path(user), method: :delete, remote: true,
+      class: "text-decoration-none btn btn-primary hover-img" do %>
+      フォロー中
+    <% end %>
+  <% else %>
+    <%= link_to user_relationships_path(user), method: :post, remote: true,
+      class: "btn btn-outline-primary hover-img" do %>
+      フォロー
+    <% end %>
+  <% end %>
+<% end %>
+

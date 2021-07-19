@@ -1,0 +1,16 @@
+<!--部分テンプレートにより@group➩group変更-->
+<%= form_with model: group, local: true do |f| %>
+  <div class="form-group  col-sm-12">
+    <%= f.file_field :image, class: "custom-file-input img_field", style: "display:none;" %>
+    <%= attachment_image_tag group, :image, fallback: "groupnoimage.jpg", onClick: "$('.img_field').click()", class: "center-block img-thumbnail img-responsive img_prev" %>
+  </div>
+  <div class="form-group col-sm-12">
+    <%= f.text_area :name, placeholder: "\uf007 グループ名を記述して下さい", class: "form-control fa" %>
+  </div>
+  <div class="form-group col-sm-12">
+    <%= f.text_area :introduction, placeholder: "\uf303 グループの説明文を記述して下さい", :size => "60x10", class: "form-control fa" %>
+  </div>
+  <div class="form-group col-sm-12">
+      <%= f.submit class: "btn btn-outline-light form-control hover-img" %>
+  </div>
+<% end %>

@@ -1,0 +1,51 @@
+<% content_for :title, "投稿一覧" %>
+<div class="sharedmargin">
+  <div class="container-fluid shadow-lg p-3">
+    <div class="col-sm-4 mx-auto text-center"><%= render "shared/flash_message" %></div>
+    <div class="row m-1">
+      <!--管理側とユーザー側のユーザー詳細ページをパーシャル化-->
+      <%= render "shared/user_showcard", user: @user %>
+      <!--post indexとの部分テンプレート-->
+      <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 mx-auto">
+        <nav class="nav nav-pills nav-justified mb-5">
+          <%= link_to "マイグループ", user_path(@user), class: "nav-item nav-link active hover-img bg-dark text-white" %>
+          <%= link_to "加入グループ", user_group_in_path(@user), class: "nav-item nav-link hover-img bg-dark text-white" %>
+          <%= link_to "投稿一覧", "#", class: "nav-item nav-link active hover-img bg-light text-dark" %>
+        </nav>
+
+        <div class='row scroll-list jscroll mx-auto fadeUp'>
+          <% @posts.includes(:group).each do |post| %>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+              <div class="mb-4 card-deck hover-img">
+
+                <div class="card text-white border-dark mb-3 bg-transparent">
+                  <%= link_to group_post_path(post.group.id, post) do %>
+                  <%= attachment_image_tag(post.user, :profile_image, size: "180x180", fallback: "profilenoimage.jpg", class: "post-img-top img-fluid") %>
+                  <% end %>
+                  <div class="card-body">
+                    <h5 class="card-title font-weight-bold border-bottom text-truncate">題名：<%= post.title %></h5>
+                    <p class="card-text border-bottom text-truncate">本文：<%= post.body %></p>
+                    <p class="card-text"><%= time_ago_in_words(post.created_at) %>前に作成</p>
+                    <span>
+                      <i class="fa fa-heart fa-1x" aria-hidden="true"><%= post.likes.count %></i>
+                      <i class="far fa-comment fa-1x ml-2"><%= post.comments.count %></i>
+                    </span>
+                    <% if post.user.id == current_user.id %>
+                    <span>
+                      <%= link_to group_post_path(post.group.id, post), method: :delete, data: { confirm: "本当に投稿を消しますか？" }, class: "hover-img m-1 fa-1x text-reset text-decoration-none" do %>
+                      <i class="far fa-trash-alt"></i>
+                      <% end %>
+                    </span>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <div class="jscroll-pagination"><%= paginate @posts %></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<% content_for :title, "投稿新規" %>
+<!--コメント新規投稿とコメント編集コードをパーシャル化-->
+<div class="sharedmargin">
+  <div class="container-md shadow-lg p-3">
+    <%= render "shared/flash_message" %>
+    <div class='row'>
+      <div class="col-sm-10 col-md-8 col-lg-6 col-xl-5 mx-auto text-white">
+        <h2 class="mb-3 ml-sm-n2 text-center">New Post</h2>
+        <!--部分テンプレートにより@group➩group変更-->
+        <!--グループの情報と空のインスタンスを代入-->
+        <%= render "shared/post_only_new_edit_form", group: @group, post: @post%>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -50,16 +50,19 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'rubocop-airbnb'
+   # 追加項目
+  gem 'rubocop', require:false
+  gem 'rubocop-rails', require:false
+  gem 'pre-commit', require:false
+  gem 'bullet'
 end
 
 group :test do
-  gem 'capybara', '>= 2.15'
+  gem 'capybara'
   gem 'rspec-rails'
   gem "factory_bot_rails"
   gem 'faker'
+  gem 'gimei'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -82,4 +85,5 @@ gem 'dotenv-rails'
 
 group :production do
   gem 'mysql2'
+  gem 'faker'
 end

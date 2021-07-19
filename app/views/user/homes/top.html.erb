@@ -1,2 +1,97 @@
-<h1>User::Homes#top</h1>
-<p>test</p>
+<% content_for :title, "Shuffle" %>
+<section class="hero">
+  <div class="video-box overlay">
+    <video class="video" playsinline muted autoplay >
+      <source src="https://movie-shuffle.s3.ap-northeast-1.amazonaws.com/topmovie.mp4" type="video/mp4" >
+    </video>
+  </div>
+  <div class="text-box">
+    <h1 class="font-italic imagefont">We are the best team<br></h1>
+    <% unless user_signed_in? || admin_signed_in? %>
+    <h1 class="font-italic imagefont"><p><%= link_to "Login", new_user_session_path, class: "btn btn-outline-light hover-img mr-2 btn-lg" %></p></h1>
+    <% end %>
+  </div>
+</section>
+
+<div class="jumbotron jumbotron-fluid mb-0 text-white bg-transparent text-center card-border topcolor">
+  <div class="col-sm-4 mx-auto text-center"><%= render "shared/flash_message" %></div>
+    <div class="container-fluid shadow-lg fadeUpTrigger">
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-6 d-flex flex-column justify-content-center px-2 ">
+          <h2 class="display-4 m-5 fadeUpTrigger text-shadow topfont">Shuffle</h2>
+          <p class="lead my-4">Shuffle(シャッフル）は、<br><h4>「プログラミング初学者の為のコミュニティサイト」</h4></p>
+          <p class="lead my-4">自分でグループを作って、仲間を集めて情報交換ができます。</p>
+          <% unless user_signed_in? || admin_signed_in? %>
+          <p class="mt-3">グループを作るには会員登録から</p>
+          <p><%= link_to "新規会員登録はこちら", new_user_registration_path, class: "btn btn-outline-light btn-lg hover-img" %></p>
+          <p class="lead mt-3">こちらは、かんたんログインです</p>
+          <p><%= link_to "かんたんログイン", users_guest_sign_in_path, method: :post, class: "btn btn-outline-light btn-lg hover-img" %></p>
+          <% end %>
+        </div>
+          <div class="video-box2 overlay mx-auto col-xl-6 col-lg-6 col-md-6 fadeUpTrigger">
+            <video class="video img-fluid" playsinline muted autoplay loop>
+              <source src="https://movie-shuffle.s3.ap-northeast-1.amazonaws.com/setumei.mp4" type="video/mp4" >
+            </video>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="jumbotron col-12 text-white bg-transparent text-center mb-0 card-border text-shadow">
+  <div class="container-fluid shadow-lg p-3">
+    <h3 class="text-white font-italic text-center m-5 fadeUpTrigger"><i class="fas fa-trophy"></i>人気グループ TOP6</h3>
+    <div class='row'>
+      <!--ランキング機能同率順位も含めた記載をする-->
+      <% @group_ranks.each.with_index(1) do |ranking, i| %>
+        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+          <div class="mb-4 card-deck fadeUpTrigger"> <!--連結しないで表示したい場合は、card-deck-->
+            <div class="card text-white border-dark mb-3 bg-transparent hover-img">
+              <h2 class=" imagefont"><%= i %>位</h2>
+               <%= render "shared/top_group_ranking", ranking: ranking %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="jumbotron col-12 text-white bg-transparent text-center mb-0 card-border text-shadow">
+  <div class="container-fluid shadow-lg p-3">
+    <h3 class="text-white font-italic text-center m-5 fadeUpTrigger"><i class="fas fa-trophy"></i>人気投稿 TOP6</h3>
+    <div class='row'>
+      <% @post_ranks.each.with_index(1) do |ranking, i| %>
+        <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+          <div class="mb-4 card-deck fadeUpTrigger">
+            <div class="card text-white border-dark mb-3 bg-transparent hover-img">
+              <h2 class=" imagefont"><%= i %>位</h2>
+               <%= render "shared/top_post_ranking", ranking: ranking %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="jumbotron col-12 text-white bg-transparent text-center mb-0 text-shadow">
+  <div class="container-fluid shadow-lg p-3">
+  <h3 class="text-white font-italic text-center m-5 fadeUpTrigger text-shadow">運営メンバー紹介</h3>
+    <div class='row'>
+      <% @admins.each do |admin| %>
+        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 mx-auto">
+          <div class="mb-4 card-deck fadeUpTrigger"> <!--連結しないで表示したい場合は、card-deck-->
+            <div class="card text-white border-transparent mb-3 bg-transparent border-0 ">
+                <%= attachment_image_tag(admin, :profile_image, size: "240x180", fallback: "profilenoimage.jpg", class: "card-img-top img-fluid") %>
+              <div class="card-body">
+                <h5 class="card-title font-weight-bold"><%= admin.name %></h5>
+                <p class="card-text"><%= admin.introduction %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

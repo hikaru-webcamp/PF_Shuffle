@@ -1,0 +1,16 @@
+
+<%= link_to group_post_path(ranking.group, ranking) do %>
+  <%= attachment_image_tag(ranking.user, :profile_image, size: "180x180", fallback: "profilenoimage.jpg", class: "post-img-top img-fluid") %>
+<% end %>
+<div class="card-body">
+    <h5 class="card-title font-weight-bold border-bottom text-truncate">題名：<%= ranking.title %></h5>
+    <p class="card-text border-bottom text-truncate">本文：<%= ranking.body %></p>
+  <% if ranking.youtube_url.present? %>
+   <p class="card-text border-bottom text-primary">YouTube有</p>
+  <% end %>
+    <p class="card-text"><%= time_ago_in_words(ranking.created_at) %>前に作成</p>
+  <span>
+    <i class="fa fa-heart fa-1x" aria-hidden="true"><%= ranking.likes.count %></i>
+    <i class="far fa-comment fa-1x ml-2"><%= ranking.comments.count %></i>
+  </span>
+</div>

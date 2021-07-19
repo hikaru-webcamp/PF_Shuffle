@@ -1,0 +1,19 @@
+  <% if controller.class.parent.name == "Admin" %>
+    <% if admin_signed_in? %>
+      <div class="search_form text-center">
+        <%= form_with url: admin_search_path, method: :get, local: true, class: "form-inline my-2 my-lg-0"  do |f| %>
+          <%= f.text_field :word, placeholder: "\uf002", class: "form-control mr-sm-2 fa" %>
+          <%= f.submit "検索", class: "btn btn-outline-light  my-2 my-sm-0 hover-img" %>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <% if user_signed_in? %>
+      <div class="search_form text-center">
+        <%= form_with url: search_path, method: :get, local: true, class: "form-inline my-2 my-lg-0"  do |f| %>
+          <%= f.text_field :word, placeholder: "\uf002", class: "form-control mr-sm-2 mb-2 mb-sm-0 fa" %>
+          <%= f.submit "検索", class: "btn btn-outline-light  mb-2 my-sm-0 hover-img" %>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
