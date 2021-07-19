@@ -21,4 +21,8 @@ class Group < ApplicationRecord
     # グループのランキング
     find(GroupUser.group(:group_id).order("count(group_id) desc").limit(6).pluck(:group_id))
   end
+
+  def self.name_or_introduction_like(value)
+    where("name LIKE(?) OR introduction LIKE(?)", "%#{value}%", "%#{value}%").order(created_at: :desc)
+  end
 end

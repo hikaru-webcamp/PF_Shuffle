@@ -20,4 +20,8 @@ class Post < ApplicationRecord
     # ポストのランキング limirで表示する最大数を指定する
     find(Like.group(:post_id).order("count(post_id) desc").limit(6).pluck(:post_id))
   end
+
+  def self.title_or_body_like(value)
+    where("title LIKE(?) OR body LIKE(?)", "%#{value}%", "%#{value}%").order(created_at: :desc)
+  end
 end

@@ -55,4 +55,8 @@ class User < ApplicationRecord
       user.introduction = "よろしくおねがいします"
     end
   end
+
+  def self.name_or_introduction_like(value)
+    where("name LIKE(?) OR introduction LIKE(?)", "%#{value}%", "%#{value}%").order(created_at: :desc)
+  end
 end
