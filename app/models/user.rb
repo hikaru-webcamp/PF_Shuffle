@@ -59,4 +59,8 @@ class User < ApplicationRecord
   def self.name_or_introduction_like(value)
     where("name LIKE(?) OR introduction LIKE(?)", "%#{value}%", "%#{value}%").order(created_at: :desc)
   end
+
+  def me?(user_id)
+    id == user_id
+  end
 end
