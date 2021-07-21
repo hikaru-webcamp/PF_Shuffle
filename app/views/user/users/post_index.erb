@@ -31,11 +31,11 @@
                       <i class="far fa-comment fa-1x ml-2"><%= post.comments.count %></i>
                     </span>
                     <% if post.user.me?(current_user.id) %>
-                    <span>
-                      <%= link_to group_post_path(post.group.id, post), method: :delete, data: { confirm: "本当に投稿を消しますか？" }, class: "hover-img m-1 fa-1x text-reset text-decoration-none" do %>
-                      <i class="far fa-trash-alt"></i>
-                      <% end %>
-                    </span>
+                      <span>
+                        <%= link_to group_post_path(post.group.id, post), method: :delete, data: { confirm: "本当に投稿を消しますか？" }, class: "hover-img m-1 fa-1x text-reset text-decoration-none" do %>
+                        <i class="far fa-trash-alt"></i>
+                        <% end %>
+                      </span>
                     <% end %>
                   </div>
                 </div>
