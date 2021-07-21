@@ -42,11 +42,11 @@
                 <span class="text-white">フォロワー</span>
               </div>
               <p class="card-text text-truncate"><%= user.email %></p>
-                <% if user.is_deleted %>
-                  <p class="card-text text-danger">ステータス: 退会</p>
-                <% else %>
-                  <p class="card-text text-success">ステータス: 有効</p>
-                <% end %>
+              <% if user.is_deleted %>
+                <p class="card-text text-danger">ステータス: 退会</p>
+              <% else %>
+                <p class="card-text text-success">ステータス: 有効</p>
+              <% end %>
             <% end %>
             <div class="jscroll-pagination">
               <%= paginate users %>

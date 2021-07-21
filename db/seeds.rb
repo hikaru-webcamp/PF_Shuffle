@@ -51,7 +51,7 @@ User.all.each do |user|
   end
 end
 
-101.times do |n|
+51.times do |n|
   group = Group.create!(
     name: Faker::Movie.unique.title,
     introduction: "最高に楽しいチームです！",

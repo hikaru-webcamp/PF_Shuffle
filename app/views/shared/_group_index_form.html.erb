@@ -22,12 +22,12 @@
             <% end %>
             </p>
             <p class="card-text"><i class="fas fa-user-friends mr-2"></i><%= group.users.size %>人</p>
+            <div class="jscroll-pagination">
+            <%= paginate groups %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="jscroll-pagination">
-    <%= paginate groups %>
     </div>
   <% end %>
 </div>
