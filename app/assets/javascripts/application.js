@@ -30,7 +30,7 @@ $(window).on('scroll', function() {
       nextSelector: 'span.next:last a',
       loadingHtml: '<div class="spinner-border text-white" role="status"></div>'
     });
-    $('div.jscroll-inner').addClass('d-flex flex-wrap w-100 ');
+    $('div.jscroll-inner').addClass('d-flex flex-wrap w-100 text-center');
   }
 });
 
