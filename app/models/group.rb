@@ -10,6 +10,7 @@ class Group < ApplicationRecord
   # バリデーションの記述(空白禁止と文字制限)
   validates :name, presence: true, length: { maximum: 50, minimum: 2 }
   validates :introduction, presence: true, length: { maximum: 200 }
+  validates :name, uniqueness: true
 
   # イイネ用メソッド
   def member_by?(user)
