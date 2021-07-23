@@ -4,12 +4,16 @@
     <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
       <div class="mb-4 card-deck"> <!--連結しないで表示したい場合は、card-deck-->
         <div class="card text-white border-dark mb-3 bg-transparent hover-img">
-          <!--#adminとuserでパスが違う為、条件分岐-->
+
+          <!-- ====管理側のみの表示 ==== -->
           <% if controller.class.parent.name == "Admin" %>
             <%= link_to admin_user_path(user.id), class: "profileimg" do %>
               <%= attachment_image_tag(user, :profile_image, size: "240x180", fallback: "profilenoimage.jpg", class: "profileimg user-img-top img-fluid mx-auto d-block") %>
             <% end %>
-          <% else %>
+          <% end %>
+
+          <!-- ====会員側のみの表示 ==== -->
+          <% if controller.class.parent.name == "User" %>
             <%= link_to user_path(user), class: "profileimg" do %>
               <%= attachment_image_tag(user, :profile_image, size: "240x180", fallback: "profilenoimage.jpg", class: "profileimg user-img-top img-fluid mx-auto d-block") %>
             <% end %>
@@ -33,6 +37,7 @@
               </div>
             <% end %>
 
+            <!-- ====管理側のみの表示 ==== -->
             <% if controller.class.parent.name == "Admin" %>
               <div class="card-text">
                 <span class="following_count_<%= user.id %>"><%= user.following_users.size %></span>
