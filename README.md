@@ -52,8 +52,10 @@
 * ユーザー同士の交流
 
 ## 設計書
+* ER図
+![スクリーンショット 2021-08-01 16 06 38](https://user-images.githubusercontent.com/79980351/127762477-a5937eb6-1ab0-4674-a2b9-7b7d856533ef.png)
+
 * [画面遷移図](https://drive.google.com/file/d/1WcLErtK_tbyAiFMkTYXFZEMqAwQiQV0C/view?usp=sharing)
-* [ER図](https://drive.google.com/file/d/1ptPvzaPjyf21LPoxMy6aJP3uTTkrWB62/view?usp=sharing)
 * [テーブル定義書](https://docs.google.com/spreadsheets/d/1SqSQQm1gZpTHf3OcX7xo8yNg7s_4f1dENl2DI5zy_GQ/edit?usp=sharing)
 * [詳細設計](https://drive.google.com/file/d/11xb3GUXV8LYU4EcFpRz5xPnGj17yHM9r/view?usp=sharing)
 * [アプリ土台作りのコマンド一覧](https://docs.google.com/spreadsheets/d/1A6Ea8L6Mus-K7u3EqCJokGCaN2bOZ_SFgmy01pj3FFI/edit?usp=sharing)
