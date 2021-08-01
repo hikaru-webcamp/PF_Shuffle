@@ -58,7 +58,6 @@
 * [画面遷移図](https://drive.google.com/file/d/1WcLErtK_tbyAiFMkTYXFZEMqAwQiQV0C/view?usp=sharing)
 * [テーブル定義書](https://docs.google.com/spreadsheets/d/1SqSQQm1gZpTHf3OcX7xo8yNg7s_4f1dENl2DI5zy_GQ/edit?usp=sharing)
 * [詳細設計](https://drive.google.com/file/d/11xb3GUXV8LYU4EcFpRz5xPnGj17yHM9r/view?usp=sharing)
-* [アプリ土台作りのコマンド一覧](https://docs.google.com/spreadsheets/d/1A6Ea8L6Mus-K7u3EqCJokGCaN2bOZ_SFgmy01pj3FFI/edit?usp=sharing)
 ## 使用技術
 * Ruby 2.6.3
 * Ruby on Rails 5.2.5
