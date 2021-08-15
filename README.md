@@ -53,11 +53,15 @@
 
 ## 設計書
 * ER図
-![スクリーンショット 2021-08-01 16 06 38](https://user-images.githubusercontent.com/79980351/127762477-a5937eb6-1ab0-4674-a2b9-7b7d856533ef.png)
+<img width="700" alt="スクリーンショット 2021-07-22 11 46 40" src="https://user-images.githubusercontent.com/79980351/127762477-a5937eb6-1ab0-4674-a2b9-7b7d856533ef.png">
 
 * [画面遷移図](https://drive.google.com/file/d/1WcLErtK_tbyAiFMkTYXFZEMqAwQiQV0C/view?usp=sharing)
 * [テーブル定義書](https://docs.google.com/spreadsheets/d/1SqSQQm1gZpTHf3OcX7xo8yNg7s_4f1dENl2DI5zy_GQ/edit?usp=sharing)
 * [詳細設計](https://drive.google.com/file/d/11xb3GUXV8LYU4EcFpRz5xPnGj17yHM9r/view?usp=sharing)
+
+## インフラ構成図
+<img width="700" alt="スクリーンショット 2021-07-22 11 46 40" src="https://user-images.githubusercontent.com/79980351/129470834-424313bf-a6a5-4ec6-b60e-2107d7e2bb3b.png">
+
 ## 使用技術
 * Ruby 2.6.3
 * Ruby on Rails 5.2.5
