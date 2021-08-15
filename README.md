@@ -1,6 +1,4 @@
 
-
-
 <img width="700" alt="header_logo" src="https://user-images.githubusercontent.com/79980351/123764919-38235880-d900-11eb-87a9-622eab84fa61.png">
 
 # Shuffle(シャッフル) 色々な人を混ぜ合わせるコミュニティアプリ
@@ -17,6 +15,11 @@
    パスワード： testtest
 ```
  ※「ゲストログイン機能」（ワンクリックでログインが可能な機能）も実装しています。
+ 
+ 
+<img width="700" alt="スクリーンショット 2021-06-29 17 29 07" src="https://user-images.githubusercontent.com/79980351/123764226-8e43cc00-d8ff-11eb-8f57-37e6ef2f08c8.png">
+<img width="700" alt="スクリーンショット 2021-07-22 11 46 40" src="https://user-images.githubusercontent.com/79980351/126583469-2605df90-83a2-4707-b9bd-95cf9f84787c.png">
+
 ## 技術的なポイント
  * AWS EC2/RDSを用いたRails本番環境構築
  * AWS CertbotでSSL証明書を発行し、SSL化
@@ -30,9 +33,6 @@
  * コミット時にRubocopを自動解析化
  * 複数キーワードに対応した検索
  * 8つのモデルをそれぞれ関連付けて使用
-
-<img width="700" alt="スクリーンショット 2021-06-29 17 29 07" src="https://user-images.githubusercontent.com/79980351/123764226-8e43cc00-d8ff-11eb-8f57-37e6ef2f08c8.png">
-<img width="700" alt="スクリーンショット 2021-07-22 11 46 40" src="https://user-images.githubusercontent.com/79980351/126583469-2605df90-83a2-4707-b9bd-95cf9f84787c.png">
 
 ## 制作背景
 コロナ渦により、オンライン環境でのプログラミング学習がふえてきました。  
