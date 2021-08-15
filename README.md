@@ -1,5 +1,7 @@
-
 <img width="700" alt="header_logo" src="https://user-images.githubusercontent.com/79980351/123764919-38235880-d900-11eb-87a9-622eab84fa61.png">
+
+![test2 (1)](https://user-images.githubusercontent.com/79980351/129471272-bad1159b-2acb-468a-8f69-249eb07c9fe7.gif)
+
 
 # Shuffle(シャッフル) 色々な人を混ぜ合わせるコミュニティアプリ
 サイトURLはこちら https://shuffle21.xyz/
