@@ -2,6 +2,9 @@
 
 ![test2 (1)](https://user-images.githubusercontent.com/79980351/129471272-bad1159b-2acb-468a-8f69-249eb07c9fe7.gif)
 
+<img width="700" alt="スクリーンショット 2021-06-29 17 29 07" src="https://user-images.githubusercontent.com/79980351/123764226-8e43cc00-d8ff-11eb-8f57-37e6ef2f08c8.png">
+<img width="700" alt="スクリーンショット 2021-07-22 11 46 40" src="https://user-images.githubusercontent.com/79980351/126583469-2605df90-83a2-4707-b9bd-95cf9f84787c.png">
+
 
 # Shuffle(シャッフル) 色々な人を混ぜ合わせるコミュニティアプリ
 サイトURLはこちら https://shuffle21.xyz/ ※（現在ポートフォリオ停止中です。）
@@ -19,8 +22,7 @@
  ※「ゲストログイン機能」（ワンクリックでログインが可能な機能）も実装しています。
  
  
-<img width="700" alt="スクリーンショット 2021-06-29 17 29 07" src="https://user-images.githubusercontent.com/79980351/123764226-8e43cc00-d8ff-11eb-8f57-37e6ef2f08c8.png">
-<img width="700" alt="スクリーンショット 2021-07-22 11 46 40" src="https://user-images.githubusercontent.com/79980351/126583469-2605df90-83a2-4707-b9bd-95cf9f84787c.png">
+
 
 ## 技術的なポイント
  * AWS EC2/RDSを用いたRails本番環境構築
